@@ -1,0 +1,7 @@
+node_modules
+lib
+.idea
+dts
+coverage
+bin
+.DS_Store
