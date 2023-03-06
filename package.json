@@ -7,10 +7,11 @@
   "types": "./lib/index.d.ts",
   "author": "Maksym Levytskyi https://github.com/gmaxlev",
   "license": "MIT",
+  "type": "module",
   "scripts": {
     "test": "npm run prettier && npm run lint && jest . --silent",
     "test:watch": "jest . --watch --silent",
-    "dev": "nodemon --watch './**/*.ts' --exec 'node --experimental-specifier-resolution=node --loader ts-node/esm' src/index.ts",
+    "dev": "cross-env NODE_ENV=development nodemon --watch './**/*.ts' --exec 'node --experimental-specifier-resolution=node --loader ts-node/esm' src/index.ts",
     "build:dts": "tsc --declaration --emitDeclarationOnly -p . --outDir dts",
     "build": "rm -rf lib && rm -rf dts && npm run build:dts && rollup -c rollup.config.cjs --bundleConfigAsCjs && rm -rf dts",
     "lint": "eslint .",
@@ -37,6 +38,7 @@
     "@types/node": "^18.14.0",
     "@types/tmp": "^0.2.3",
     "@typescript-eslint/eslint-plugin": "^5.53.0",
+    "cross-env": "^7.0.3",
     "eslint": "^8.34.0",
     "eslint-config-prettier": "^8.6.0",
     "eslint-config-standard-with-typescript": "^34.0.0",
@@ -58,6 +60,7 @@
     "typescript": "^4.9.5"
   },
   "dependencies": {
-    "tmp": "^0.2.1"
+    "tmp": "^0.2.1",
+    "type-fest": "^3.6.1"
   }
 }
