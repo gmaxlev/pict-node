@@ -1,4 +1,4 @@
-import { isUndefined } from "../types";
+import { isUndefined } from "../utils";
 
 /**
  * This is a simple tool for creating the seed string model.

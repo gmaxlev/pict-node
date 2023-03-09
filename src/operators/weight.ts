@@ -1,4 +1,4 @@
-import { isPositiveNumber, isRecord } from "../types";
+import { isRecord, isPositiveNumber } from "../utils";
 
 const WEIGHT_OPERATOR: unique symbol = Symbol("WEIGHT_OPERATOR");
 

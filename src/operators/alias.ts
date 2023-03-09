@@ -1,4 +1,4 @@
-import { isRecord } from "../types";
+import { isRecord } from "../utils";
 
 const ALIAS_OPERATOR: unique symbol = Symbol("ALIAS_OPERATOR");
 

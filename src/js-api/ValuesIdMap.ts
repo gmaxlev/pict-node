@@ -1,5 +1,5 @@
-import { isString } from "../types";
 import type { PictModelId } from "./types";
+import { isString } from "../utils";
 
 type ParameterValueToIdMap = Map<unknown, PictModelId>;
 

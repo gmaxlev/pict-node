@@ -1,4 +1,4 @@
-import { make } from "./define";
+import { make } from "./js-api/define";
 import { alias } from "./operators/alias";
 import { negative } from "./operators/negative";
 import { weight } from "./operators/weight";
@@ -56,8 +56,11 @@ async function and() {
     } as const,
     {
       order: 2,
+      // random: 3,
     }
   );
+
+  console.log(result.length);
 
   // for (const item of result) {
   //   console.log(item.type);

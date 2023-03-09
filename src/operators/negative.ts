@@ -1,4 +1,4 @@
-import { isRecord } from "../types";
+import { isRecord } from "../utils";
 
 const NEGATIVE_OPERATOR: unique symbol = Symbol("NEGATIVE_OPERATOR");
 

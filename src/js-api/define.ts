@@ -1,17 +1,18 @@
-import { ModelBuilder } from "./common/ModelBuilder";
-import { isAliasOperator } from "./operators/alias";
-import { isNegativeOperator } from "./operators/negative";
-import { isWeightOperator } from "./operators/weight";
-import { ValuesIdMap } from "./js-api/ValuesIdMap";
-import { ParameterValuesIdCounter } from "./js-api/ParameterValueIdCounter";
+import { ModelBuilder } from "../common/ModelBuilder";
+import { isAliasOperator } from "../operators/alias";
+import { isNegativeOperator } from "../operators/negative";
+import { isWeightOperator } from "../operators/weight";
+import { ValuesIdMap } from "./ValuesIdMap";
+import { ParameterValuesIdCounter } from "./ParameterValueIdCounter";
 import type {
   InputPictTypedModelToRecord,
   InputPictTypedModel,
   InputPictTypedSeed,
   InputPictTypedSubModels,
-} from "./js-api/types";
-import { SeedBuilder } from "./common/SeedBuilder";
-import { callPict, CallPictOptions, pictEntries } from "./builder";
+} from "./types";
+import { SeedBuilder } from "../common/SeedBuilder";
+import { callPict, CallPictOptions, pictEntries } from "../builder";
+import { isBoolean, isNumber, isRecord, isUndefined } from "../utils";
 
 function createModel<M extends ReadonlyArray<InputPictTypedModel>>(
   models: M,
@@ -141,7 +142,8 @@ export async function make<M extends ReadonlyArray<InputPictTypedModel>>(
     seed?: InputPictTypedSeed<M>;
   },
   options?: {
-    order: number;
+    order?: number;
+    random?: boolean | number;
   }
 ): Promise<Array<InputPictTypedModelToRecord<M>>> {
   const { modelText, valuesIdMap } = createModel(model.model, model.sub);
@@ -152,6 +154,20 @@ export async function make<M extends ReadonlyArray<InputPictTypedModel>>(
 
   if (model.seed) {
     binaryOptions.seedText = createSeed(model.seed, valuesIdMap);
+  }
+
+  if (isRecord(options)) {
+    if (isNumber(options.order)) {
+      binaryOptions.order = options.order;
+    }
+
+    if (
+      !isUndefined(options.random) &&
+      ((isBoolean(options.random) && options.random) ||
+        isNumber(options.random))
+    ) {
+      binaryOptions.random = options.random;
+    }
   }
 
   const result = await callPict(binaryOptions);
