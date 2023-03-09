@@ -1,58 +1,67 @@
-import { isNumber } from "./types";
+import { isNumber } from "../types";
 
-/**
- * This is a simple and universal model builder for PICT.
- */
+type ModelBuilderConstraint = string;
 
-interface SubModelObject {
+interface ModelBuilderSubModel {
   parameters: PropertyKey[];
   order?: number;
 }
 
-type ConstraintObject = string;
-
-interface ModelObject {
+interface ModelBuilderModel {
   parameters: Map<PropertyKey, unknown[]>;
-  sub: Array<SubModelObject>;
-  constraints: ConstraintObject[];
+  sub: Array<ModelBuilderSubModel>;
+  constraints: ModelBuilderConstraint[];
 }
 
+/**
+ * This class is responsible for building the native PICT model.
+ */
 export class ModelBuilder {
-  private model: ModelObject = {
+  private model: ModelBuilderModel = {
     parameters: new Map(),
     sub: [],
     constraints: [],
   };
 
-  addParameter(key: PropertyKey, value: unknown) {
+  /**
+   * Adds a simple parameter to the model.
+   */
+  addParameter(key: PropertyKey, value: string) {
     const array = this.getParameterValues(key);
     array.push(value);
   }
 
-  addAliasParameter(key: PropertyKey, values: unknown[]) {
+  /**
+   * Adds an alias parameter to the model.
+   * @see {@link https://github.com/Microsoft/pict/blob/main/doc/pict.md#aliasing}
+   */
+  addAliasParameter(key: PropertyKey, values: string[]) {
     const array = this.getParameterValues(key);
     array.push(values.join("|"));
   }
 
-  addNegativeParameter(key: PropertyKey, value: unknown) {
+  /**
+   * Adds a negative parameter to the model.
+   * @see {@link https://github.com/Microsoft/pict/blob/main/doc/pict.md#negative-testing}
+   */
+  addNegativeParameter(key: PropertyKey, value: string) {
     const array = this.getParameterValues(key);
     array.push(`~${value}`);
   }
 
-  addParameterWithWeight(key: PropertyKey, value: unknown, weight: number) {
+  /**
+   * Adds a parameter with a weight to the model.
+   * @see {@link https://github.com/Microsoft/pict/blob/main/doc/pict.md#weighting}
+   */
+  addParameterWithWeight(key: PropertyKey, value: string, weight: number) {
     const array = this.getParameterValues(key);
     array.push(`${value}(${weight})`);
   }
 
-  private getParameterValues(key: PropertyKey) {
-    let array = this.model.parameters.get(key);
-    if (!array) {
-      array = [];
-      this.model.parameters.set(key, array);
-    }
-    return array;
-  }
-
+  /**
+   * Adds a sub model to the model.
+   * Throws an error if any of the parameters do not exist.
+   */
   addSubModel(parameters: PropertyKey[], order?: number) {
     for (const parameter of parameters) {
       if (!this.model.parameters.has(parameter)) {
@@ -60,7 +69,7 @@ export class ModelBuilder {
       }
     }
 
-    const subModel: SubModelObject = {
+    const subModel: ModelBuilderSubModel = {
       parameters,
     };
 
@@ -71,10 +80,17 @@ export class ModelBuilder {
     this.model.sub.push(subModel);
   }
 
+  /**
+   * Adds a constraint to the model.
+   */
   addConstraint(constraint: string) {
     this.model.constraints.push(constraint);
   }
 
+  /**
+   * Returns the model as a PICT model string.
+   * Can be used to generate a PICT model file.
+   */
   getModelText() {
     let text = "";
     text += this.getMainModelText();
@@ -90,6 +106,19 @@ export class ModelBuilder {
     }
 
     return text;
+  }
+
+  private getConstraintText() {
+    return this.model.constraints.join("\n");
+  }
+
+  private getParameterValues(key: PropertyKey) {
+    let array = this.model.parameters.get(key);
+    if (!array) {
+      array = [];
+      this.model.parameters.set(key, array);
+    }
+    return array;
   }
 
   private getMainModelText() {
@@ -120,9 +149,5 @@ export class ModelBuilder {
       }
     });
     return string;
-  }
-
-  getConstraintText() {
-    return this.model.constraints.join("\n");
   }
 }

@@ -7,7 +7,12 @@ export interface AliasOperatorObject<T extends ReadonlyArray<unknown>> {
   getValues: () => T;
 }
 
-export function alias<T extends ReadonlyArray<unknown>>(values: T) {
+export function alias<T extends ReadonlyArray<unknown>>(
+  values: T
+): {
+  [ALIAS_OPERATOR]: T;
+  getValues: () => T;
+} {
   if (!Array.isArray(values)) {
     throw new Error("Alias values must be an array");
   }

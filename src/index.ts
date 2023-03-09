@@ -1,6 +1,7 @@
 import { make } from "./define";
 import { alias } from "./operators/alias";
 import { negative } from "./operators/negative";
+import { weight } from "./operators/weight";
 
 async function and() {
   const time = performance.now();
@@ -10,15 +11,7 @@ async function and() {
       model: [
         {
           name: "type",
-          values: [
-            "Single",
-            "Span",
-            alias(["two", "twice"] as const),
-            negative("Mirror" as const),
-            "and",
-            "too",
-            "RAID-5",
-          ],
+          values: ["Single", "Span", "Stripe", "Mirror", "RAID-5"],
         },
         {
           name: "size",
@@ -50,6 +43,10 @@ async function and() {
           values: ["on", "off"],
         },
       ],
+      // seed: {
+      //   type: [-1, "RAID-5"],
+      //   system: ["FAT32"],
+      // },
       // sub: [
       //   {
       //     keys: ["cluster", "size"],
@@ -63,7 +60,7 @@ async function and() {
   );
 
   // for (const item of result) {
-  //   console.log(item);
+  //   console.log(item.type);
   // }
 
   console.log(performance.now() - time);

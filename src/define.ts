@@ -1,214 +1,162 @@
-import type { UnionToIntersection } from "type-fest";
-import { ModelBuilder } from "./ModelBuilder";
+import { ModelBuilder } from "./common/ModelBuilder";
 import { isAliasOperator } from "./operators/alias";
-import {
-  isNegativeOperator,
-  NegativeOperatorObject,
-} from "./operators/negative";
-import type { AliasOperatorObject } from "./operators/alias";
-import {
-  callPictBinary,
-  iteratePictResult,
-  savePictModelToFile,
-} from "./builder";
-import { isUndefined } from "./types";
-import type { WeightOperatorObject } from "./operators/weight";
+import { isNegativeOperator } from "./operators/negative";
 import { isWeightOperator } from "./operators/weight";
+import { ValuesIdMap } from "./js-api/ValuesIdMap";
+import { ParameterValuesIdCounter } from "./js-api/ParameterValueIdCounter";
+import type {
+  InputPictTypedModelToRecord,
+  InputPictTypedModel,
+  InputPictTypedSeed,
+  InputPictTypedSubModels,
+} from "./js-api/types";
+import { SeedBuilder } from "./common/SeedBuilder";
+import { callPict, CallPictOptions, pictEntries } from "./builder";
 
-interface Model {
-  name: PropertyKey;
-  values: ReadonlyArray<unknown>;
-}
-
-/**
- * Receives a parameter values and unpack values from operators into top level
- *
- * For example, we have the following values:
- * [1, alias([2,3]), 4]]
- *
- * Without this type, the result would be:
- * [1, { [ALIAS_OPERATOR]: values }, 4]
- *
- * PICT will return "2" and "3" separately,
- * so we need to unpack the values from the operator to make it like usual values.
- *
- * The inferred type from above example will be:
- * 1 | 2 | 3 | 4
- */
-type UnpackOperatorValues<ParameterValues> =
-  ParameterValues extends ReadonlyArray<infer ParameterValuesItem>
-    ? ParameterValuesItem extends AliasOperatorObject<
-        infer ValueFromAliasOperator
-      >
-      ? ValueFromAliasOperator[number]
-      : ParameterValuesItem extends NegativeOperatorObject<
-          infer ValueFromNegativeOperator
-        >
-      ? ValueFromNegativeOperator
-      : ParameterValuesItem extends WeightOperatorObject<
-          infer ValueFromNegativeOperator
-        >
-      ? ValueFromNegativeOperator
-      : ParameterValuesItem
-    : never;
-
-/**
- * Receives a Model and returns a Record type with the key from the model and union values from the model
- *
- * For example, we have the following model:
- *
- * {
- *     key: "size",
- *     values: [1, 2, 3]
- * }
- *
- * The inferred type from above example will be:
- * {
- *     key: 1 | 2 | 3
- * }
- */
-type ModelToRecord<ModelArg> = ModelArg extends infer ModelArgInfer
-  ? ModelArgInfer extends Model
-    ? Record<
-        ModelArgInfer["name"],
-        UnpackOperatorValues<ModelArgInfer["values"]>
-      >
-    : never
-  : never;
-
-/**
- * Receives a Model array and returns a Record type with the key from the model and union values from the model
- *
- * For example, we have the following model:
- * [
- *  {
- *     key: "os",
- *     values: ["Windows", "Ubuntu", alias(["MacOS", "iOS"])
- *  }
- * ],
- * [
- *  {
- *     key: "device",
- *     values: ["Desktop", "Mobile"]
- *  }
- * ],
- *
- * The inferred type from above example will be:
- * {
- *     os: "Windows" | "Ubuntu" | "MacOS" | "iOS",
- *     device: "Desktop" | "Mobile"
- * }
- */
-type ModelsToRecord<ModelArg> = UnionToIntersection<
-  ModelArg extends infer ModelArgInfer
-    ? ModelArgInfer extends ReadonlyArray<Model>
-      ? ModelArgInfer[number] extends infer ModelItem
-        ? ModelItem extends Model
-          ? ModelToRecord<ModelItem>
-          : never
-        : never
-      : never
-    : never
->;
-
-type SubModel<K extends PropertyKey> = {
-  keys: ReadonlyArray<K>;
-  order?: number;
-};
-
-export async function make<M extends ReadonlyArray<Model>>(
-  model: {
-    model: M;
-    sub?: ReadonlyArray<SubModel<M[number]["name"]>>;
-  },
-  options?: {
-    order: number;
-  }
-): Promise<Array<ModelsToRecord<M>>> {
+function createModel<M extends ReadonlyArray<InputPictTypedModel>>(
+  models: M,
+  subModels?: InputPictTypedSubModels<M>
+) {
   const modelBuilder = new ModelBuilder();
-  const parameterNameToIdMap = new Map<PropertyKey, number>();
-  const idToValueMap = new Map<string, unknown>();
+  const valuesIdMap = new ValuesIdMap();
+  const parameterValueIdCounter = new ParameterValuesIdCounter();
 
-  for (const [paramIndex, paramItem] of model.model.entries()) {
-    parameterNameToIdMap.set(paramItem.name, paramIndex);
-
-    let valueId = 0;
-    const getUniqId = () => `${paramIndex}.${valueId}`;
-    const getValueIdAndIncrement = () => valueId++;
+  for (const paramItem of models) {
+    const paramId = parameterValueIdCounter.nextParameter();
 
     for (const valueItem of paramItem.values) {
       if (isAliasOperator(valueItem)) {
-        const transform = valueItem.getValues().map((aliasValueItem) => {
-          idToValueMap.set(getUniqId(), aliasValueItem);
-          return getValueIdAndIncrement();
+        const aliasValuesWithId = valueItem
+          .getValues()
+          .map((aliasValueItem) => {
+            const id = parameterValueIdCounter.nextValue();
+            return {
+              id,
+              value: aliasValueItem,
+            };
+          });
+
+        aliasValuesWithId.forEach(({ value, id }) => {
+          valuesIdMap.add(paramItem.name, paramId, value, id);
         });
-        modelBuilder.addAliasParameter(paramIndex, transform);
+
+        const aliasValuesIds = aliasValuesWithId.map((item) => item.id);
+        modelBuilder.addAliasParameter(paramId, aliasValuesIds);
+
         continue;
       }
 
+      const uniqueValueId = parameterValueIdCounter.nextValue();
+
       if (isNegativeOperator(valueItem)) {
-        idToValueMap.set(getUniqId(), valueItem.getValue());
-        modelBuilder.addNegativeParameter(paramIndex, getValueIdAndIncrement());
+        const value = valueItem.getValue();
+        valuesIdMap.add(paramItem.name, paramId, value, uniqueValueId);
+        modelBuilder.addNegativeParameter(paramId, uniqueValueId);
         continue;
       }
 
       if (isWeightOperator(valueItem)) {
-        idToValueMap.set(getUniqId(), valueItem.getValue());
-        modelBuilder.addParameterWithWeight(
-          paramIndex,
-          getValueIdAndIncrement(),
-          valueItem.getWeight()
-        );
+        const value = valueItem.getValue();
+        const weight = valueItem.getWeight();
+        valuesIdMap.add(paramItem.name, paramId, value, uniqueValueId);
+        modelBuilder.addParameterWithWeight(paramId, uniqueValueId, weight);
         continue;
       }
 
-      idToValueMap.set(getUniqId(), valueItem);
-      modelBuilder.addParameter(paramIndex, getValueIdAndIncrement());
+      valuesIdMap.add(paramItem.name, paramId, valueItem, uniqueValueId);
+      modelBuilder.addParameter(paramId, uniqueValueId);
     }
   }
 
-  if (model.sub) {
-    for (const subModelItem of model.sub) {
-      const indexArray = subModelItem.keys.map((key) => {
-        const value = parameterNameToIdMap.get(key);
-
-        if (isUndefined(value)) {
-          throw new Error("System error. This shouldn't have happened!");
-        }
-
-        return value;
-      });
-      modelBuilder.addSubModel(indexArray, subModelItem.order);
+  if (subModels) {
+    for (const subModelsItem of subModels) {
+      const indexArray = subModelsItem.keys.map((parameter) =>
+        valuesIdMap.getParameterIdByParameterName(parameter)
+      );
+      modelBuilder.addSubModel(indexArray, subModelsItem.order);
     }
   }
 
-  const modelText = modelBuilder.getModelText();
+  return {
+    modelText: modelBuilder.getModelText(),
+    valuesIdMap,
+  };
+}
 
-  const file = await savePictModelToFile(modelText);
+function createSeed<
+  S extends InputPictTypedSeed<ReadonlyArray<InputPictTypedModel>>
+>(seeds: S, valuesIdMap: ValuesIdMap) {
+  const seedBuilder = new SeedBuilder();
 
-  let result = callPictBinary(file.path);
+  for (const key in seeds) {
+    const parameters = seeds[key];
 
-  const finish: any = [];
-
-  iteratePictResult(
-    result,
-    (rowName, rowIndex, parameterName, parameterIndex) => {
-      if (parameterIndex === 0) {
-        finish.push({});
-      }
-
-      const current = finish[finish.length - 1];
-
-      const modelParameter = model.model[Number(rowName)] as Model;
-      const key = modelParameter.name;
-
-      const formatParameterName = parameterName.replace("~", "");
-
-      current[key] = idToValueMap.get(
-        `${rowName}.${formatParameterName}`
-      ) as any;
+    if (!Array.isArray(parameters)) {
+      throw new Error("Seed values must be an array");
     }
-  );
 
-  return finish as unknown as Promise<Array<ModelsToRecord<M>>>;
+    parameters.forEach((value) => {
+      const result = valuesIdMap.getParameterAndValueIdFromValues(key, value);
+      seedBuilder.add(result.parameterId, result.valueId);
+    });
+  }
+
+  return seedBuilder.getString();
+}
+
+function parseResult(
+  result: string,
+  valuesIdMap: ValuesIdMap
+): Array<Record<PropertyKey, unknown>> {
+  const cases: any[] = [];
+
+  for (const item of pictEntries(result)) {
+    let currentCase;
+
+    if (item.valueIndex === 0) {
+      currentCase = {};
+      cases.push(currentCase);
+    } else {
+      currentCase = cases[cases.length - 1];
+    }
+
+    const from = valuesIdMap.idToValuesMap.get(item.value);
+
+    if (!from) {
+      throw new Error(`Can't find value by id ${item.value}`);
+    }
+
+    currentCase[from.parameter.name] = from.value;
+
+    cases[cases.length - 1] = currentCase;
+  }
+
+  return cases;
+}
+
+export async function make<M extends ReadonlyArray<InputPictTypedModel>>(
+  model: {
+    model: M;
+    sub?: InputPictTypedSubModels<M>;
+    seed?: InputPictTypedSeed<M>;
+  },
+  options?: {
+    order: number;
+  }
+): Promise<Array<InputPictTypedModelToRecord<M>>> {
+  const { modelText, valuesIdMap } = createModel(model.model, model.sub);
+
+  const binaryOptions: CallPictOptions = {
+    modelText,
+  };
+
+  if (model.seed) {
+    binaryOptions.seedText = createSeed(model.seed, valuesIdMap);
+  }
+
+  const result = await callPict(binaryOptions);
+
+  return parseResult(result, valuesIdMap) as Array<
+    InputPictTypedModelToRecord<M>
+  >;
 }
