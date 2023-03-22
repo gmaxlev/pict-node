@@ -1,5 +1,5 @@
-import type { PictModelId } from "./types";
-import { isString } from "../utils";
+import type { PictModelId } from "../../common/types";
+import { isString } from "../../common/utils";
 
 type ParameterValueToIdMap = Map<unknown, PictModelId>;
 
@@ -21,36 +21,20 @@ type IdToValuesMap = Map<
   }
 >;
 
-/**
- * This class is used to store JavaScript representation of PICT model
- * and related unique ids that have been passed to PICT CLI instead of JS values (because it is impossible).
- * Since PICT CLI can return too many combinations, it would be very slow to use Object or Array methods
- * to find JS values by id. Instead of this, we create only one time a map of values to ids and vice versa.
- *
- * Generally, it can be used for the following purposes:
- * 1. Find initial values of PICT model by returned ids from PICT CLI.
- * 2. Using parameters names or its values after forming its ids (for example, during parsing seeds)
- */
 export class ValuesIdMap {
   valuesToIdMap: ParametersMap = new Map();
   idToValuesMap: IdToValuesMap = new Map();
 
-  /**
-   * Receives the name of parameter and returns its id.
-   */
   getParameterIdByParameterName(parameter: PropertyKey) {
     const parameterMap = this.valuesToIdMap.get(parameter);
 
     if (!parameterMap) {
-      throw new Error(`Parameter "${String(parameter)}" not found`);
+      throw new Error(`Parameter "${String(parameter)}" has been not found`);
     }
 
     return parameterMap.id;
   }
 
-  /**
-   * Receives the id of parameter value and returns its value and its parameter info.
-   */
   getValueByValueId(id: PictModelId) {
     const value = this.idToValuesMap.get(id);
 
@@ -68,13 +52,13 @@ export class ValuesIdMap {
     const parameterMap = this.valuesToIdMap.get(parameter);
 
     if (!parameterMap) {
-      throw new Error(`Parameter "${String(parameter)}" not found`);
+      throw new Error(`Parameter "${String(parameter)}" has been not found`);
     }
 
     const valueId = parameterMap.values.get(value);
 
     if (!isString(valueId)) {
-      throw new Error(`Value "${String(value)}" not found`);
+      throw new Error(`Value "${String(value)}" has been not found`);
     }
 
     return {
@@ -102,14 +86,14 @@ export class ValuesIdMap {
       this.valuesToIdMap.set(parameter, newParameterMap);
     } else {
       if (parameterMap.values.has(value)) {
-        throw new Error(`Value "${String(value)}" already exists`);
+        throw new Error(`Value "${String(value)}" has already existed`);
       }
 
       parameterMap.values.set(value, valueId);
     }
 
     if (this.idToValuesMap.has(valueId)) {
-      throw new Error(`Id "${valueId}" already exists`);
+      throw new Error(`Id "${valueId}" has already existed`);
     }
 
     this.idToValuesMap.set(valueId, {

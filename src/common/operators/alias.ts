@@ -1,6 +1,6 @@
 import { isRecord } from "../utils";
 
-const ALIAS_OPERATOR: unique symbol = Symbol("ALIAS_OPERATOR");
+export const ALIAS_OPERATOR: unique symbol = Symbol("ALIAS_OPERATOR");
 
 export interface AliasOperatorObject<T extends ReadonlyArray<unknown>> {
   [ALIAS_OPERATOR]: T;

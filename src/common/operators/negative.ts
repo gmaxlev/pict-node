@@ -1,6 +1,6 @@
 import { isRecord } from "../utils";
 
-const NEGATIVE_OPERATOR: unique symbol = Symbol("NEGATIVE_OPERATOR");
+export const NEGATIVE_OPERATOR: unique symbol = Symbol("NEGATIVE_OPERATOR");
 
 export interface NegativeOperatorObject<T extends unknown> {
   [NEGATIVE_OPERATOR]: T;

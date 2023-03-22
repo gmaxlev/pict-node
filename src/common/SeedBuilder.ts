@@ -1,28 +1,22 @@
-import { isUndefined } from "../utils";
+import { isString, isUndefined } from "./utils";
 
 /**
- * This is a simple tool for creating the seed string model.
- * All it does is transforming the following JS object:
- *
- * {
- *     parameter1: [A, B, C],
- *     parameter2: [D, E],
- * }
- *
- * Into the following string:
- *
- * parameter1	parameter2
- * A            D
- * B            E
- * C
- *
- * @see {@link https://github.com/Microsoft/pict/blob/main/doc/pict.md#seeding}
+ * A builder for PICT sub models.
+ * @see {@link https://github.com/Microsoft/pict/blob/main/doc/pict.md#sub-models}
  */
 export class SeedBuilder {
   private max = 0;
   private parameters: Record<string, string[]> = {};
 
-  add(parameter: string | number, value: string | number) {
+  add(parameter: string, value: string) {
+    if (!isString(parameter)) {
+      throw new Error("Parameter must be a string");
+    }
+
+    if (!isString(value)) {
+      throw new Error("Value must be a string");
+    }
+
     const values = this.parameters[parameter] || [];
     values.push(String(value));
     this.max = Math.max(this.max, values.length);
@@ -30,32 +24,32 @@ export class SeedBuilder {
   }
 
   getString() {
-    let string = "";
+    const parameters = Object.keys(this.parameters);
 
-    const keys = Object.keys(this.parameters);
+    let string = parameters.join("\t");
+    string += " ";
 
-    string += keys.join("\t");
-    string += "\n";
-
-    let counter = 0;
-
-    while (counter <= this.max) {
-      for (const key of keys) {
+    for (let counter = 0; counter <= this.max; counter++) {
+      parameters.forEach((parameter, index) => {
         // @ts-ignore
-        const value = this.parameters[key][counter];
+        const value = this.parameters[parameter][counter];
 
         if (isUndefined(value)) {
-          continue;
+          return;
+        }
+
+        if (index === 0) {
+          string = string.substring(0, string.length - 1);
+          string += "\n";
         }
 
         string += value;
 
         string += "\t";
-      }
-
-      string += "\n";
-      counter++;
+      });
     }
+
+    string = string.substring(0, string.length - 1);
 
     return string;
   }

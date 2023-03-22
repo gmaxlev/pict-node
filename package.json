@@ -10,7 +10,7 @@
   "type": "module",
   "scripts": {
     "test": "npm run prettier && npm run lint && jest . --silent",
-    "test:watch": "jest . --watch --silent",
+    "test:watch": "jest . --watch",
     "dev": "cross-env NODE_ENV=development nodemon --watch './**/*.ts' --exec 'node --experimental-specifier-resolution=node --loader ts-node/esm' src/index.ts",
     "build:dts": "tsc --declaration --emitDeclarationOnly -p . --outDir dts",
     "build": "rm -rf lib && rm -rf dts && npm run build:dts && rollup -c rollup.config.cjs --bundleConfigAsCjs && rm -rf dts",

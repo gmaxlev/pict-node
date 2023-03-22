@@ -1,4 +1,4 @@
-import type { PictModelId } from "./types";
+import type { PictModelId } from "../../common/types";
 
 export class ParameterValuesIdCounter {
   private parameter = -1;

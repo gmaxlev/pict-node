@@ -1,6 +1,6 @@
 import { isRecord, isPositiveNumber } from "../utils";
 
-const WEIGHT_OPERATOR: unique symbol = Symbol("WEIGHT_OPERATOR");
+export const WEIGHT_OPERATOR: unique symbol = Symbol("WEIGHT_OPERATOR");
 
 export interface WeightOperatorObject<T extends unknown> {
   [WEIGHT_OPERATOR]: T;

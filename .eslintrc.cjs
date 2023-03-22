@@ -9,5 +9,7 @@ module.exports = {
     sourceType: "module",
   },
   parser: "@typescript-eslint/parser",
-  rules: {},
+  rules: {
+    "no-duplicate-imports": "error",
+  },
 };

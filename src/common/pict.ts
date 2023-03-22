@@ -1,0 +1,114 @@
+import type { PictCliOptions, PickPictCliOptions } from "./types";
+import { execSync } from "child_process";
+import {
+  isBoolean,
+  isNumber,
+  isString,
+  isUndefined,
+  writeTempFile,
+} from "./utils";
+
+export interface CallPictOptions {
+  modelText: string;
+  seedText?: string;
+  options: Partial<
+    PickPictCliOptions<
+      | "order"
+      | "random"
+      | "aliasSeparator"
+      | "valueSeparator"
+      | "negativePrefix"
+      | "caseSensitive"
+    >
+  >;
+}
+
+export async function callPict(options: CallPictOptions) {
+  const cleanups: Function[] = [];
+
+  const modelFile = await writeTempFile(options.modelText);
+
+  cleanups.push(() => modelFile.cleanup());
+
+  const cliParams: Partial<PictCliOptions> = { ...options.options };
+
+  if (isString(options.seedText)) {
+    const seedFile = await writeTempFile(options.seedText);
+    cleanups.push(() => seedFile.cleanup());
+    cliParams.seeds = seedFile.path;
+  }
+
+  const result = callPictBinary(modelFile.path, cliParams);
+
+  cleanups.forEach((cleanup) => cleanup());
+
+  return result;
+}
+
+function callPictBinary(
+  modelPath: string,
+  params: Partial<PictCliOptions> = {}
+) {
+  let cliOptions = "";
+
+  if (isNumber(params.order)) {
+    cliOptions += ` /o:${params.order}`;
+  }
+
+  if (isString(params.seeds)) {
+    cliOptions += ` /e:${params.seeds}`;
+  }
+
+  if (isString(params.aliasSeparator)) {
+    cliOptions += ` /a:"${params.aliasSeparator}"`;
+  }
+
+  if (isString(params.valueSeparator)) {
+    cliOptions += ` /d:"${params.valueSeparator}"`;
+  }
+
+  if (isString(params.negativePrefix)) {
+    cliOptions += ` /n:"${params.negativePrefix}"`;
+  }
+
+  if (!isUndefined(params.random)) {
+    if (isBoolean(params.random) && params.random) {
+      cliOptions += ` /r`;
+    } else if (isNumber(params.random)) {
+      cliOptions += ` /r:${params.random}`;
+    }
+  }
+
+  return execSync(
+    `./vendor/repository/pict ${modelPath} ${cliOptions}`
+  ).toString();
+}
+
+export function* pictEntries(result: string) {
+  let headers: string[] = [];
+  const rows = result.split("\n");
+
+  for (const [rowIndex, rowItem] of rows.entries()) {
+    if (rowIndex === rows.length - 1) {
+      continue;
+    }
+
+    if (rowIndex === 0) {
+      headers = rowItem.split("\t");
+      continue;
+    }
+
+    const values = rowItem.split("\t");
+
+    for (const [valueIndex, valueItem] of values.entries()) {
+      const formattedValue = valueItem.replace("~", "");
+
+      yield {
+        rowName: headers[valueIndex],
+        rowIndex: rowIndex - 1,
+        value: formattedValue,
+        valueIndex,
+      };
+    }
+  }
+}
