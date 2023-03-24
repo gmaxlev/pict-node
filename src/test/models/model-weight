@@ -1,0 +1,2 @@
+Type:          Primary(10),Logical,Single,Span,Stripe,Mirror,RAID-5
+FormatMethod:  quick,slow

@@ -1,4162 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`strings() Cases Should use seeds correctly and return the result 1`] = `
-{
-  "cases": [
-    {
-      "APP": "Powerpoint",
-      "Browser": "Edge",
-      "CPUS": "2",
-      "HDD": "SCSI",
-      "OS": "Win10",
-      "Platform": "arm",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Chrome",
-      "CPUS": "1",
-      "HDD": "IDE",
-      "OS": "Win7",
-      "Platform": "arm",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Firefox",
-      "CPUS": "4",
-      "HDD": "SCSI",
-      "OS": "Win7",
-      "Platform": "x86",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Firefox",
-      "CPUS": "1",
-      "HDD": "IDE",
-      "OS": "Win8",
-      "Platform": "x64",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Opera",
-      "CPUS": "4",
-      "HDD": "IDE",
-      "OS": "Win10",
-      "Platform": "x64",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Opera",
-      "CPUS": "2",
-      "HDD": "SCSI",
-      "OS": "Win8",
-      "Platform": "x64",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Firefox",
-      "CPUS": "2",
-      "HDD": "SCSI",
-      "OS": "Win10",
-      "Platform": "x86",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Opera",
-      "CPUS": "1",
-      "HDD": "IDE",
-      "OS": "Win7",
-      "Platform": "x86",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Edge",
-      "CPUS": "4",
-      "HDD": "IDE",
-      "OS": "Win8",
-      "Platform": "x86",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Firefox",
-      "CPUS": "1",
-      "HDD": "IDE",
-      "OS": "Win10",
-      "Platform": "arm",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Firefox",
-      "CPUS": "1",
-      "HDD": "SCSI",
-      "OS": "Win8",
-      "Platform": "arm",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Chrome",
-      "CPUS": "4",
-      "HDD": "SCSI",
-      "OS": "Win10",
-      "Platform": "arm",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Chrome",
-      "CPUS": "2",
-      "HDD": "IDE",
-      "OS": "Win7",
-      "Platform": "x64",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Edge",
-      "CPUS": "1",
-      "HDD": "IDE",
-      "OS": "Win7",
-      "Platform": "x64",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Edge",
-      "CPUS": "4",
-      "HDD": "IDE",
-      "OS": "Win7",
-      "Platform": "x64",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Chrome",
-      "CPUS": "2",
-      "HDD": "IDE",
-      "OS": "Win8",
-      "Platform": "x86",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Opera",
-      "CPUS": "4",
-      "HDD": "IDE",
-      "OS": "Win7",
-      "Platform": "arm",
-      "RAM": "1GB",
-    },
-  ],
-  "length": 17,
-  "pict": {
-    "model": "Platform:x86,x64,arm
-CPUS:1,2,4
-RAM:1GB,4GB,64GB
-HDD:SCSI,IDE
-OS:Win7,Win8,Win10
-Browser:Edge,Opera,Chrome,Firefox
-APP:Word,Excel,Powerpoint",
-    "seed": "Platform	OS
-arm	Win10",
-  },
-}
-`;
-
-exports[`strings() Cases Should use sub models correctly and return the result 1`] = `
-{
-  "cases": [
-    {
-      "APP": "Excel",
-      "Browser": "Edge",
-      "CPUS": "1",
-      "HDD": "IDE",
-      "OS": "Win7",
-      "Platform": "arm",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Firefox",
-      "CPUS": "1",
-      "HDD": "IDE",
-      "OS": "Win10",
-      "Platform": "x64",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Chrome",
-      "CPUS": "4",
-      "HDD": "IDE",
-      "OS": "Win8",
-      "Platform": "x86",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Chrome",
-      "CPUS": "4",
-      "HDD": "SCSI",
-      "OS": "Win8",
-      "Platform": "x86",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Edge",
-      "CPUS": "4",
-      "HDD": "SCSI",
-      "OS": "Win10",
-      "Platform": "x86",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Opera",
-      "CPUS": "1",
-      "HDD": "IDE",
-      "OS": "Win7",
-      "Platform": "x64",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Opera",
-      "CPUS": "2",
-      "HDD": "IDE",
-      "OS": "Win8",
-      "Platform": "x86",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Opera",
-      "CPUS": "2",
-      "HDD": "SCSI",
-      "OS": "Win8",
-      "Platform": "x64",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Firefox",
-      "CPUS": "4",
-      "HDD": "SCSI",
-      "OS": "Win7",
-      "Platform": "x64",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Edge",
-      "CPUS": "4",
-      "HDD": "IDE",
-      "OS": "Win10",
-      "Platform": "x86",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Firefox",
-      "CPUS": "1",
-      "HDD": "IDE",
-      "OS": "Win8",
-      "Platform": "arm",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Chrome",
-      "CPUS": "1",
-      "HDD": "IDE",
-      "OS": "Win10",
-      "Platform": "x86",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Firefox",
-      "CPUS": "4",
-      "HDD": "SCSI",
-      "OS": "Win8",
-      "Platform": "x86",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Opera",
-      "CPUS": "1",
-      "HDD": "SCSI",
-      "OS": "Win10",
-      "Platform": "x86",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Opera",
-      "CPUS": "4",
-      "HDD": "SCSI",
-      "OS": "Win10",
-      "Platform": "x86",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Edge",
-      "CPUS": "2",
-      "HDD": "IDE",
-      "OS": "Win8",
-      "Platform": "arm",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Chrome",
-      "CPUS": "1",
-      "HDD": "SCSI",
-      "OS": "Win8",
-      "Platform": "x64",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Edge",
-      "CPUS": "4",
-      "HDD": "IDE",
-      "OS": "Win8",
-      "Platform": "arm",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Edge",
-      "CPUS": "2",
-      "HDD": "SCSI",
-      "OS": "Win10",
-      "Platform": "arm",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Edge",
-      "CPUS": "1",
-      "HDD": "IDE",
-      "OS": "Win7",
-      "Platform": "x64",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Edge",
-      "CPUS": "4",
-      "HDD": "IDE",
-      "OS": "Win7",
-      "Platform": "arm",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Opera",
-      "CPUS": "2",
-      "HDD": "IDE",
-      "OS": "Win8",
-      "Platform": "arm",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Edge",
-      "CPUS": "2",
-      "HDD": "SCSI",
-      "OS": "Win7",
-      "Platform": "arm",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Firefox",
-      "CPUS": "1",
-      "HDD": "IDE",
-      "OS": "Win8",
-      "Platform": "x86",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Opera",
-      "CPUS": "1",
-      "HDD": "IDE",
-      "OS": "Win8",
-      "Platform": "x64",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Firefox",
-      "CPUS": "4",
-      "HDD": "SCSI",
-      "OS": "Win10",
-      "Platform": "x86",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Chrome",
-      "CPUS": "4",
-      "HDD": "IDE",
-      "OS": "Win8",
-      "Platform": "arm",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Firefox",
-      "CPUS": "4",
-      "HDD": "SCSI",
-      "OS": "Win7",
-      "Platform": "arm",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Edge",
-      "CPUS": "2",
-      "HDD": "IDE",
-      "OS": "Win8",
-      "Platform": "x86",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Firefox",
-      "CPUS": "2",
-      "HDD": "SCSI",
-      "OS": "Win8",
-      "Platform": "x64",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Opera",
-      "CPUS": "4",
-      "HDD": "SCSI",
-      "OS": "Win7",
-      "Platform": "arm",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Firefox",
-      "CPUS": "2",
-      "HDD": "IDE",
-      "OS": "Win7",
-      "Platform": "x64",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Firefox",
-      "CPUS": "2",
-      "HDD": "IDE",
-      "OS": "Win8",
-      "Platform": "arm",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Edge",
-      "CPUS": "4",
-      "HDD": "IDE",
-      "OS": "Win7",
-      "Platform": "x64",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Firefox",
-      "CPUS": "1",
-      "HDD": "SCSI",
-      "OS": "Win10",
-      "Platform": "x64",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Firefox",
-      "CPUS": "4",
-      "HDD": "SCSI",
-      "OS": "Win7",
-      "Platform": "x86",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Chrome",
-      "CPUS": "4",
-      "HDD": "IDE",
-      "OS": "Win10",
-      "Platform": "x64",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Firefox",
-      "CPUS": "4",
-      "HDD": "IDE",
-      "OS": "Win7",
-      "Platform": "x86",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Edge",
-      "CPUS": "4",
-      "HDD": "IDE",
-      "OS": "Win8",
-      "Platform": "x64",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Chrome",
-      "CPUS": "2",
-      "HDD": "SCSI",
-      "OS": "Win7",
-      "Platform": "arm",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Edge",
-      "CPUS": "1",
-      "HDD": "IDE",
-      "OS": "Win7",
-      "Platform": "x64",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Chrome",
-      "CPUS": "1",
-      "HDD": "IDE",
-      "OS": "Win8",
-      "Platform": "arm",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Firefox",
-      "CPUS": "2",
-      "HDD": "IDE",
-      "OS": "Win8",
-      "Platform": "x86",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Opera",
-      "CPUS": "2",
-      "HDD": "SCSI",
-      "OS": "Win7",
-      "Platform": "arm",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Opera",
-      "CPUS": "4",
-      "HDD": "IDE",
-      "OS": "Win10",
-      "Platform": "x64",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Firefox",
-      "CPUS": "1",
-      "HDD": "IDE",
-      "OS": "Win10",
-      "Platform": "x86",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Chrome",
-      "CPUS": "2",
-      "HDD": "SCSI",
-      "OS": "Win8",
-      "Platform": "x64",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Edge",
-      "CPUS": "1",
-      "HDD": "IDE",
-      "OS": "Win10",
-      "Platform": "x86",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Opera",
-      "CPUS": "4",
-      "HDD": "SCSI",
-      "OS": "Win8",
-      "Platform": "arm",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Edge",
-      "CPUS": "4",
-      "HDD": "IDE",
-      "OS": "Win7",
-      "Platform": "x64",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Edge",
-      "CPUS": "1",
-      "HDD": "IDE",
-      "OS": "Win8",
-      "Platform": "x64",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Edge",
-      "CPUS": "2",
-      "HDD": "IDE",
-      "OS": "Win7",
-      "Platform": "x64",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Firefox",
-      "CPUS": "2",
-      "HDD": "IDE",
-      "OS": "Win10",
-      "Platform": "x64",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Edge",
-      "CPUS": "1",
-      "HDD": "SCSI",
-      "OS": "Win7",
-      "Platform": "x86",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Firefox",
-      "CPUS": "2",
-      "HDD": "SCSI",
-      "OS": "Win10",
-      "Platform": "x64",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Firefox",
-      "CPUS": "2",
-      "HDD": "IDE",
-      "OS": "Win7",
-      "Platform": "arm",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Edge",
-      "CPUS": "4",
-      "HDD": "SCSI",
-      "OS": "Win7",
-      "Platform": "x86",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Opera",
-      "CPUS": "2",
-      "HDD": "IDE",
-      "OS": "Win8",
-      "Platform": "x64",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Edge",
-      "CPUS": "2",
-      "HDD": "IDE",
-      "OS": "Win7",
-      "Platform": "arm",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Chrome",
-      "CPUS": "1",
-      "HDD": "IDE",
-      "OS": "Win8",
-      "Platform": "x64",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Opera",
-      "CPUS": "2",
-      "HDD": "IDE",
-      "OS": "Win10",
-      "Platform": "x86",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Edge",
-      "CPUS": "2",
-      "HDD": "SCSI",
-      "OS": "Win7",
-      "Platform": "x86",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Chrome",
-      "CPUS": "2",
-      "HDD": "SCSI",
-      "OS": "Win7",
-      "Platform": "x64",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Edge",
-      "CPUS": "1",
-      "HDD": "SCSI",
-      "OS": "Win8",
-      "Platform": "arm",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Opera",
-      "CPUS": "2",
-      "HDD": "SCSI",
-      "OS": "Win7",
-      "Platform": "x64",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Chrome",
-      "CPUS": "1",
-      "HDD": "SCSI",
-      "OS": "Win7",
-      "Platform": "arm",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Opera",
-      "CPUS": "1",
-      "HDD": "SCSI",
-      "OS": "Win8",
-      "Platform": "arm",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Chrome",
-      "CPUS": "2",
-      "HDD": "SCSI",
-      "OS": "Win7",
-      "Platform": "x86",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Edge",
-      "CPUS": "4",
-      "HDD": "SCSI",
-      "OS": "Win8",
-      "Platform": "arm",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Firefox",
-      "CPUS": "1",
-      "HDD": "IDE",
-      "OS": "Win8",
-      "Platform": "x64",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Edge",
-      "CPUS": "1",
-      "HDD": "IDE",
-      "OS": "Win10",
-      "Platform": "x64",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Firefox",
-      "CPUS": "4",
-      "HDD": "SCSI",
-      "OS": "Win7",
-      "Platform": "arm",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Chrome",
-      "CPUS": "1",
-      "HDD": "IDE",
-      "OS": "Win7",
-      "Platform": "arm",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Chrome",
-      "CPUS": "4",
-      "HDD": "SCSI",
-      "OS": "Win8",
-      "Platform": "arm",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Firefox",
-      "CPUS": "2",
-      "HDD": "SCSI",
-      "OS": "Win10",
-      "Platform": "arm",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Firefox",
-      "CPUS": "2",
-      "HDD": "IDE",
-      "OS": "Win10",
-      "Platform": "arm",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Opera",
-      "CPUS": "2",
-      "HDD": "SCSI",
-      "OS": "Win10",
-      "Platform": "x64",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Firefox",
-      "CPUS": "2",
-      "HDD": "SCSI",
-      "OS": "Win8",
-      "Platform": "x64",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Chrome",
-      "CPUS": "2",
-      "HDD": "IDE",
-      "OS": "Win8",
-      "Platform": "arm",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Firefox",
-      "CPUS": "2",
-      "HDD": "SCSI",
-      "OS": "Win8",
-      "Platform": "x86",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Firefox",
-      "CPUS": "1",
-      "HDD": "IDE",
-      "OS": "Win7",
-      "Platform": "x86",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Chrome",
-      "CPUS": "4",
-      "HDD": "SCSI",
-      "OS": "Win8",
-      "Platform": "arm",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Edge",
-      "CPUS": "1",
-      "HDD": "SCSI",
-      "OS": "Win10",
-      "Platform": "arm",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Opera",
-      "CPUS": "4",
-      "HDD": "IDE",
-      "OS": "Win10",
-      "Platform": "arm",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Opera",
-      "CPUS": "2",
-      "HDD": "SCSI",
-      "OS": "Win10",
-      "Platform": "x86",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Firefox",
-      "CPUS": "2",
-      "HDD": "IDE",
-      "OS": "Win8",
-      "Platform": "arm",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Chrome",
-      "CPUS": "1",
-      "HDD": "SCSI",
-      "OS": "Win7",
-      "Platform": "x64",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Chrome",
-      "CPUS": "4",
-      "HDD": "SCSI",
-      "OS": "Win10",
-      "Platform": "x86",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Chrome",
-      "CPUS": "4",
-      "HDD": "IDE",
-      "OS": "Win7",
-      "Platform": "arm",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Chrome",
-      "CPUS": "2",
-      "HDD": "IDE",
-      "OS": "Win8",
-      "Platform": "x86",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Opera",
-      "CPUS": "4",
-      "HDD": "IDE",
-      "OS": "Win7",
-      "Platform": "arm",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Firefox",
-      "CPUS": "2",
-      "HDD": "SCSI",
-      "OS": "Win10",
-      "Platform": "x64",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Firefox",
-      "CPUS": "1",
-      "HDD": "IDE",
-      "OS": "Win7",
-      "Platform": "x86",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Opera",
-      "CPUS": "1",
-      "HDD": "IDE",
-      "OS": "Win8",
-      "Platform": "x86",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Opera",
-      "CPUS": "4",
-      "HDD": "IDE",
-      "OS": "Win7",
-      "Platform": "x64",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Edge",
-      "CPUS": "1",
-      "HDD": "IDE",
-      "OS": "Win7",
-      "Platform": "x86",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Opera",
-      "CPUS": "1",
-      "HDD": "IDE",
-      "OS": "Win8",
-      "Platform": "x64",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Firefox",
-      "CPUS": "4",
-      "HDD": "IDE",
-      "OS": "Win10",
-      "Platform": "arm",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Edge",
-      "CPUS": "2",
-      "HDD": "SCSI",
-      "OS": "Win7",
-      "Platform": "x64",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Chrome",
-      "CPUS": "1",
-      "HDD": "SCSI",
-      "OS": "Win10",
-      "Platform": "x64",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Firefox",
-      "CPUS": "1",
-      "HDD": "SCSI",
-      "OS": "Win8",
-      "Platform": "x86",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Firefox",
-      "CPUS": "4",
-      "HDD": "SCSI",
-      "OS": "Win8",
-      "Platform": "arm",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Opera",
-      "CPUS": "4",
-      "HDD": "SCSI",
-      "OS": "Win7",
-      "Platform": "x86",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Firefox",
-      "CPUS": "4",
-      "HDD": "SCSI",
-      "OS": "Win10",
-      "Platform": "arm",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Opera",
-      "CPUS": "2",
-      "HDD": "IDE",
-      "OS": "Win10",
-      "Platform": "x64",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Edge",
-      "CPUS": "2",
-      "HDD": "SCSI",
-      "OS": "Win8",
-      "Platform": "x86",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Chrome",
-      "CPUS": "1",
-      "HDD": "SCSI",
-      "OS": "Win10",
-      "Platform": "x86",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Chrome",
-      "CPUS": "4",
-      "HDD": "SCSI",
-      "OS": "Win10",
-      "Platform": "x86",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Firefox",
-      "CPUS": "4",
-      "HDD": "IDE",
-      "OS": "Win7",
-      "Platform": "x64",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Firefox",
-      "CPUS": "2",
-      "HDD": "IDE",
-      "OS": "Win7",
-      "Platform": "x86",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Opera",
-      "CPUS": "1",
-      "HDD": "SCSI",
-      "OS": "Win8",
-      "Platform": "x64",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Chrome",
-      "CPUS": "2",
-      "HDD": "IDE",
-      "OS": "Win10",
-      "Platform": "x86",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Firefox",
-      "CPUS": "1",
-      "HDD": "IDE",
-      "OS": "Win8",
-      "Platform": "x64",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Chrome",
-      "CPUS": "4",
-      "HDD": "SCSI",
-      "OS": "Win10",
-      "Platform": "arm",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Opera",
-      "CPUS": "4",
-      "HDD": "SCSI",
-      "OS": "Win8",
-      "Platform": "arm",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Opera",
-      "CPUS": "1",
-      "HDD": "SCSI",
-      "OS": "Win7",
-      "Platform": "x64",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Edge",
-      "CPUS": "1",
-      "HDD": "IDE",
-      "OS": "Win8",
-      "Platform": "arm",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Firefox",
-      "CPUS": "2",
-      "HDD": "SCSI",
-      "OS": "Win8",
-      "Platform": "arm",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Edge",
-      "CPUS": "1",
-      "HDD": "SCSI",
-      "OS": "Win7",
-      "Platform": "x64",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Firefox",
-      "CPUS": "1",
-      "HDD": "IDE",
-      "OS": "Win10",
-      "Platform": "x64",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Opera",
-      "CPUS": "4",
-      "HDD": "IDE",
-      "OS": "Win8",
-      "Platform": "x86",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Edge",
-      "CPUS": "4",
-      "HDD": "SCSI",
-      "OS": "Win8",
-      "Platform": "x86",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Edge",
-      "CPUS": "2",
-      "HDD": "SCSI",
-      "OS": "Win7",
-      "Platform": "x64",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Firefox",
-      "CPUS": "1",
-      "HDD": "IDE",
-      "OS": "Win7",
-      "Platform": "arm",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Chrome",
-      "CPUS": "4",
-      "HDD": "IDE",
-      "OS": "Win10",
-      "Platform": "x64",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Edge",
-      "CPUS": "4",
-      "HDD": "IDE",
-      "OS": "Win7",
-      "Platform": "x86",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Edge",
-      "CPUS": "4",
-      "HDD": "SCSI",
-      "OS": "Win8",
-      "Platform": "x64",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Firefox",
-      "CPUS": "4",
-      "HDD": "SCSI",
-      "OS": "Win7",
-      "Platform": "x86",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Chrome",
-      "CPUS": "1",
-      "HDD": "SCSI",
-      "OS": "Win10",
-      "Platform": "arm",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Edge",
-      "CPUS": "1",
-      "HDD": "SCSI",
-      "OS": "Win8",
-      "Platform": "x86",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Opera",
-      "CPUS": "2",
-      "HDD": "IDE",
-      "OS": "Win7",
-      "Platform": "x86",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Opera",
-      "CPUS": "2",
-      "HDD": "SCSI",
-      "OS": "Win10",
-      "Platform": "arm",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Edge",
-      "CPUS": "1",
-      "HDD": "SCSI",
-      "OS": "Win10",
-      "Platform": "x86",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Opera",
-      "CPUS": "2",
-      "HDD": "IDE",
-      "OS": "Win7",
-      "Platform": "x86",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Chrome",
-      "CPUS": "2",
-      "HDD": "IDE",
-      "OS": "Win7",
-      "Platform": "x86",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Opera",
-      "CPUS": "2",
-      "HDD": "IDE",
-      "OS": "Win7",
-      "Platform": "arm",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Opera",
-      "CPUS": "4",
-      "HDD": "SCSI",
-      "OS": "Win10",
-      "Platform": "x64",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Opera",
-      "CPUS": "2",
-      "HDD": "SCSI",
-      "OS": "Win8",
-      "Platform": "arm",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Opera",
-      "CPUS": "4",
-      "HDD": "SCSI",
-      "OS": "Win7",
-      "Platform": "arm",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Opera",
-      "CPUS": "1",
-      "HDD": "IDE",
-      "OS": "Win7",
-      "Platform": "arm",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Opera",
-      "CPUS": "2",
-      "HDD": "IDE",
-      "OS": "Win10",
-      "Platform": "arm",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Edge",
-      "CPUS": "4",
-      "HDD": "IDE",
-      "OS": "Win10",
-      "Platform": "arm",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Edge",
-      "CPUS": "2",
-      "HDD": "IDE",
-      "OS": "Win8",
-      "Platform": "x64",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Opera",
-      "CPUS": "2",
-      "HDD": "IDE",
-      "OS": "Win8",
-      "Platform": "x86",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Edge",
-      "CPUS": "2",
-      "HDD": "IDE",
-      "OS": "Win10",
-      "Platform": "arm",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Firefox",
-      "CPUS": "2",
-      "HDD": "SCSI",
-      "OS": "Win10",
-      "Platform": "x86",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Edge",
-      "CPUS": "2",
-      "HDD": "SCSI",
-      "OS": "Win8",
-      "Platform": "arm",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Edge",
-      "CPUS": "4",
-      "HDD": "IDE",
-      "OS": "Win8",
-      "Platform": "x86",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Edge",
-      "CPUS": "4",
-      "HDD": "SCSI",
-      "OS": "Win10",
-      "Platform": "arm",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Opera",
-      "CPUS": "2",
-      "HDD": "SCSI",
-      "OS": "Win7",
-      "Platform": "x64",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Firefox",
-      "CPUS": "1",
-      "HDD": "SCSI",
-      "OS": "Win7",
-      "Platform": "arm",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Edge",
-      "CPUS": "2",
-      "HDD": "SCSI",
-      "OS": "Win8",
-      "Platform": "x64",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Chrome",
-      "CPUS": "1",
-      "HDD": "IDE",
-      "OS": "Win10",
-      "Platform": "x64",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Edge",
-      "CPUS": "1",
-      "HDD": "IDE",
-      "OS": "Win8",
-      "Platform": "arm",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Edge",
-      "CPUS": "2",
-      "HDD": "SCSI",
-      "OS": "Win10",
-      "Platform": "x64",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Firefox",
-      "CPUS": "2",
-      "HDD": "IDE",
-      "OS": "Win10",
-      "Platform": "x86",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Chrome",
-      "CPUS": "4",
-      "HDD": "SCSI",
-      "OS": "Win8",
-      "Platform": "x64",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Chrome",
-      "CPUS": "4",
-      "HDD": "IDE",
-      "OS": "Win8",
-      "Platform": "x64",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Opera",
-      "CPUS": "4",
-      "HDD": "SCSI",
-      "OS": "Win8",
-      "Platform": "x86",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Edge",
-      "CPUS": "4",
-      "HDD": "SCSI",
-      "OS": "Win8",
-      "Platform": "x86",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Chrome",
-      "CPUS": "4",
-      "HDD": "IDE",
-      "OS": "Win8",
-      "Platform": "x64",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Opera",
-      "CPUS": "1",
-      "HDD": "SCSI",
-      "OS": "Win10",
-      "Platform": "x64",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Chrome",
-      "CPUS": "1",
-      "HDD": "SCSI",
-      "OS": "Win8",
-      "Platform": "x86",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Chrome",
-      "CPUS": "1",
-      "HDD": "IDE",
-      "OS": "Win7",
-      "Platform": "arm",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Edge",
-      "CPUS": "4",
-      "HDD": "SCSI",
-      "OS": "Win7",
-      "Platform": "arm",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Firefox",
-      "CPUS": "2",
-      "HDD": "IDE",
-      "OS": "Win7",
-      "Platform": "x86",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Opera",
-      "CPUS": "1",
-      "HDD": "IDE",
-      "OS": "Win10",
-      "Platform": "arm",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Edge",
-      "CPUS": "4",
-      "HDD": "SCSI",
-      "OS": "Win7",
-      "Platform": "x86",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Firefox",
-      "CPUS": "2",
-      "HDD": "IDE",
-      "OS": "Win7",
-      "Platform": "arm",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Firefox",
-      "CPUS": "2",
-      "HDD": "SCSI",
-      "OS": "Win7",
-      "Platform": "x64",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Edge",
-      "CPUS": "2",
-      "HDD": "IDE",
-      "OS": "Win10",
-      "Platform": "arm",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Edge",
-      "CPUS": "1",
-      "HDD": "SCSI",
-      "OS": "Win7",
-      "Platform": "arm",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Chrome",
-      "CPUS": "1",
-      "HDD": "IDE",
-      "OS": "Win10",
-      "Platform": "x64",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Chrome",
-      "CPUS": "1",
-      "HDD": "IDE",
-      "OS": "Win7",
-      "Platform": "x86",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Opera",
-      "CPUS": "1",
-      "HDD": "IDE",
-      "OS": "Win8",
-      "Platform": "arm",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Opera",
-      "CPUS": "4",
-      "HDD": "IDE",
-      "OS": "Win8",
-      "Platform": "arm",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Chrome",
-      "CPUS": "1",
-      "HDD": "SCSI",
-      "OS": "Win8",
-      "Platform": "arm",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Firefox",
-      "CPUS": "2",
-      "HDD": "SCSI",
-      "OS": "Win7",
-      "Platform": "x64",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Edge",
-      "CPUS": "1",
-      "HDD": "IDE",
-      "OS": "Win10",
-      "Platform": "arm",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Firefox",
-      "CPUS": "2",
-      "HDD": "IDE",
-      "OS": "Win8",
-      "Platform": "x64",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Opera",
-      "CPUS": "2",
-      "HDD": "IDE",
-      "OS": "Win7",
-      "Platform": "arm",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Chrome",
-      "CPUS": "2",
-      "HDD": "IDE",
-      "OS": "Win7",
-      "Platform": "arm",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Chrome",
-      "CPUS": "4",
-      "HDD": "IDE",
-      "OS": "Win7",
-      "Platform": "x86",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Opera",
-      "CPUS": "1",
-      "HDD": "IDE",
-      "OS": "Win8",
-      "Platform": "x86",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Firefox",
-      "CPUS": "4",
-      "HDD": "SCSI",
-      "OS": "Win10",
-      "Platform": "x64",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Chrome",
-      "CPUS": "4",
-      "HDD": "SCSI",
-      "OS": "Win7",
-      "Platform": "x86",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Chrome",
-      "CPUS": "2",
-      "HDD": "IDE",
-      "OS": "Win7",
-      "Platform": "x64",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Opera",
-      "CPUS": "2",
-      "HDD": "IDE",
-      "OS": "Win7",
-      "Platform": "x64",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Chrome",
-      "CPUS": "4",
-      "HDD": "IDE",
-      "OS": "Win7",
-      "Platform": "x64",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Firefox",
-      "CPUS": "4",
-      "HDD": "IDE",
-      "OS": "Win8",
-      "Platform": "x86",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Opera",
-      "CPUS": "4",
-      "HDD": "SCSI",
-      "OS": "Win7",
-      "Platform": "x86",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Firefox",
-      "CPUS": "1",
-      "HDD": "IDE",
-      "OS": "Win10",
-      "Platform": "arm",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Chrome",
-      "CPUS": "2",
-      "HDD": "IDE",
-      "OS": "Win10",
-      "Platform": "x64",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Firefox",
-      "CPUS": "1",
-      "HDD": "SCSI",
-      "OS": "Win8",
-      "Platform": "arm",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Opera",
-      "CPUS": "1",
-      "HDD": "IDE",
-      "OS": "Win10",
-      "Platform": "x64",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Opera",
-      "CPUS": "1",
-      "HDD": "IDE",
-      "OS": "Win7",
-      "Platform": "x86",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Edge",
-      "CPUS": "2",
-      "HDD": "IDE",
-      "OS": "Win7",
-      "Platform": "x86",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Firefox",
-      "CPUS": "4",
-      "HDD": "IDE",
-      "OS": "Win10",
-      "Platform": "x64",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Opera",
-      "CPUS": "4",
-      "HDD": "IDE",
-      "OS": "Win8",
-      "Platform": "x64",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Edge",
-      "CPUS": "1",
-      "HDD": "IDE",
-      "OS": "Win10",
-      "Platform": "arm",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Chrome",
-      "CPUS": "2",
-      "HDD": "IDE",
-      "OS": "Win7",
-      "Platform": "arm",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Chrome",
-      "CPUS": "4",
-      "HDD": "SCSI",
-      "OS": "Win7",
-      "Platform": "x86",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Firefox",
-      "CPUS": "1",
-      "HDD": "SCSI",
-      "OS": "Win7",
-      "Platform": "x64",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Chrome",
-      "CPUS": "2",
-      "HDD": "SCSI",
-      "OS": "Win8",
-      "Platform": "arm",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Chrome",
-      "CPUS": "1",
-      "HDD": "IDE",
-      "OS": "Win8",
-      "Platform": "x86",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Firefox",
-      "CPUS": "1",
-      "HDD": "IDE",
-      "OS": "Win10",
-      "Platform": "arm",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Firefox",
-      "CPUS": "4",
-      "HDD": "IDE",
-      "OS": "Win8",
-      "Platform": "arm",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Chrome",
-      "CPUS": "2",
-      "HDD": "IDE",
-      "OS": "Win7",
-      "Platform": "x86",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Firefox",
-      "CPUS": "4",
-      "HDD": "IDE",
-      "OS": "Win7",
-      "Platform": "arm",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Opera",
-      "CPUS": "1",
-      "HDD": "IDE",
-      "OS": "Win7",
-      "Platform": "x64",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Chrome",
-      "CPUS": "4",
-      "HDD": "SCSI",
-      "OS": "Win10",
-      "Platform": "x64",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Edge",
-      "CPUS": "4",
-      "HDD": "SCSI",
-      "OS": "Win10",
-      "Platform": "arm",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Chrome",
-      "CPUS": "1",
-      "HDD": "IDE",
-      "OS": "Win7",
-      "Platform": "x64",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Edge",
-      "CPUS": "1",
-      "HDD": "SCSI",
-      "OS": "Win8",
-      "Platform": "x64",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Edge",
-      "CPUS": "2",
-      "HDD": "IDE",
-      "OS": "Win10",
-      "Platform": "x64",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Opera",
-      "CPUS": "4",
-      "HDD": "SCSI",
-      "OS": "Win10",
-      "Platform": "arm",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Opera",
-      "CPUS": "4",
-      "HDD": "IDE",
-      "OS": "Win10",
-      "Platform": "x64",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Firefox",
-      "CPUS": "1",
-      "HDD": "IDE",
-      "OS": "Win7",
-      "Platform": "arm",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Edge",
-      "CPUS": "1",
-      "HDD": "IDE",
-      "OS": "Win7",
-      "Platform": "x86",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Edge",
-      "CPUS": "1",
-      "HDD": "IDE",
-      "OS": "Win10",
-      "Platform": "x64",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Opera",
-      "CPUS": "1",
-      "HDD": "SCSI",
-      "OS": "Win10",
-      "Platform": "arm",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Chrome",
-      "CPUS": "1",
-      "HDD": "IDE",
-      "OS": "Win8",
-      "Platform": "x64",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Firefox",
-      "CPUS": "2",
-      "HDD": "SCSI",
-      "OS": "Win7",
-      "Platform": "x86",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Firefox",
-      "CPUS": "4",
-      "HDD": "IDE",
-      "OS": "Win7",
-      "Platform": "x64",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Opera",
-      "CPUS": "1",
-      "HDD": "IDE",
-      "OS": "Win10",
-      "Platform": "x86",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Opera",
-      "CPUS": "4",
-      "HDD": "IDE",
-      "OS": "Win7",
-      "Platform": "x64",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Opera",
-      "CPUS": "2",
-      "HDD": "IDE",
-      "OS": "Win10",
-      "Platform": "x86",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Firefox",
-      "CPUS": "2",
-      "HDD": "SCSI",
-      "OS": "Win7",
-      "Platform": "arm",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Firefox",
-      "CPUS": "1",
-      "HDD": "SCSI",
-      "OS": "Win10",
-      "Platform": "x86",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Firefox",
-      "CPUS": "1",
-      "HDD": "SCSI",
-      "OS": "Win7",
-      "Platform": "x86",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Opera",
-      "CPUS": "1",
-      "HDD": "IDE",
-      "OS": "Win8",
-      "Platform": "arm",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Edge",
-      "CPUS": "2",
-      "HDD": "IDE",
-      "OS": "Win7",
-      "Platform": "x86",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Edge",
-      "CPUS": "4",
-      "HDD": "SCSI",
-      "OS": "Win8",
-      "Platform": "arm",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Firefox",
-      "CPUS": "4",
-      "HDD": "SCSI",
-      "OS": "Win8",
-      "Platform": "x64",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Opera",
-      "CPUS": "4",
-      "HDD": "IDE",
-      "OS": "Win7",
-      "Platform": "x86",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Chrome",
-      "CPUS": "1",
-      "HDD": "IDE",
-      "OS": "Win7",
-      "Platform": "x86",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Chrome",
-      "CPUS": "2",
-      "HDD": "SCSI",
-      "OS": "Win7",
-      "Platform": "x64",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Chrome",
-      "CPUS": "2",
-      "HDD": "SCSI",
-      "OS": "Win10",
-      "Platform": "arm",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Opera",
-      "CPUS": "1",
-      "HDD": "IDE",
-      "OS": "Win10",
-      "Platform": "x86",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Firefox",
-      "CPUS": "2",
-      "HDD": "IDE",
-      "OS": "Win10",
-      "Platform": "arm",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Edge",
-      "CPUS": "2",
-      "HDD": "IDE",
-      "OS": "Win7",
-      "Platform": "arm",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Chrome",
-      "CPUS": "1",
-      "HDD": "IDE",
-      "OS": "Win10",
-      "Platform": "arm",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Chrome",
-      "CPUS": "4",
-      "HDD": "IDE",
-      "OS": "Win10",
-      "Platform": "x86",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Chrome",
-      "CPUS": "1",
-      "HDD": "SCSI",
-      "OS": "Win7",
-      "Platform": "x86",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Firefox",
-      "CPUS": "4",
-      "HDD": "IDE",
-      "OS": "Win10",
-      "Platform": "x86",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Edge",
-      "CPUS": "1",
-      "HDD": "SCSI",
-      "OS": "Win10",
-      "Platform": "x64",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Chrome",
-      "CPUS": "2",
-      "HDD": "IDE",
-      "OS": "Win10",
-      "Platform": "arm",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Edge",
-      "CPUS": "1",
-      "HDD": "IDE",
-      "OS": "Win8",
-      "Platform": "x64",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Chrome",
-      "CPUS": "2",
-      "HDD": "SCSI",
-      "OS": "Win8",
-      "Platform": "x64",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Edge",
-      "CPUS": "2",
-      "HDD": "SCSI",
-      "OS": "Win8",
-      "Platform": "x64",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Firefox",
-      "CPUS": "1",
-      "HDD": "IDE",
-      "OS": "Win8",
-      "Platform": "arm",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Opera",
-      "CPUS": "4",
-      "HDD": "SCSI",
-      "OS": "Win10",
-      "Platform": "x86",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Edge",
-      "CPUS": "2",
-      "HDD": "IDE",
-      "OS": "Win8",
-      "Platform": "x86",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Firefox",
-      "CPUS": "4",
-      "HDD": "IDE",
-      "OS": "Win10",
-      "Platform": "x64",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Chrome",
-      "CPUS": "2",
-      "HDD": "SCSI",
-      "OS": "Win8",
-      "Platform": "x86",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Chrome",
-      "CPUS": "4",
-      "HDD": "IDE",
-      "OS": "Win10",
-      "Platform": "arm",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Chrome",
-      "CPUS": "2",
-      "HDD": "SCSI",
-      "OS": "Win10",
-      "Platform": "x86",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Edge",
-      "CPUS": "4",
-      "HDD": "IDE",
-      "OS": "Win10",
-      "Platform": "x64",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Firefox",
-      "CPUS": "1",
-      "HDD": "IDE",
-      "OS": "Win8",
-      "Platform": "x86",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Chrome",
-      "CPUS": "4",
-      "HDD": "SCSI",
-      "OS": "Win7",
-      "Platform": "arm",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Chrome",
-      "CPUS": "4",
-      "HDD": "SCSI",
-      "OS": "Win8",
-      "Platform": "x86",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Chrome",
-      "CPUS": "1",
-      "HDD": "IDE",
-      "OS": "Win8",
-      "Platform": "x86",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Chrome",
-      "CPUS": "1",
-      "HDD": "IDE",
-      "OS": "Win8",
-      "Platform": "arm",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Chrome",
-      "CPUS": "4",
-      "HDD": "SCSI",
-      "OS": "Win7",
-      "Platform": "x64",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Edge",
-      "CPUS": "2",
-      "HDD": "IDE",
-      "OS": "Win10",
-      "Platform": "x86",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Firefox",
-      "CPUS": "4",
-      "HDD": "SCSI",
-      "OS": "Win8",
-      "Platform": "x86",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Chrome",
-      "CPUS": "4",
-      "HDD": "SCSI",
-      "OS": "Win7",
-      "Platform": "arm",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Edge",
-      "CPUS": "2",
-      "HDD": "IDE",
-      "OS": "Win8",
-      "Platform": "arm",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Firefox",
-      "CPUS": "1",
-      "HDD": "IDE",
-      "OS": "Win7",
-      "Platform": "x64",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Opera",
-      "CPUS": "4",
-      "HDD": "IDE",
-      "OS": "Win10",
-      "Platform": "x86",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Firefox",
-      "CPUS": "1",
-      "HDD": "IDE",
-      "OS": "Win10",
-      "Platform": "x86",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Edge",
-      "CPUS": "1",
-      "HDD": "IDE",
-      "OS": "Win10",
-      "Platform": "x86",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Firefox",
-      "CPUS": "1",
-      "HDD": "IDE",
-      "OS": "Win7",
-      "Platform": "x64",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Edge",
-      "CPUS": "2",
-      "HDD": "SCSI",
-      "OS": "Win10",
-      "Platform": "x64",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Firefox",
-      "CPUS": "1",
-      "HDD": "SCSI",
-      "OS": "Win10",
-      "Platform": "arm",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Chrome",
-      "CPUS": "2",
-      "HDD": "IDE",
-      "OS": "Win8",
-      "Platform": "x64",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Edge",
-      "CPUS": "4",
-      "HDD": "IDE",
-      "OS": "Win8",
-      "Platform": "x64",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Edge",
-      "CPUS": "4",
-      "HDD": "SCSI",
-      "OS": "Win10",
-      "Platform": "x86",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Edge",
-      "CPUS": "4",
-      "HDD": "SCSI",
-      "OS": "Win10",
-      "Platform": "x64",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Edge",
-      "CPUS": "4",
-      "HDD": "SCSI",
-      "OS": "Win7",
-      "Platform": "arm",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Chrome",
-      "CPUS": "2",
-      "HDD": "IDE",
-      "OS": "Win10",
-      "Platform": "arm",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Edge",
-      "CPUS": "2",
-      "HDD": "SCSI",
-      "OS": "Win10",
-      "Platform": "x86",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Chrome",
-      "CPUS": "1",
-      "HDD": "IDE",
-      "OS": "Win10",
-      "Platform": "arm",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Chrome",
-      "CPUS": "4",
-      "HDD": "SCSI",
-      "OS": "Win10",
-      "Platform": "arm",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Edge",
-      "CPUS": "1",
-      "HDD": "IDE",
-      "OS": "Win8",
-      "Platform": "x86",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Firefox",
-      "CPUS": "1",
-      "HDD": "SCSI",
-      "OS": "Win8",
-      "Platform": "x64",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Chrome",
-      "CPUS": "2",
-      "HDD": "IDE",
-      "OS": "Win10",
-      "Platform": "x86",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Opera",
-      "CPUS": "1",
-      "HDD": "IDE",
-      "OS": "Win7",
-      "Platform": "arm",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Opera",
-      "CPUS": "1",
-      "HDD": "SCSI",
-      "OS": "Win7",
-      "Platform": "arm",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Opera",
-      "CPUS": "2",
-      "HDD": "SCSI",
-      "OS": "Win7",
-      "Platform": "x86",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Opera",
-      "CPUS": "4",
-      "HDD": "SCSI",
-      "OS": "Win8",
-      "Platform": "x86",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Opera",
-      "CPUS": "4",
-      "HDD": "SCSI",
-      "OS": "Win7",
-      "Platform": "x64",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Opera",
-      "CPUS": "4",
-      "HDD": "SCSI",
-      "OS": "Win10",
-      "Platform": "arm",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Firefox",
-      "CPUS": "4",
-      "HDD": "IDE",
-      "OS": "Win8",
-      "Platform": "x64",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Firefox",
-      "CPUS": "4",
-      "HDD": "SCSI",
-      "OS": "Win8",
-      "Platform": "arm",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Firefox",
-      "CPUS": "2",
-      "HDD": "IDE",
-      "OS": "Win8",
-      "Platform": "x86",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Chrome",
-      "CPUS": "4",
-      "HDD": "IDE",
-      "OS": "Win7",
-      "Platform": "x64",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Edge",
-      "CPUS": "1",
-      "HDD": "IDE",
-      "OS": "Win8",
-      "Platform": "x86",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Opera",
-      "CPUS": "1",
-      "HDD": "SCSI",
-      "OS": "Win7",
-      "Platform": "x86",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Opera",
-      "CPUS": "4",
-      "HDD": "IDE",
-      "OS": "Win8",
-      "Platform": "x64",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Chrome",
-      "CPUS": "1",
-      "HDD": "IDE",
-      "OS": "Win7",
-      "Platform": "x64",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Firefox",
-      "CPUS": "4",
-      "HDD": "SCSI",
-      "OS": "Win10",
-      "Platform": "arm",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Chrome",
-      "CPUS": "2",
-      "HDD": "SCSI",
-      "OS": "Win10",
-      "Platform": "x64",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Opera",
-      "CPUS": "1",
-      "HDD": "IDE",
-      "OS": "Win10",
-      "Platform": "x64",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Opera",
-      "CPUS": "1",
-      "HDD": "SCSI",
-      "OS": "Win8",
-      "Platform": "x86",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Chrome",
-      "CPUS": "2",
-      "HDD": "SCSI",
-      "OS": "Win10",
-      "Platform": "x64",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Opera",
-      "CPUS": "2",
-      "HDD": "IDE",
-      "OS": "Win8",
-      "Platform": "arm",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Firefox",
-      "CPUS": "4",
-      "HDD": "SCSI",
-      "OS": "Win10",
-      "Platform": "x86",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Opera",
-      "CPUS": "2",
-      "HDD": "SCSI",
-      "OS": "Win8",
-      "Platform": "x86",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Firefox",
-      "CPUS": "4",
-      "HDD": "IDE",
-      "OS": "Win8",
-      "Platform": "x64",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Opera",
-      "CPUS": "2",
-      "HDD": "SCSI",
-      "OS": "Win8",
-      "Platform": "x64",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Edge",
-      "CPUS": "2",
-      "HDD": "IDE",
-      "OS": "Win10",
-      "Platform": "x86",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Chrome",
-      "CPUS": "2",
-      "HDD": "IDE",
-      "OS": "Win8",
-      "Platform": "x86",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Opera",
-      "CPUS": "2",
-      "HDD": "SCSI",
-      "OS": "Win10",
-      "Platform": "x64",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Chrome",
-      "CPUS": "1",
-      "HDD": "IDE",
-      "OS": "Win10",
-      "Platform": "x86",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Opera",
-      "CPUS": "1",
-      "HDD": "IDE",
-      "OS": "Win10",
-      "Platform": "arm",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Opera",
-      "CPUS": "4",
-      "HDD": "SCSI",
-      "OS": "Win8",
-      "Platform": "x64",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Chrome",
-      "CPUS": "2",
-      "HDD": "IDE",
-      "OS": "Win8",
-      "Platform": "arm",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Excel",
-      "Browser": "Edge",
-      "CPUS": "1",
-      "HDD": "IDE",
-      "OS": "Win7",
-      "Platform": "arm",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Edge",
-      "CPUS": "4",
-      "HDD": "SCSI",
-      "OS": "Win7",
-      "Platform": "x64",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Opera",
-      "CPUS": "2",
-      "HDD": "IDE",
-      "OS": "Win10",
-      "Platform": "arm",
-      "RAM": "1GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Opera",
-      "CPUS": "1",
-      "HDD": "IDE",
-      "OS": "Win7",
-      "Platform": "x86",
-      "RAM": "64GB",
-    },
-    {
-      "APP": "Word",
-      "Browser": "Edge",
-      "CPUS": "4",
-      "HDD": "IDE",
-      "OS": "Win10",
-      "Platform": "x64",
-      "RAM": "4GB",
-    },
-    {
-      "APP": "Powerpoint",
-      "Browser": "Firefox",
-      "CPUS": "2",
-      "HDD": "IDE",
-      "OS": "Win10",
-      "Platform": "x86",
-      "RAM": "4GB",
-    },
-  ],
-  "length": 324,
-  "pict": {
-    "model": "Platform:x86,x64,arm
-CPUS:1,2,4
-RAM:1GB,4GB,64GB
-HDD:SCSI,IDE
-OS:Win7,Win8,Win10
-Browser:Edge,Opera,Chrome,Firefox
-APP:Word,Excel,Powerpoint
-{Platform,CPUS,RAM,HDD}@3
-{OS,Browser}@2",
-    "seed": undefined,
-  },
-}
-`;
-
-exports[`strings() Cases Should use the model of PICT documentation and return the result 1`] = `
-{
-  "cases": [
-    {
-      "ClusterSize": "32768",
-      "Compression": "On",
-      "File system": "FAT",
-      "FormatMethod": "Quick",
-      "Size": "10",
-      "Type": "Single",
-    },
-    {
-      "ClusterSize": "16384",
-      "Compression": "Off",
-      "File system": "NTFS",
-      "FormatMethod": "Slow",
-      "Size": "40000",
-      "Type": "RAID-5",
-    },
-    {
-      "ClusterSize": "2048",
-      "Compression": "On",
-      "File system": "FAT32",
-      "FormatMethod": "Slow",
-      "Size": "500",
-      "Type": "Mirror",
-    },
-    {
-      "ClusterSize": "2048",
-      "Compression": "Off",
-      "File system": "FAT",
-      "FormatMethod": "Quick",
-      "Size": "1000",
-      "Type": "Stripe",
-    },
-    {
-      "ClusterSize": "32768",
-      "Compression": "On",
-      "File system": "NTFS",
-      "FormatMethod": "Slow",
-      "Size": "1000",
-      "Type": "Span",
-    },
-    {
-      "ClusterSize": "1024",
-      "Compression": "Off",
-      "File system": "FAT32",
-      "FormatMethod": "Quick",
-      "Size": "10",
-      "Type": "Span",
-    },
-    {
-      "ClusterSize": "16384",
-      "Compression": "On",
-      "File system": "FAT",
-      "FormatMethod": "Quick",
-      "Size": "10000",
-      "Type": "Mirror",
-    },
-    {
-      "ClusterSize": "65536",
-      "Compression": "Off",
-      "File system": "NTFS",
-      "FormatMethod": "Quick",
-      "Size": "500",
-      "Type": "Single",
-    },
-    {
-      "ClusterSize": "512",
-      "Compression": "On",
-      "File system": "FAT32",
-      "FormatMethod": "Slow",
-      "Size": "1000",
-      "Type": "Stripe",
-    },
-    {
-      "ClusterSize": "8192",
-      "Compression": "Off",
-      "File system": "NTFS",
-      "FormatMethod": "Slow",
-      "Size": "10000",
-      "Type": "Stripe",
-    },
-    {
-      "ClusterSize": "32768",
-      "Compression": "Off",
-      "File system": "FAT32",
-      "FormatMethod": "Slow",
-      "Size": "100",
-      "Type": "Mirror",
-    },
-    {
-      "ClusterSize": "4096",
-      "Compression": "On",
-      "File system": "NTFS",
-      "FormatMethod": "Slow",
-      "Size": "10",
-      "Type": "Mirror",
-    },
-    {
-      "ClusterSize": "65536",
-      "Compression": "On",
-      "File system": "FAT",
-      "FormatMethod": "Slow",
-      "Size": "5000",
-      "Type": "RAID-5",
-    },
-    {
-      "ClusterSize": "512",
-      "Compression": "Off",
-      "File system": "FAT32",
-      "FormatMethod": "Quick",
-      "Size": "10000",
-      "Type": "RAID-5",
-    },
-    {
-      "ClusterSize": "4096",
-      "Compression": "Off",
-      "File system": "FAT",
-      "FormatMethod": "Quick",
-      "Size": "100",
-      "Type": "Span",
-    },
-    {
-      "ClusterSize": "1024",
-      "Compression": "On",
-      "File system": "FAT",
-      "FormatMethod": "Slow",
-      "Size": "40000",
-      "Type": "Single",
-    },
-    {
-      "ClusterSize": "16384",
-      "Compression": "Off",
-      "File system": "FAT32",
-      "FormatMethod": "Slow",
-      "Size": "10",
-      "Type": "Single",
-    },
-    {
-      "ClusterSize": "4096",
-      "Compression": "Off",
-      "File system": "FAT32",
-      "FormatMethod": "Quick",
-      "Size": "10000",
-      "Type": "Single",
-    },
-    {
-      "ClusterSize": "65536",
-      "Compression": "Off",
-      "File system": "FAT32",
-      "FormatMethod": "Slow",
-      "Size": "10",
-      "Type": "Stripe",
-    },
-    {
-      "ClusterSize": "2048",
-      "Compression": "Off",
-      "File system": "NTFS",
-      "FormatMethod": "Quick",
-      "Size": "5000",
-      "Type": "Span",
-    },
-    {
-      "ClusterSize": "65536",
-      "Compression": "Off",
-      "File system": "FAT32",
-      "FormatMethod": "Quick",
-      "Size": "40000",
-      "Type": "Span",
-    },
-    {
-      "ClusterSize": "32768",
-      "Compression": "On",
-      "File system": "FAT",
-      "FormatMethod": "Quick",
-      "Size": "40000",
-      "Type": "Stripe",
-    },
-    {
-      "ClusterSize": "32768",
-      "Compression": "Off",
-      "File system": "FAT32",
-      "FormatMethod": "Quick",
-      "Size": "5000",
-      "Type": "RAID-5",
-    },
-    {
-      "ClusterSize": "8192",
-      "Compression": "On",
-      "File system": "FAT",
-      "FormatMethod": "Quick",
-      "Size": "1000",
-      "Type": "RAID-5",
-    },
-    {
-      "ClusterSize": "512",
-      "Compression": "On",
-      "File system": "NTFS",
-      "FormatMethod": "Quick",
-      "Size": "10",
-      "Type": "Span",
-    },
-    {
-      "ClusterSize": "8192",
-      "Compression": "On",
-      "File system": "FAT",
-      "FormatMethod": "Slow",
-      "Size": "500",
-      "Type": "Span",
-    },
-    {
-      "ClusterSize": "4096",
-      "Compression": "On",
-      "File system": "FAT32",
-      "FormatMethod": "Quick",
-      "Size": "1000",
-      "Type": "Single",
-    },
-    {
-      "ClusterSize": "2048",
-      "Compression": "Off",
-      "File system": "FAT32",
-      "FormatMethod": "Quick",
-      "Size": "10",
-      "Type": "RAID-5",
-    },
-    {
-      "ClusterSize": "32768",
-      "Compression": "On",
-      "File system": "FAT",
-      "FormatMethod": "Slow",
-      "Size": "500",
-      "Type": "RAID-5",
-    },
-    {
-      "ClusterSize": "16384",
-      "Compression": "On",
-      "File system": "FAT",
-      "FormatMethod": "Slow",
-      "Size": "500",
-      "Type": "Stripe",
-    },
-    {
-      "ClusterSize": "2048",
-      "Compression": "On",
-      "File system": "NTFS",
-      "FormatMethod": "Slow",
-      "Size": "100",
-      "Type": "Single",
-    },
-    {
-      "ClusterSize": "32768",
-      "Compression": "Off",
-      "File system": "NTFS",
-      "FormatMethod": "Quick",
-      "Size": "10000",
-      "Type": "Span",
-    },
-    {
-      "ClusterSize": "1024",
-      "Compression": "On",
-      "File system": "NTFS",
-      "FormatMethod": "Slow",
-      "Size": "5000",
-      "Type": "Mirror",
-    },
-    {
-      "ClusterSize": "16384",
-      "Compression": "Off",
-      "File system": "FAT",
-      "FormatMethod": "Slow",
-      "Size": "100",
-      "Type": "Stripe",
-    },
-    {
-      "ClusterSize": "1024",
-      "Compression": "On",
-      "File system": "FAT32",
-      "FormatMethod": "Quick",
-      "Size": "100",
-      "Type": "RAID-5",
-    },
-    {
-      "ClusterSize": "512",
-      "Compression": "On",
-      "File system": "FAT",
-      "FormatMethod": "Quick",
-      "Size": "100",
-      "Type": "Single",
-    },
-    {
-      "ClusterSize": "512",
-      "Compression": "Off",
-      "File system": "FAT",
-      "FormatMethod": "Slow",
-      "Size": "500",
-      "Type": "Mirror",
-    },
-    {
-      "ClusterSize": "65536",
-      "Compression": "On",
-      "File system": "FAT",
-      "FormatMethod": "Slow",
-      "Size": "100",
-      "Type": "Mirror",
-    },
-    {
-      "ClusterSize": "16384",
-      "Compression": "Off",
-      "File system": "NTFS",
-      "FormatMethod": "Slow",
-      "Size": "1000",
-      "Type": "Span",
-    },
-    {
-      "ClusterSize": "1024",
-      "Compression": "Off",
-      "File system": "NTFS",
-      "FormatMethod": "Quick",
-      "Size": "1000",
-      "Type": "Mirror",
-    },
-    {
-      "ClusterSize": "1024",
-      "Compression": "Off",
-      "File system": "NTFS",
-      "FormatMethod": "Slow",
-      "Size": "10000",
-      "Type": "Stripe",
-    },
-    {
-      "ClusterSize": "8192",
-      "Compression": "Off",
-      "File system": "FAT32",
-      "FormatMethod": "Slow",
-      "Size": "5000",
-      "Type": "Single",
-    },
-    {
-      "ClusterSize": "8192",
-      "Compression": "On",
-      "File system": "NTFS",
-      "FormatMethod": "Slow",
-      "Size": "40000",
-      "Type": "Mirror",
-    },
-    {
-      "ClusterSize": "1024",
-      "Compression": "On",
-      "File system": "NTFS",
-      "FormatMethod": "Slow",
-      "Size": "500",
-      "Type": "RAID-5",
-    },
-    {
-      "ClusterSize": "65536",
-      "Compression": "Off",
-      "File system": "FAT32",
-      "FormatMethod": "Quick",
-      "Size": "1000",
-      "Type": "Single",
-    },
-    {
-      "ClusterSize": "4096",
-      "Compression": "On",
-      "File system": "FAT32",
-      "FormatMethod": "Slow",
-      "Size": "500",
-      "Type": "RAID-5",
-    },
-    {
-      "ClusterSize": "16384",
-      "Compression": "On",
-      "File system": "NTFS",
-      "FormatMethod": "Slow",
-      "Size": "5000",
-      "Type": "Stripe",
-    },
-    {
-      "ClusterSize": "8192",
-      "Compression": "Off",
-      "File system": "NTFS",
-      "FormatMethod": "Slow",
-      "Size": "100",
-      "Type": "Single",
-    },
-    {
-      "ClusterSize": "4096",
-      "Compression": "Off",
-      "File system": "FAT",
-      "FormatMethod": "Slow",
-      "Size": "5000",
-      "Type": "Stripe",
-    },
-    {
-      "ClusterSize": "512",
-      "Compression": "Off",
-      "File system": "FAT",
-      "FormatMethod": "Quick",
-      "Size": "5000",
-      "Type": "Single",
-    },
-    {
-      "ClusterSize": "2048",
-      "Compression": "On",
-      "File system": "NTFS",
-      "FormatMethod": "Quick",
-      "Size": "10000",
-      "Type": "Mirror",
-    },
-    {
-      "ClusterSize": "4096",
-      "Compression": "Off",
-      "File system": "NTFS",
-      "FormatMethod": "Quick",
-      "Size": "40000",
-      "Type": "Mirror",
-    },
-    {
-      "ClusterSize": "512",
-      "Compression": "Off",
-      "File system": "FAT32",
-      "FormatMethod": "Quick",
-      "Size": "40000",
-      "Type": "Single",
-    },
-    {
-      "ClusterSize": "2048",
-      "Compression": "On",
-      "File system": "FAT32",
-      "FormatMethod": "Slow",
-      "Size": "40000",
-      "Type": "Single",
-    },
-    {
-      "ClusterSize": "8192",
-      "Compression": "Off",
-      "File system": "FAT32",
-      "FormatMethod": "Quick",
-      "Size": "10",
-      "Type": "Single",
-    },
-    {
-      "ClusterSize": "65536",
-      "Compression": "Off",
-      "File system": "FAT",
-      "FormatMethod": "Slow",
-      "Size": "10000",
-      "Type": "Stripe",
-    },
-  ],
-  "length": 56,
-  "pict": {
-    "model": "Type:Single,Span,Stripe,Mirror,RAID-5
-Size:10,100,500,1000,5000,10000,40000
-FormatMethod:Quick,Slow
-File system:FAT,FAT32,NTFS
-ClusterSize:512,1024,2048,4096,8192,16384,32768,65536
-Compression:On,Off",
-    "seed": undefined,
-  },
-}
-`;
-
-exports[`strings() Cases Should use the model of PICT documentation and return the result with all combinations 1`] = `
-{
-  "cases": [
-    {
-      "ClusterSize": "32768",
-      "Compression": "On",
-      "File system": "FAT",
-      "FormatMethod": "Quick",
-      "Size": "10",
-      "Type": "Single",
-    },
-    {
-      "ClusterSize": "16384",
-      "Compression": "Off",
-      "File system": "NTFS",
-      "FormatMethod": "Slow",
-      "Size": "40000",
-      "Type": "RAID-5",
-    },
-    {
-      "ClusterSize": "2048",
-      "Compression": "On",
-      "File system": "FAT32",
-      "FormatMethod": "Slow",
-      "Size": "500",
-      "Type": "Mirror",
-    },
-    {
-      "ClusterSize": "2048",
-      "Compression": "Off",
-      "File system": "FAT",
-      "FormatMethod": "Quick",
-      "Size": "1000",
-      "Type": "Stripe",
-    },
-    {
-      "ClusterSize": "32768",
-      "Compression": "On",
-      "File system": "NTFS",
-      "FormatMethod": "Slow",
-      "Size": "1000",
-      "Type": "Span",
-    },
-    {
-      "ClusterSize": "1024",
-      "Compression": "Off",
-      "File system": "FAT32",
-      "FormatMethod": "Quick",
-      "Size": "10",
-      "Type": "Span",
-    },
-    {
-      "ClusterSize": "16384",
-      "Compression": "On",
-      "File system": "FAT",
-      "FormatMethod": "Quick",
-      "Size": "10000",
-      "Type": "Mirror",
-    },
-    {
-      "ClusterSize": "65536",
-      "Compression": "Off",
-      "File system": "NTFS",
-      "FormatMethod": "Quick",
-      "Size": "500",
-      "Type": "Single",
-    },
-    {
-      "ClusterSize": "512",
-      "Compression": "On",
-      "File system": "FAT32",
-      "FormatMethod": "Slow",
-      "Size": "1000",
-      "Type": "Stripe",
-    },
-    {
-      "ClusterSize": "8192",
-      "Compression": "Off",
-      "File system": "NTFS",
-      "FormatMethod": "Slow",
-      "Size": "10000",
-      "Type": "Stripe",
-    },
-    {
-      "ClusterSize": "32768",
-      "Compression": "Off",
-      "File system": "FAT32",
-      "FormatMethod": "Slow",
-      "Size": "100",
-      "Type": "Mirror",
-    },
-    {
-      "ClusterSize": "4096",
-      "Compression": "On",
-      "File system": "NTFS",
-      "FormatMethod": "Slow",
-      "Size": "10",
-      "Type": "Mirror",
-    },
-    {
-      "ClusterSize": "65536",
-      "Compression": "On",
-      "File system": "FAT",
-      "FormatMethod": "Slow",
-      "Size": "5000",
-      "Type": "RAID-5",
-    },
-    {
-      "ClusterSize": "512",
-      "Compression": "Off",
-      "File system": "FAT32",
-      "FormatMethod": "Quick",
-      "Size": "10000",
-      "Type": "RAID-5",
-    },
-    {
-      "ClusterSize": "4096",
-      "Compression": "Off",
-      "File system": "FAT",
-      "FormatMethod": "Quick",
-      "Size": "100",
-      "Type": "Span",
-    },
-    {
-      "ClusterSize": "1024",
-      "Compression": "On",
-      "File system": "FAT",
-      "FormatMethod": "Slow",
-      "Size": "40000",
-      "Type": "Single",
-    },
-    {
-      "ClusterSize": "16384",
-      "Compression": "Off",
-      "File system": "FAT32",
-      "FormatMethod": "Slow",
-      "Size": "10",
-      "Type": "Single",
-    },
-    {
-      "ClusterSize": "4096",
-      "Compression": "Off",
-      "File system": "FAT32",
-      "FormatMethod": "Quick",
-      "Size": "10000",
-      "Type": "Single",
-    },
-    {
-      "ClusterSize": "65536",
-      "Compression": "Off",
-      "File system": "FAT32",
-      "FormatMethod": "Slow",
-      "Size": "10",
-      "Type": "Stripe",
-    },
-    {
-      "ClusterSize": "2048",
-      "Compression": "Off",
-      "File system": "NTFS",
-      "FormatMethod": "Quick",
-      "Size": "5000",
-      "Type": "Span",
-    },
-    {
-      "ClusterSize": "65536",
-      "Compression": "Off",
-      "File system": "FAT32",
-      "FormatMethod": "Quick",
-      "Size": "40000",
-      "Type": "Span",
-    },
-    {
-      "ClusterSize": "32768",
-      "Compression": "On",
-      "File system": "FAT",
-      "FormatMethod": "Quick",
-      "Size": "40000",
-      "Type": "Stripe",
-    },
-    {
-      "ClusterSize": "32768",
-      "Compression": "Off",
-      "File system": "FAT32",
-      "FormatMethod": "Quick",
-      "Size": "5000",
-      "Type": "RAID-5",
-    },
-    {
-      "ClusterSize": "8192",
-      "Compression": "On",
-      "File system": "FAT",
-      "FormatMethod": "Quick",
-      "Size": "1000",
-      "Type": "RAID-5",
-    },
-    {
-      "ClusterSize": "512",
-      "Compression": "On",
-      "File system": "NTFS",
-      "FormatMethod": "Quick",
-      "Size": "10",
-      "Type": "Span",
-    },
-    {
-      "ClusterSize": "8192",
-      "Compression": "On",
-      "File system": "FAT",
-      "FormatMethod": "Slow",
-      "Size": "500",
-      "Type": "Span",
-    },
-    {
-      "ClusterSize": "4096",
-      "Compression": "On",
-      "File system": "FAT32",
-      "FormatMethod": "Quick",
-      "Size": "1000",
-      "Type": "Single",
-    },
-    {
-      "ClusterSize": "2048",
-      "Compression": "Off",
-      "File system": "FAT32",
-      "FormatMethod": "Quick",
-      "Size": "10",
-      "Type": "RAID-5",
-    },
-    {
-      "ClusterSize": "32768",
-      "Compression": "On",
-      "File system": "FAT",
-      "FormatMethod": "Slow",
-      "Size": "500",
-      "Type": "RAID-5",
-    },
-    {
-      "ClusterSize": "16384",
-      "Compression": "On",
-      "File system": "FAT",
-      "FormatMethod": "Slow",
-      "Size": "500",
-      "Type": "Stripe",
-    },
-    {
-      "ClusterSize": "2048",
-      "Compression": "On",
-      "File system": "NTFS",
-      "FormatMethod": "Slow",
-      "Size": "100",
-      "Type": "Single",
-    },
-    {
-      "ClusterSize": "32768",
-      "Compression": "Off",
-      "File system": "NTFS",
-      "FormatMethod": "Quick",
-      "Size": "10000",
-      "Type": "Span",
-    },
-    {
-      "ClusterSize": "1024",
-      "Compression": "On",
-      "File system": "NTFS",
-      "FormatMethod": "Slow",
-      "Size": "5000",
-      "Type": "Mirror",
-    },
-    {
-      "ClusterSize": "16384",
-      "Compression": "Off",
-      "File system": "FAT",
-      "FormatMethod": "Slow",
-      "Size": "100",
-      "Type": "Stripe",
-    },
-    {
-      "ClusterSize": "1024",
-      "Compression": "On",
-      "File system": "FAT32",
-      "FormatMethod": "Quick",
-      "Size": "100",
-      "Type": "RAID-5",
-    },
-    {
-      "ClusterSize": "512",
-      "Compression": "On",
-      "File system": "FAT",
-      "FormatMethod": "Quick",
-      "Size": "100",
-      "Type": "Single",
-    },
-    {
-      "ClusterSize": "512",
-      "Compression": "Off",
-      "File system": "FAT",
-      "FormatMethod": "Slow",
-      "Size": "500",
-      "Type": "Mirror",
-    },
-    {
-      "ClusterSize": "65536",
-      "Compression": "On",
-      "File system": "FAT",
-      "FormatMethod": "Slow",
-      "Size": "100",
-      "Type": "Mirror",
-    },
-    {
-      "ClusterSize": "16384",
-      "Compression": "Off",
-      "File system": "NTFS",
-      "FormatMethod": "Slow",
-      "Size": "1000",
-      "Type": "Span",
-    },
-    {
-      "ClusterSize": "1024",
-      "Compression": "Off",
-      "File system": "NTFS",
-      "FormatMethod": "Quick",
-      "Size": "1000",
-      "Type": "Mirror",
-    },
-    {
-      "ClusterSize": "1024",
-      "Compression": "Off",
-      "File system": "NTFS",
-      "FormatMethod": "Slow",
-      "Size": "10000",
-      "Type": "Stripe",
-    },
-    {
-      "ClusterSize": "8192",
-      "Compression": "Off",
-      "File system": "FAT32",
-      "FormatMethod": "Slow",
-      "Size": "5000",
-      "Type": "Single",
-    },
-    {
-      "ClusterSize": "8192",
-      "Compression": "On",
-      "File system": "NTFS",
-      "FormatMethod": "Slow",
-      "Size": "40000",
-      "Type": "Mirror",
-    },
-    {
-      "ClusterSize": "1024",
-      "Compression": "On",
-      "File system": "NTFS",
-      "FormatMethod": "Slow",
-      "Size": "500",
-      "Type": "RAID-5",
-    },
-    {
-      "ClusterSize": "65536",
-      "Compression": "Off",
-      "File system": "FAT32",
-      "FormatMethod": "Quick",
-      "Size": "1000",
-      "Type": "Single",
-    },
-    {
-      "ClusterSize": "4096",
-      "Compression": "On",
-      "File system": "FAT32",
-      "FormatMethod": "Slow",
-      "Size": "500",
-      "Type": "RAID-5",
-    },
-    {
-      "ClusterSize": "16384",
-      "Compression": "On",
-      "File system": "NTFS",
-      "FormatMethod": "Slow",
-      "Size": "5000",
-      "Type": "Stripe",
-    },
-    {
-      "ClusterSize": "8192",
-      "Compression": "Off",
-      "File system": "NTFS",
-      "FormatMethod": "Slow",
-      "Size": "100",
-      "Type": "Single",
-    },
-    {
-      "ClusterSize": "4096",
-      "Compression": "Off",
-      "File system": "FAT",
-      "FormatMethod": "Slow",
-      "Size": "5000",
-      "Type": "Stripe",
-    },
-    {
-      "ClusterSize": "512",
-      "Compression": "Off",
-      "File system": "FAT",
-      "FormatMethod": "Quick",
-      "Size": "5000",
-      "Type": "Single",
-    },
-    {
-      "ClusterSize": "2048",
-      "Compression": "On",
-      "File system": "NTFS",
-      "FormatMethod": "Quick",
-      "Size": "10000",
-      "Type": "Mirror",
-    },
-    {
-      "ClusterSize": "4096",
-      "Compression": "Off",
-      "File system": "NTFS",
-      "FormatMethod": "Quick",
-      "Size": "40000",
-      "Type": "Mirror",
-    },
-    {
-      "ClusterSize": "512",
-      "Compression": "Off",
-      "File system": "FAT32",
-      "FormatMethod": "Quick",
-      "Size": "40000",
-      "Type": "Single",
-    },
-    {
-      "ClusterSize": "2048",
-      "Compression": "On",
-      "File system": "FAT32",
-      "FormatMethod": "Slow",
-      "Size": "40000",
-      "Type": "Single",
-    },
-    {
-      "ClusterSize": "8192",
-      "Compression": "Off",
-      "File system": "FAT32",
-      "FormatMethod": "Quick",
-      "Size": "10",
-      "Type": "Single",
-    },
-    {
-      "ClusterSize": "65536",
-      "Compression": "Off",
-      "File system": "FAT",
-      "FormatMethod": "Slow",
-      "Size": "10000",
-      "Type": "Stripe",
-    },
-  ],
-  "length": 56,
-  "pict": {
-    "model": "Type:Single,Span,Stripe,Mirror,RAID-5
-Size:10,100,500,1000,5000,10000,40000
-FormatMethod:Quick,Slow
-File system:FAT,FAT32,NTFS
-ClusterSize:512,1024,2048,4096,8192,16384,32768,65536
-Compression:On,Off",
-    "seed": undefined,
-  },
-}
-`;
-
-exports[`strings() Cases Should use weight operator correctly and return the result 1`] = `
-{
-  "cases": [
-    {
-      "FileSystem": "FAT",
-      "FormatMethod": "quick",
-      "Type": "Primary",
-    },
-    {
-      "FileSystem": "NTFS",
-      "FormatMethod": "slow",
-      "Type": "Single",
-    },
-    {
-      "FileSystem": "FAT",
-      "FormatMethod": "slow",
-      "Type": "Logical",
-    },
-    {
-      "FileSystem": "NTFS",
-      "FormatMethod": "quick",
-      "Type": "Stripe",
-    },
-    {
-      "FileSystem": "NTFS",
-      "FormatMethod": "quick",
-      "Type": "Mirror",
-    },
-    {
-      "FileSystem": "FAT32",
-      "FormatMethod": "quick",
-      "Type": "Logical",
-    },
-    {
-      "FileSystem": "FAT",
-      "FormatMethod": "slow",
-      "Type": "Span",
-    },
-    {
-      "FileSystem": "FAT32",
-      "FormatMethod": "slow",
-      "Type": "Span",
-    },
-    {
-      "FileSystem": "FAT32",
-      "FormatMethod": "slow",
-      "Type": "Mirror",
-    },
-    {
-      "FileSystem": "FAT32",
-      "FormatMethod": "slow",
-      "Type": "Primary",
-    },
-    {
-      "FileSystem": "NTFS",
-      "FormatMethod": "slow",
-      "Type": "RAID-5",
-    },
-    {
-      "FileSystem": "FAT32",
-      "FormatMethod": "quick",
-      "Type": "Single",
-    },
-    {
-      "FileSystem": "FAT",
-      "FormatMethod": "quick",
-      "Type": "Single",
-    },
-    {
-      "FileSystem": "FAT",
-      "FormatMethod": "quick",
-      "Type": "RAID-5",
-    },
-    {
-      "FileSystem": "NTFS",
-      "FormatMethod": "quick",
-      "Type": "Span",
-    },
-    {
-      "FileSystem": "FAT",
-      "FormatMethod": "quick",
-      "Type": "Mirror",
-    },
-    {
-      "FileSystem": "NTFS",
-      "FormatMethod": "slow",
-      "Type": "Primary",
-    },
-    {
-      "FileSystem": "NTFS",
-      "FormatMethod": "slow",
-      "Type": "Logical",
-    },
-    {
-      "FileSystem": "FAT32",
-      "FormatMethod": "slow",
-      "Type": "Stripe",
-    },
-    {
-      "FileSystem": "FAT32",
-      "FormatMethod": "slow",
-      "Type": "RAID-5",
-    },
-    {
-      "FileSystem": "FAT",
-      "FormatMethod": "slow",
-      "Type": "Stripe",
-    },
-  ],
-  "length": 21,
-  "pict": {
-    "model": "Type:Primary(10),Logical,Single,Span,Stripe,Mirror,RAID-5
-FormatMethod:quick,slow
-FileSystem:FAT,FAT32,NTFS(10)",
-    "seed": undefined,
-  },
-}
-`;
-
 exports[`strings() Cases The large model with 2 order 1`] = `
 {
   "cases": [
@@ -4617,6 +460,64 @@ FormatMethod:Quick,Slow
 File system:FAT,FAT32,NTFS
 ClusterSize:512,1024,2048,4096,8192,16384,32768,65536
 Compression:On,Off",
+    "result": "Type	Size	FormatMethod	File system	ClusterSize	Compression
+Single	10	Quick	FAT	32768	On
+RAID-5	40000	Slow	NTFS	16384	Off
+Mirror	500	Slow	FAT32	2048	On
+Stripe	1000	Quick	FAT	2048	Off
+Span	1000	Slow	NTFS	32768	On
+Span	10	Quick	FAT32	1024	Off
+Mirror	10000	Quick	FAT	16384	On
+Single	500	Quick	NTFS	65536	Off
+Stripe	1000	Slow	FAT32	512	On
+Stripe	10000	Slow	NTFS	8192	Off
+Mirror	100	Slow	FAT32	32768	Off
+Mirror	10	Slow	NTFS	4096	On
+RAID-5	5000	Slow	FAT	65536	On
+RAID-5	10000	Quick	FAT32	512	Off
+Span	100	Quick	FAT	4096	Off
+Single	40000	Slow	FAT	1024	On
+Single	10	Slow	FAT32	16384	Off
+Single	10000	Quick	FAT32	4096	Off
+Stripe	10	Slow	FAT32	65536	Off
+Span	5000	Quick	NTFS	2048	Off
+Span	40000	Quick	FAT32	65536	Off
+Stripe	40000	Quick	FAT	32768	On
+RAID-5	5000	Quick	FAT32	32768	Off
+RAID-5	1000	Quick	FAT	8192	On
+Span	10	Quick	NTFS	512	On
+Span	500	Slow	FAT	8192	On
+Single	1000	Quick	FAT32	4096	On
+RAID-5	10	Quick	FAT32	2048	Off
+RAID-5	500	Slow	FAT	32768	On
+Stripe	500	Slow	FAT	16384	On
+Single	100	Slow	NTFS	2048	On
+Span	10000	Quick	NTFS	32768	Off
+Mirror	5000	Slow	NTFS	1024	On
+Stripe	100	Slow	FAT	16384	Off
+RAID-5	100	Quick	FAT32	1024	On
+Single	100	Quick	FAT	512	On
+Mirror	500	Slow	FAT	512	Off
+Mirror	100	Slow	FAT	65536	On
+Span	1000	Slow	NTFS	16384	Off
+Mirror	1000	Quick	NTFS	1024	Off
+Stripe	10000	Slow	NTFS	1024	Off
+Single	5000	Slow	FAT32	8192	Off
+Mirror	40000	Slow	NTFS	8192	On
+RAID-5	500	Slow	NTFS	1024	On
+Single	1000	Quick	FAT32	65536	Off
+RAID-5	500	Slow	FAT32	4096	On
+Stripe	5000	Slow	NTFS	16384	On
+Single	100	Slow	NTFS	8192	Off
+Stripe	5000	Slow	FAT	4096	Off
+Single	5000	Quick	FAT	512	Off
+Mirror	10000	Quick	NTFS	2048	On
+Mirror	40000	Quick	NTFS	4096	Off
+Single	40000	Quick	FAT32	512	Off
+Single	40000	Slow	FAT32	2048	On
+Single	10	Quick	FAT32	8192	Off
+Stripe	10000	Slow	FAT	65536	Off
+",
     "seed": undefined,
   },
 }
@@ -5082,6 +983,64 @@ FormatMethod:Quick,Slow
 File system:FAT,FAT32,NTFS
 ClusterSize:512,1024,2048,4096,8192,16384,32768,65536
 Compression:On,Off",
+    "result": "Type	Size	FormatMethod	File system	ClusterSize	Compression
+Single	10	Quick	FAT	32768	On
+RAID-5	40000	Slow	NTFS	16384	Off
+Mirror	500	Slow	FAT32	2048	On
+Stripe	1000	Quick	FAT	2048	Off
+Span	1000	Slow	NTFS	32768	On
+Span	10	Quick	FAT32	1024	Off
+Mirror	10000	Quick	FAT	16384	On
+Single	500	Quick	NTFS	65536	Off
+Stripe	1000	Slow	FAT32	512	On
+Stripe	10000	Slow	NTFS	8192	Off
+Mirror	100	Slow	FAT32	32768	Off
+Mirror	10	Slow	NTFS	4096	On
+RAID-5	5000	Slow	FAT	65536	On
+RAID-5	10000	Quick	FAT32	512	Off
+Span	100	Quick	FAT	4096	Off
+Single	40000	Slow	FAT	1024	On
+Single	10	Slow	FAT32	16384	Off
+Single	10000	Quick	FAT32	4096	Off
+Stripe	10	Slow	FAT32	65536	Off
+Span	5000	Quick	NTFS	2048	Off
+Span	40000	Quick	FAT32	65536	Off
+Stripe	40000	Quick	FAT	32768	On
+RAID-5	5000	Quick	FAT32	32768	Off
+RAID-5	1000	Quick	FAT	8192	On
+Span	10	Quick	NTFS	512	On
+Span	500	Slow	FAT	8192	On
+Single	1000	Quick	FAT32	4096	On
+RAID-5	10	Quick	FAT32	2048	Off
+RAID-5	500	Slow	FAT	32768	On
+Stripe	500	Slow	FAT	16384	On
+Single	100	Slow	NTFS	2048	On
+Span	10000	Quick	NTFS	32768	Off
+Mirror	5000	Slow	NTFS	1024	On
+Stripe	100	Slow	FAT	16384	Off
+RAID-5	100	Quick	FAT32	1024	On
+Single	100	Quick	FAT	512	On
+Mirror	500	Slow	FAT	512	Off
+Mirror	100	Slow	FAT	65536	On
+Span	1000	Slow	NTFS	16384	Off
+Mirror	1000	Quick	NTFS	1024	Off
+Stripe	10000	Slow	NTFS	1024	Off
+Single	5000	Slow	FAT32	8192	Off
+Mirror	40000	Slow	NTFS	8192	On
+RAID-5	500	Slow	NTFS	1024	On
+Single	1000	Quick	FAT32	65536	Off
+RAID-5	500	Slow	FAT32	4096	On
+Stripe	5000	Slow	NTFS	16384	On
+Single	100	Slow	NTFS	8192	Off
+Stripe	5000	Slow	FAT	4096	Off
+Single	5000	Quick	FAT	512	Off
+Mirror	10000	Quick	NTFS	2048	On
+Mirror	40000	Quick	NTFS	4096	Off
+Single	40000	Quick	FAT32	512	Off
+Single	40000	Slow	FAT32	2048	On
+Single	10	Quick	FAT32	8192	Off
+Stripe	10000	Slow	FAT	65536	Off
+",
     "seed": undefined,
   },
 }
@@ -5253,6 +1212,25 @@ HDD:SCSI,IDE
 OS:Win7,Win8,Win10
 Browser:Edge,Opera,Chrome,Firefox
 APP:Word,Excel,Powerpoint",
+    "result": "Platform	CPUS	RAM	HDD	OS	Browser	APP
+arm	2	4GB	SCSI	Win10	Edge	Powerpoint
+arm	1	1GB	IDE	Win7	Chrome	Excel
+x86	4	64GB	SCSI	Win7	Firefox	Word
+x64	1	64GB	IDE	Win8	Firefox	Powerpoint
+x64	4	64GB	IDE	Win10	Opera	Excel
+x64	2	1GB	SCSI	Win8	Opera	Word
+x86	2	1GB	SCSI	Win10	Firefox	Excel
+x86	1	4GB	IDE	Win7	Opera	Powerpoint
+x86	4	4GB	IDE	Win8	Edge	Word
+arm	1	64GB	IDE	Win10	Firefox	Word
+arm	1	4GB	SCSI	Win8	Firefox	Excel
+arm	4	64GB	SCSI	Win10	Chrome	Powerpoint
+x64	2	4GB	IDE	Win7	Chrome	Word
+x64	1	64GB	IDE	Win7	Edge	Excel
+x64	4	1GB	IDE	Win7	Edge	Powerpoint
+x86	2	64GB	IDE	Win8	Chrome	Powerpoint
+arm	4	1GB	IDE	Win7	Opera	Powerpoint
+",
     "seed": "Platform	OS
 arm	Win10",
   },
@@ -8190,6 +4168,332 @@ Browser:Edge,Opera,Chrome,Firefox
 APP:Word,Excel,Powerpoint
 {Platform,CPUS,RAM,HDD}@3
 {OS,Browser}@2",
+    "result": "Platform	CPUS	RAM	HDD	OS	Browser	APP
+arm	1	64GB	IDE	Win7	Edge	Excel
+x64	1	1GB	IDE	Win10	Firefox	Powerpoint
+x86	4	1GB	IDE	Win8	Chrome	Excel
+x86	4	64GB	SCSI	Win8	Chrome	Word
+x86	4	4GB	SCSI	Win10	Edge	Powerpoint
+x64	1	1GB	IDE	Win7	Opera	Word
+x86	2	4GB	IDE	Win8	Opera	Powerpoint
+x64	2	4GB	SCSI	Win8	Opera	Word
+x64	4	1GB	SCSI	Win7	Firefox	Powerpoint
+x86	4	1GB	IDE	Win10	Edge	Word
+arm	1	4GB	IDE	Win8	Firefox	Excel
+x86	1	64GB	IDE	Win10	Chrome	Powerpoint
+x86	4	64GB	SCSI	Win8	Firefox	Powerpoint
+x86	1	4GB	SCSI	Win10	Opera	Excel
+x86	4	4GB	SCSI	Win10	Opera	Word
+arm	2	4GB	IDE	Win8	Edge	Powerpoint
+x64	1	64GB	SCSI	Win8	Chrome	Powerpoint
+arm	4	1GB	IDE	Win8	Edge	Word
+arm	2	64GB	SCSI	Win10	Edge	Excel
+x64	1	1GB	IDE	Win7	Edge	Powerpoint
+arm	4	1GB	IDE	Win7	Edge	Excel
+arm	2	1GB	IDE	Win8	Opera	Excel
+arm	2	64GB	SCSI	Win7	Edge	Word
+x86	1	64GB	IDE	Win8	Firefox	Word
+x64	1	1GB	IDE	Win8	Opera	Excel
+x86	4	64GB	SCSI	Win10	Firefox	Excel
+arm	4	1GB	IDE	Win8	Chrome	Powerpoint
+arm	4	4GB	SCSI	Win7	Firefox	Excel
+x86	2	4GB	IDE	Win8	Edge	Excel
+x64	2	64GB	SCSI	Win8	Firefox	Excel
+arm	4	64GB	SCSI	Win7	Opera	Excel
+x64	2	1GB	IDE	Win7	Firefox	Word
+arm	2	4GB	IDE	Win8	Firefox	Word
+x64	4	4GB	IDE	Win7	Edge	Word
+x64	1	64GB	SCSI	Win10	Firefox	Word
+x86	4	4GB	SCSI	Win7	Firefox	Excel
+x64	4	4GB	IDE	Win10	Chrome	Excel
+x86	4	1GB	IDE	Win7	Firefox	Powerpoint
+x64	4	4GB	IDE	Win8	Edge	Powerpoint
+arm	2	64GB	SCSI	Win7	Chrome	Powerpoint
+x64	1	4GB	IDE	Win7	Edge	Word
+arm	1	64GB	IDE	Win8	Chrome	Powerpoint
+x86	2	4GB	IDE	Win8	Firefox	Word
+arm	2	64GB	SCSI	Win7	Opera	Powerpoint
+x64	4	64GB	IDE	Win10	Opera	Powerpoint
+x86	1	1GB	IDE	Win10	Firefox	Powerpoint
+x64	2	4GB	SCSI	Win8	Chrome	Excel
+x86	1	1GB	IDE	Win10	Edge	Word
+arm	4	4GB	SCSI	Win8	Opera	Powerpoint
+x64	4	64GB	IDE	Win7	Edge	Word
+x64	1	4GB	IDE	Win8	Edge	Powerpoint
+x64	2	1GB	IDE	Win7	Edge	Excel
+x64	2	1GB	IDE	Win10	Firefox	Powerpoint
+x86	1	4GB	SCSI	Win7	Edge	Word
+x64	2	64GB	SCSI	Win10	Firefox	Word
+arm	2	1GB	IDE	Win7	Firefox	Word
+x86	4	4GB	SCSI	Win7	Edge	Word
+x64	2	1GB	IDE	Win8	Opera	Powerpoint
+arm	2	4GB	IDE	Win7	Edge	Excel
+x64	1	4GB	IDE	Win8	Chrome	Excel
+x86	2	4GB	IDE	Win10	Opera	Powerpoint
+x86	2	1GB	SCSI	Win7	Edge	Excel
+x64	2	4GB	SCSI	Win7	Chrome	Powerpoint
+arm	1	1GB	SCSI	Win8	Edge	Word
+x64	2	4GB	SCSI	Win7	Opera	Word
+arm	1	1GB	SCSI	Win7	Chrome	Excel
+arm	1	1GB	SCSI	Win8	Opera	Powerpoint
+x86	2	1GB	SCSI	Win7	Chrome	Word
+arm	4	64GB	SCSI	Win8	Edge	Word
+x64	1	1GB	IDE	Win8	Firefox	Excel
+x64	1	4GB	IDE	Win10	Edge	Excel
+arm	4	64GB	SCSI	Win7	Firefox	Powerpoint
+arm	1	4GB	IDE	Win7	Chrome	Powerpoint
+arm	4	4GB	SCSI	Win8	Chrome	Word
+arm	2	64GB	SCSI	Win10	Firefox	Powerpoint
+arm	2	1GB	IDE	Win10	Firefox	Powerpoint
+x64	2	4GB	SCSI	Win10	Opera	Excel
+x64	2	4GB	SCSI	Win8	Firefox	Word
+arm	2	4GB	IDE	Win8	Chrome	Powerpoint
+x86	2	1GB	SCSI	Win8	Firefox	Powerpoint
+x86	1	64GB	IDE	Win7	Firefox	Excel
+arm	4	64GB	SCSI	Win8	Chrome	Excel
+arm	1	1GB	SCSI	Win10	Edge	Powerpoint
+arm	4	1GB	IDE	Win10	Opera	Excel
+x86	2	1GB	SCSI	Win10	Opera	Excel
+arm	2	1GB	IDE	Win8	Firefox	Powerpoint
+x64	1	64GB	SCSI	Win7	Chrome	Excel
+x86	4	64GB	SCSI	Win10	Chrome	Word
+arm	4	1GB	IDE	Win7	Chrome	Powerpoint
+x86	2	64GB	IDE	Win8	Chrome	Word
+arm	4	1GB	IDE	Win7	Opera	Word
+x64	2	4GB	SCSI	Win10	Firefox	Powerpoint
+x86	1	1GB	IDE	Win7	Firefox	Excel
+x86	1	64GB	IDE	Win8	Opera	Excel
+x64	4	64GB	IDE	Win7	Opera	Excel
+x86	1	64GB	IDE	Win7	Edge	Excel
+x64	1	4GB	IDE	Win8	Opera	Excel
+arm	4	1GB	IDE	Win10	Firefox	Word
+x64	2	4GB	SCSI	Win7	Edge	Word
+x64	1	64GB	SCSI	Win10	Chrome	Excel
+x86	1	4GB	SCSI	Win8	Firefox	Powerpoint
+arm	4	64GB	SCSI	Win8	Firefox	Excel
+x86	4	4GB	SCSI	Win7	Opera	Excel
+arm	4	64GB	SCSI	Win10	Firefox	Word
+x64	2	1GB	IDE	Win10	Opera	Powerpoint
+x86	2	1GB	SCSI	Win8	Edge	Excel
+x86	1	4GB	SCSI	Win10	Chrome	Powerpoint
+x86	4	4GB	SCSI	Win10	Chrome	Excel
+x64	4	64GB	IDE	Win7	Firefox	Powerpoint
+x86	2	4GB	IDE	Win7	Firefox	Excel
+x64	1	64GB	SCSI	Win8	Opera	Excel
+x86	2	4GB	IDE	Win10	Chrome	Powerpoint
+x64	1	4GB	IDE	Win8	Firefox	Word
+arm	4	64GB	SCSI	Win10	Chrome	Word
+arm	4	64GB	SCSI	Win8	Opera	Powerpoint
+x64	1	64GB	SCSI	Win7	Opera	Powerpoint
+arm	1	64GB	IDE	Win8	Edge	Word
+arm	2	64GB	SCSI	Win8	Firefox	Excel
+x64	1	64GB	SCSI	Win7	Edge	Powerpoint
+x64	1	4GB	IDE	Win10	Firefox	Word
+x86	4	1GB	IDE	Win8	Opera	Word
+x86	4	64GB	SCSI	Win8	Edge	Powerpoint
+x64	2	64GB	SCSI	Win7	Edge	Powerpoint
+arm	1	64GB	IDE	Win7	Firefox	Word
+x64	4	64GB	IDE	Win10	Chrome	Powerpoint
+x86	4	1GB	IDE	Win7	Edge	Excel
+x64	4	1GB	SCSI	Win8	Edge	Excel
+x86	4	64GB	SCSI	Win7	Firefox	Excel
+arm	1	1GB	SCSI	Win10	Chrome	Excel
+x86	1	4GB	SCSI	Win8	Edge	Excel
+x86	2	4GB	IDE	Win7	Opera	Word
+arm	2	64GB	SCSI	Win10	Opera	Excel
+x86	1	4GB	SCSI	Win10	Edge	Excel
+x86	2	64GB	IDE	Win7	Opera	Excel
+x86	2	4GB	IDE	Win7	Chrome	Excel
+arm	2	4GB	IDE	Win7	Opera	Powerpoint
+x64	4	1GB	SCSI	Win10	Opera	Word
+arm	2	64GB	SCSI	Win8	Opera	Word
+arm	4	4GB	SCSI	Win7	Opera	Excel
+arm	1	64GB	IDE	Win7	Opera	Excel
+arm	2	4GB	IDE	Win10	Opera	Powerpoint
+arm	4	1GB	IDE	Win10	Edge	Excel
+x64	2	1GB	IDE	Win8	Edge	Word
+x86	2	64GB	IDE	Win8	Opera	Powerpoint
+arm	2	1GB	IDE	Win10	Edge	Powerpoint
+x86	2	1GB	SCSI	Win10	Firefox	Powerpoint
+arm	2	64GB	SCSI	Win8	Edge	Powerpoint
+x86	4	1GB	IDE	Win8	Edge	Excel
+arm	4	64GB	SCSI	Win10	Edge	Word
+x64	2	64GB	SCSI	Win7	Opera	Powerpoint
+arm	1	1GB	SCSI	Win7	Firefox	Word
+x64	2	64GB	SCSI	Win8	Edge	Powerpoint
+x64	1	1GB	IDE	Win10	Chrome	Excel
+arm	1	4GB	IDE	Win8	Edge	Word
+x64	2	4GB	SCSI	Win10	Edge	Word
+x86	2	64GB	IDE	Win10	Firefox	Excel
+x64	4	1GB	SCSI	Win8	Chrome	Powerpoint
+x64	4	64GB	IDE	Win8	Chrome	Word
+x86	4	4GB	SCSI	Win8	Opera	Excel
+x86	4	4GB	SCSI	Win8	Edge	Excel
+x64	4	4GB	IDE	Win8	Chrome	Excel
+x64	1	64GB	SCSI	Win10	Opera	Word
+x86	1	4GB	SCSI	Win8	Chrome	Excel
+arm	1	64GB	IDE	Win7	Chrome	Powerpoint
+arm	4	4GB	SCSI	Win7	Edge	Word
+x86	2	64GB	IDE	Win7	Firefox	Word
+arm	1	64GB	IDE	Win10	Opera	Powerpoint
+x86	4	64GB	SCSI	Win7	Edge	Powerpoint
+arm	2	4GB	IDE	Win7	Firefox	Word
+x64	2	4GB	SCSI	Win7	Firefox	Word
+arm	2	4GB	IDE	Win10	Edge	Excel
+arm	1	1GB	SCSI	Win7	Edge	Powerpoint
+x64	1	4GB	IDE	Win10	Chrome	Powerpoint
+x86	1	1GB	IDE	Win7	Chrome	Excel
+arm	1	4GB	IDE	Win8	Opera	Excel
+arm	4	1GB	IDE	Win8	Opera	Powerpoint
+arm	1	1GB	SCSI	Win8	Chrome	Excel
+x64	2	64GB	SCSI	Win7	Firefox	Word
+arm	1	64GB	IDE	Win10	Edge	Powerpoint
+x64	2	1GB	IDE	Win8	Firefox	Excel
+arm	2	1GB	IDE	Win7	Opera	Word
+arm	2	4GB	IDE	Win7	Chrome	Excel
+x86	4	1GB	IDE	Win7	Chrome	Excel
+x86	1	1GB	IDE	Win8	Opera	Word
+x64	4	1GB	SCSI	Win10	Firefox	Word
+x86	4	4GB	SCSI	Win7	Chrome	Word
+x64	2	1GB	IDE	Win7	Chrome	Powerpoint
+x64	2	1GB	IDE	Win7	Opera	Powerpoint
+x64	4	64GB	IDE	Win7	Chrome	Powerpoint
+x86	4	1GB	IDE	Win8	Firefox	Word
+x86	4	64GB	SCSI	Win7	Opera	Word
+arm	1	4GB	IDE	Win10	Firefox	Powerpoint
+x64	2	1GB	IDE	Win10	Chrome	Powerpoint
+arm	1	1GB	SCSI	Win8	Firefox	Excel
+x64	1	4GB	IDE	Win10	Opera	Excel
+x86	1	1GB	IDE	Win7	Opera	Word
+x86	2	64GB	IDE	Win7	Edge	Word
+x64	4	64GB	IDE	Win10	Firefox	Word
+x64	4	64GB	IDE	Win8	Opera	Powerpoint
+arm	1	4GB	IDE	Win10	Edge	Word
+arm	2	1GB	IDE	Win7	Chrome	Excel
+x86	4	64GB	SCSI	Win7	Chrome	Excel
+x64	1	64GB	SCSI	Win7	Firefox	Word
+arm	2	64GB	SCSI	Win8	Chrome	Word
+x86	1	1GB	IDE	Win8	Chrome	Powerpoint
+arm	1	64GB	IDE	Win10	Firefox	Word
+arm	4	1GB	IDE	Win8	Firefox	Excel
+x86	2	64GB	IDE	Win7	Chrome	Powerpoint
+arm	4	1GB	IDE	Win7	Firefox	Powerpoint
+x64	1	4GB	IDE	Win7	Opera	Powerpoint
+x64	4	1GB	SCSI	Win10	Chrome	Word
+arm	4	4GB	SCSI	Win10	Edge	Word
+x64	1	4GB	IDE	Win7	Chrome	Powerpoint
+x64	1	64GB	SCSI	Win8	Edge	Powerpoint
+x64	2	1GB	IDE	Win10	Edge	Word
+arm	4	4GB	SCSI	Win10	Opera	Excel
+x64	4	4GB	IDE	Win10	Opera	Powerpoint
+arm	1	4GB	IDE	Win7	Firefox	Word
+x86	1	1GB	IDE	Win7	Edge	Excel
+x64	1	1GB	IDE	Win10	Edge	Powerpoint
+arm	1	1GB	SCSI	Win10	Opera	Word
+x64	1	1GB	IDE	Win8	Chrome	Powerpoint
+x86	2	1GB	SCSI	Win7	Firefox	Excel
+x64	4	4GB	IDE	Win7	Firefox	Excel
+x86	1	64GB	IDE	Win10	Opera	Excel
+x64	4	4GB	IDE	Win7	Opera	Powerpoint
+x86	2	64GB	IDE	Win10	Opera	Word
+arm	2	64GB	SCSI	Win7	Firefox	Powerpoint
+x86	1	4GB	SCSI	Win10	Firefox	Excel
+x86	1	4GB	SCSI	Win7	Firefox	Powerpoint
+arm	1	64GB	IDE	Win8	Opera	Powerpoint
+x86	2	4GB	IDE	Win7	Edge	Word
+arm	4	4GB	SCSI	Win8	Edge	Powerpoint
+x64	4	1GB	SCSI	Win8	Firefox	Powerpoint
+x86	4	1GB	IDE	Win7	Opera	Powerpoint
+x86	1	64GB	IDE	Win7	Chrome	Word
+x64	2	64GB	SCSI	Win7	Chrome	Word
+arm	2	64GB	SCSI	Win10	Chrome	Word
+x86	1	1GB	IDE	Win10	Opera	Excel
+arm	2	4GB	IDE	Win10	Firefox	Word
+arm	2	1GB	IDE	Win7	Edge	Powerpoint
+arm	1	64GB	IDE	Win10	Chrome	Word
+x86	4	1GB	IDE	Win10	Chrome	Powerpoint
+x86	1	4GB	SCSI	Win7	Chrome	Powerpoint
+x86	4	1GB	IDE	Win10	Firefox	Excel
+x64	1	64GB	SCSI	Win10	Edge	Word
+arm	2	4GB	IDE	Win10	Chrome	Powerpoint
+x64	1	1GB	IDE	Win8	Edge	Powerpoint
+x64	2	64GB	SCSI	Win8	Chrome	Word
+x64	2	4GB	SCSI	Win8	Edge	Word
+arm	1	64GB	IDE	Win8	Firefox	Powerpoint
+x86	4	64GB	SCSI	Win10	Opera	Powerpoint
+x86	2	64GB	IDE	Win8	Edge	Word
+x64	4	4GB	IDE	Win10	Firefox	Excel
+x86	2	1GB	SCSI	Win8	Chrome	Powerpoint
+arm	4	1GB	IDE	Win10	Chrome	Word
+x86	2	1GB	SCSI	Win10	Chrome	Powerpoint
+x64	4	64GB	IDE	Win10	Edge	Excel
+x86	1	1GB	IDE	Win8	Firefox	Excel
+arm	4	4GB	SCSI	Win7	Chrome	Powerpoint
+x86	4	4GB	SCSI	Win8	Chrome	Word
+x86	1	64GB	IDE	Win8	Chrome	Excel
+arm	1	4GB	IDE	Win8	Chrome	Excel
+x64	4	1GB	SCSI	Win7	Chrome	Powerpoint
+x86	2	4GB	IDE	Win10	Edge	Excel
+x86	4	4GB	SCSI	Win8	Firefox	Excel
+arm	4	64GB	SCSI	Win7	Chrome	Word
+arm	2	1GB	IDE	Win8	Edge	Word
+x64	1	1GB	IDE	Win7	Firefox	Powerpoint
+x86	4	1GB	IDE	Win10	Opera	Word
+x86	1	64GB	IDE	Win10	Firefox	Word
+x86	1	64GB	IDE	Win10	Edge	Excel
+x64	1	4GB	IDE	Win7	Firefox	Word
+x64	2	64GB	SCSI	Win10	Edge	Word
+arm	1	1GB	SCSI	Win10	Firefox	Powerpoint
+x64	2	1GB	IDE	Win8	Chrome	Word
+x64	4	64GB	IDE	Win8	Edge	Powerpoint
+x86	4	64GB	SCSI	Win10	Edge	Excel
+x64	4	1GB	SCSI	Win10	Edge	Excel
+arm	4	64GB	SCSI	Win7	Edge	Excel
+arm	2	1GB	IDE	Win10	Chrome	Word
+x86	2	1GB	SCSI	Win10	Edge	Powerpoint
+arm	1	4GB	IDE	Win10	Chrome	Word
+arm	4	4GB	SCSI	Win10	Chrome	Excel
+x86	1	64GB	IDE	Win8	Edge	Excel
+x64	1	64GB	SCSI	Win8	Firefox	Powerpoint
+x86	2	64GB	IDE	Win10	Chrome	Powerpoint
+arm	1	4GB	IDE	Win7	Opera	Word
+arm	1	1GB	SCSI	Win7	Opera	Word
+x86	2	1GB	SCSI	Win7	Opera	Powerpoint
+x86	4	64GB	SCSI	Win8	Opera	Excel
+x64	4	1GB	SCSI	Win7	Opera	Word
+arm	4	64GB	SCSI	Win10	Opera	Powerpoint
+x64	4	64GB	IDE	Win8	Firefox	Word
+arm	4	4GB	SCSI	Win8	Firefox	Word
+x86	2	64GB	IDE	Win8	Firefox	Word
+x64	4	4GB	IDE	Win7	Chrome	Excel
+x86	1	1GB	IDE	Win8	Edge	Word
+x86	1	4GB	SCSI	Win7	Opera	Powerpoint
+x64	4	4GB	IDE	Win8	Opera	Powerpoint
+x64	1	1GB	IDE	Win7	Chrome	Word
+arm	4	4GB	SCSI	Win10	Firefox	Word
+x64	2	64GB	SCSI	Win10	Chrome	Excel
+x64	1	1GB	IDE	Win10	Opera	Word
+x86	1	4GB	SCSI	Win8	Opera	Word
+x64	2	4GB	SCSI	Win10	Chrome	Excel
+arm	2	4GB	IDE	Win8	Opera	Excel
+x86	4	4GB	SCSI	Win10	Firefox	Excel
+x86	2	1GB	SCSI	Win8	Opera	Word
+x64	4	4GB	IDE	Win8	Firefox	Word
+x64	2	64GB	SCSI	Win8	Opera	Word
+x86	2	64GB	IDE	Win10	Edge	Powerpoint
+x86	2	4GB	IDE	Win8	Chrome	Excel
+x64	2	64GB	SCSI	Win10	Opera	Word
+x86	1	1GB	IDE	Win10	Chrome	Word
+arm	1	4GB	IDE	Win10	Opera	Powerpoint
+x64	4	1GB	SCSI	Win8	Opera	Excel
+arm	2	1GB	IDE	Win8	Chrome	Excel
+arm	1	4GB	IDE	Win7	Edge	Excel
+x64	4	1GB	SCSI	Win7	Edge	Powerpoint
+arm	2	1GB	IDE	Win10	Opera	Powerpoint
+x86	1	64GB	IDE	Win7	Opera	Powerpoint
+x64	4	4GB	IDE	Win10	Edge	Word
+x86	2	4GB	IDE	Win10	Firefox	Powerpoint
+",
     "seed": undefined,
   },
 }
@@ -8309,6 +4613,29 @@ exports[`strings() Cases The simple model with weight operator 1`] = `
     "model": "Type:Primary(10),Logical,Single,Span,Stripe,Mirror,RAID-5
 FormatMethod:quick,slow
 FileSystem:FAT,FAT32,NTFS(10)",
+    "result": "Type	FormatMethod	FileSystem
+Primary	quick	FAT
+Single	slow	NTFS
+Logical	slow	FAT
+Stripe	quick	NTFS
+Mirror	quick	NTFS
+Logical	quick	FAT32
+Span	slow	FAT
+Span	slow	FAT32
+Mirror	slow	FAT32
+Primary	slow	FAT32
+RAID-5	slow	NTFS
+Single	quick	FAT32
+Single	quick	FAT
+RAID-5	quick	FAT
+Span	quick	NTFS
+Mirror	quick	FAT
+Primary	slow	NTFS
+Logical	slow	NTFS
+Stripe	slow	FAT32
+RAID-5	slow	FAT32
+Stripe	slow	FAT
+",
     "seed": undefined,
   },
 }

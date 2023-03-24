@@ -1,3 +1,6 @@
+import fsp from "fs/promises";
+import path from "path";
+
 /**
  * Types Utils
  */
@@ -44,8 +47,18 @@ export const NOT_PROPERTY_KEY_TYPES = EXCLUDE_TYPES([
  * Pict Utils
  */
 
-export function deleteTimeFromPictResult(result: any) {
+export function prepareForSnapshot(result: any) {
   const copy = { ...result };
   delete copy.time;
+  delete copy.modelFile;
+  delete copy.seedFile;
   return copy;
+}
+
+export async function getTestModelContent(fileName: string) {
+  const buffer = await fsp.readFile(
+    path.join(__dirname, `./models/${fileName}`)
+  );
+
+  return buffer.toString();
 }

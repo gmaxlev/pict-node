@@ -4,7 +4,7 @@ import {
   NOT_ARRAY_TYPES,
   EXCLUDE_TYPES,
   NOT_STRING_TYPES,
-  deleteTimeFromPictResult,
+  prepareForSnapshot,
 } from "./utils";
 import { strings } from "../api/strings";
 import type { InputSubModel } from "../common/types";
@@ -726,7 +726,10 @@ describe("strings()", () => {
 
       expect(result.length).toBe(4);
 
-      expect(result.pict).toEqual({ model: "A:1,2\nB:3,4" });
+      expect(result.pict).toEqual({
+        model: "A:1,2\nB:3,4",
+        result: "A\tB\n1\t4\n1\t3\n2\t4\n2\t3\n",
+      });
 
       expect(result.cases).toEqual([
         { A: "1", B: "4" },
@@ -757,7 +760,10 @@ describe("strings()", () => {
 
       expect(result.length).toBe(4);
 
-      expect(result.pict).toEqual({ model: "A:1,2|two\nB:3,4" });
+      expect(result.pict).toEqual({
+        model: "A:1,2|two\nB:3,4",
+        result: "A\tB\n1\t4\n1\t3\n2\t4\ntwo\t3\n",
+      });
 
       expect(result.cases).toEqual([
         { A: "1", B: "4" },
@@ -790,6 +796,8 @@ describe("strings()", () => {
 
       expect(result.pict).toEqual({
         model: "A:~-1,0,1,2\nB:~-1,0,1,2",
+        result:
+          "A\tB\n0\t2\n0\t1\n1\t2\n2\t1\n1\t0\n2\t0\n1\t1\n2\t2\n0\t0\n0\t~-1\n1\t~-1\n~-1\t0\n~-1\t1\n2\t~-1\n~-1\t2\n",
       });
 
       expect(result.cases).toEqual([
@@ -839,7 +847,7 @@ describe("strings()", () => {
       });
 
       expect(typeof result.time).toBe("number");
-      expect(deleteTimeFromPictResult(result)).toMatchSnapshot();
+      expect(prepareForSnapshot(result)).toMatchSnapshot();
     });
     test("The large model with 2 order", async () => {
       const models = [
@@ -883,7 +891,7 @@ describe("strings()", () => {
       });
 
       expect(typeof result.time).toBe("number");
-      expect(deleteTimeFromPictResult(result)).toMatchSnapshot();
+      expect(prepareForSnapshot(result)).toMatchSnapshot();
     });
     test("The large model with all combinations", async () => {
       const models = [
@@ -932,7 +940,7 @@ describe("strings()", () => {
       );
 
       expect(typeof result.time).toBe("number");
-      expect(deleteTimeFromPictResult(result)).toMatchSnapshot();
+      expect(prepareForSnapshot(result)).toMatchSnapshot();
     });
     test("The model with sub models", async () => {
       const models = [
@@ -981,7 +989,7 @@ describe("strings()", () => {
       });
 
       expect(typeof result.time).toBe("number");
-      expect(deleteTimeFromPictResult(result)).toMatchSnapshot();
+      expect(prepareForSnapshot(result)).toMatchSnapshot();
     });
     test("The model with seeding", async () => {
       const models = [
@@ -1024,7 +1032,7 @@ describe("strings()", () => {
       });
 
       expect(typeof result.time).toBe("number");
-      expect(deleteTimeFromPictResult(result)).toMatchSnapshot();
+      expect(prepareForSnapshot(result)).toMatchSnapshot();
     });
   });
 });

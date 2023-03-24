@@ -138,6 +138,7 @@ export async function strings<M extends ReadonlyArray<PictStringModel>>(
     pict: {
       model: modelText,
       seed: callPictOptions.seedText,
+      result,
     },
   };
 }

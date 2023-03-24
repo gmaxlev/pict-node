@@ -95,6 +95,7 @@ export async function all<M extends ReadonlyArray<PictTypedModel>>(
     pict: {
       model: modelText,
       seed: callPictOptions.seedText,
+      result,
     },
   };
 }

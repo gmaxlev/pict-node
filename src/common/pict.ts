@@ -45,7 +45,7 @@ export async function callPict(options: CallPictOptions) {
   return result;
 }
 
-function callPictBinary(
+export function callPictBinary(
   modelPath: string,
   params: Partial<PictCliOptions> = {}
 ) {
