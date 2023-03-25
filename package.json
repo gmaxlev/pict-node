@@ -7,39 +7,40 @@
   "types": "./lib/index.d.ts",
   "author": "Maksym Levytskyi https://github.com/gmaxlev",
   "license": "MIT",
-  "type": "module",
   "scripts": {
-    "test": "npm run pict && npm run prettier && npm run lint && jest . --silent",
-    "test:watch": "npm run pict && jest . --watch",
-    "dev": "npm run pict && cross-env NODE_ENV=development nodemon --watch './**/*.ts' --exec 'node --experimental-specifier-resolution=node --loader ts-node/esm' src/index.ts",
+    "test": "npm run prettier && npm run lint && node --experimental-vm-modules node_modules/jest/bin/jest.js . --verbose",
+    "test:watch": "node --experimental-vm-modules node_modules/jest/bin/jest.js . --watch --verbose -r esm",
     "build:dts": "tsc --declaration --emitDeclarationOnly -p . --outDir dts",
-    "build": "npm run pict && rm -rf lib && rm -rf dts && npm run build:dts && rollup -c rollup.config.cjs --bundleConfigAsCjs && rm -rf dts",
+    "build": "rm -rf lib && rm -rf dts && npm run build:dts && rollup -c rollup.config.cjs --bundleConfigAsCjs && rm -rf dts",
     "lint": "eslint .",
     "prettier": "prettier --check .",
+    "pict": "node ./scripts/pict-install.js --verbose",
     "prepare": "husky install",
-    "postinstall": "npm run pict",
-    "pict": "node ./scripts/pict-install.js"
+    "postinstall": "npm run pict"
   },
   "lint-staged": {
     "*.{ts,js}": [
-      "eslint --fix 'src/**'",
-      "prettier --write .",
+      "eslint . --fix",
+      "prettier . --write",
       "npm run test"
     ],
-    "*.{md}": [
-      "prettier --write ."
+    "*.md": [
+      "prettier . --write"
     ]
   },
   "files": [
-    "lib"
+    "lib",
+    "scripts"
   ],
   "devDependencies": {
     "@rollup/plugin-json": "^6.0.0",
     "@rollup/plugin-node-resolve": "^15.0.1",
     "@types/jest": "^29.4.0",
     "@types/node": "^18.14.0",
+    "@types/temp": "^0.9.1",
     "@types/tmp": "^0.2.3",
     "@typescript-eslint/eslint-plugin": "^5.53.0",
+    "babel-jest": "^29.5.0",
     "cross-env": "^7.0.3",
     "eslint": "^8.34.0",
     "eslint-config-prettier": "^8.6.0",
@@ -49,8 +50,8 @@
     "eslint-plugin-promise": "^6.1.1",
     "husky": "^8.0.3",
     "jest": "^29.4.3",
+    "jest-extended": "^3.2.4",
     "lint-staged": "^13.1.2",
-    "memfs": "^3.4.13",
     "nodemon": "^2.0.20",
     "prettier": "2.8.4",
     "rollup": "^3.18.0",
@@ -62,9 +63,7 @@
     "typescript": "^4.9.5"
   },
   "dependencies": {
-    "execa": "^7.1.1",
     "temp": "^0.9.4",
-    "tmp": "^0.2.1",
     "type-fest": "^3.6.1"
   }
 }

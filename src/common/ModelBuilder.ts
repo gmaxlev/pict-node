@@ -1,4 +1,5 @@
 import { isNumber, isRecord, isString, isUndefined } from "./utils";
+import { EOL } from "os";
 
 type ModelBuilderConstraint = string;
 
@@ -139,12 +140,12 @@ export class ModelBuilder {
     text += this.getMainModelText();
 
     if (this.model.sub.length) {
-      text += "\n";
+      text += EOL;
       text += this.getSubModelText();
     }
 
     if (this.model.constraints.length) {
-      text += "\n";
+      text += EOL;
       text += this.getConstraintText();
     }
 
@@ -163,7 +164,7 @@ export class ModelBuilder {
   }
 
   private getConstraintText() {
-    return this.model.constraints.join("\n");
+    return this.model.constraints.join(EOL);
   }
 
   private getParameterValues(key: string) {
@@ -183,7 +184,7 @@ export class ModelBuilder {
       string += `${String(key)}:`;
       string += values.join(this.valueSeparator);
       if (index !== array.length - 1) {
-        string += "\n";
+        string += EOL;
       }
     });
     return string;
@@ -199,7 +200,7 @@ export class ModelBuilder {
         string += `@${subModel.order}`;
       }
       if (index !== array.length - 1) {
-        string += "\n";
+        string += EOL;
       }
     });
     return string;

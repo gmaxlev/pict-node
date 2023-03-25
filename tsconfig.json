@@ -1,5 +1,6 @@
 {
   "include": ["src/index.ts"],
+  "files": ["global.d.ts"],
   "compilerOptions": {
     "outDir": "dist",
     "lib": ["es2020"],

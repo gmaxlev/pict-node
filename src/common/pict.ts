@@ -1,3 +1,4 @@
+import { IS_WIN, IS_TEST } from "./../env";
 import type { PictCliOptions, PickPictCliOptions } from "./types";
 import { execSync } from "child_process";
 import {
@@ -8,6 +9,9 @@ import {
   writeTempFile,
 } from "./utils";
 import path from "path";
+import { EOL } from "os";
+import url from "url";
+const __dirname = path.dirname(url.fileURLToPath(import.meta.url));
 
 export interface CallPictOptions {
   modelText: string;
@@ -24,45 +28,34 @@ export interface CallPictOptions {
   >;
 }
 
-function getRootPath() {
-  if (process.env["NODE_ENV"] === "development") {
-    return path.resolve(__dirname, "..", "..");
-  } else {
-    return path.resolve("./");
-  }
-}
-
 function getBinaryPath() {
-  if (process.platform === "win32") {
-    return path.resolve(getRootPath(), "bin", "pict.exe");
+  const root = IS_TEST
+    ? path.resolve(__dirname, "..", "..")
+    : path.resolve(__dirname, "..");
+
+  if (IS_WIN) {
+    return path.join(root, "bin", "pict.exe");
   } else {
-    return path.resolve(getRootPath(), "bin", "pict");
+    return path.join(root, "bin", "pict");
   }
 }
 
 export async function callPict(options: CallPictOptions) {
-  const cleanups: Function[] = [];
-
   const modelFile = await writeTempFile(options.modelText);
-
-  cleanups.push(() => modelFile.cleanup());
 
   const cliParams: Partial<PictCliOptions> = { ...options.options };
 
   if (isString(options.seedText)) {
     const seedFile = await writeTempFile(options.seedText);
-    cleanups.push(() => seedFile.cleanup());
     cliParams.seeds = seedFile.path;
   }
 
-  const result = callPictBinary(modelFile.path, cliParams);
-
-  cleanups.forEach((cleanup) => cleanup());
+  const result = await callPictBinary(modelFile.path, cliParams);
 
   return result;
 }
 
-export function callPictBinary(
+export async function callPictBinary(
   modelPath: string,
   params: Partial<PictCliOptions> = {}
 ) {
@@ -96,12 +89,14 @@ export function callPictBinary(
     }
   }
 
-  return execSync(`${getBinaryPath()} ${modelPath} ${cliOptions}`).toString();
+  const result = execSync(`${getBinaryPath()} ${modelPath} ${cliOptions}`);
+
+  return Promise.resolve(result.toString());
 }
 
 export function* pictEntries(result: string) {
   let headers: string[] = [];
-  const rows = result.split("\n");
+  const rows = result.split(EOL);
 
   for (const [rowIndex, rowItem] of rows.entries()) {
     if (rowIndex === rows.length - 1) {

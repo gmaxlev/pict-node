@@ -1,0 +1,3 @@
+Type: Single, Span, Stripe
+Size: 10, 100, 500
+FormatMethod: Quick, Slow, VerySlow

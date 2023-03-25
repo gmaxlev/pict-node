@@ -1,4 +1,5 @@
 import { isString, isUndefined } from "./utils";
+import { EOL } from "os";
 
 /**
  * A builder for PICT sub models.
@@ -40,7 +41,7 @@ export class SeedBuilder {
 
         if (index === 0) {
           string = string.substring(0, string.length - 1);
-          string += "\n";
+          string += EOL;
         }
 
         string += value;

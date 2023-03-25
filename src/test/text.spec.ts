@@ -4,9 +4,10 @@ import {
   EXCLUDE_TYPES,
   NOT_RECORD_TYPES,
   NOT_STRING_TYPES,
-  prepareForSnapshot,
   getTestModelContent,
 } from "./utils";
+import url from "url";
+const __dirname = path.dirname(url.fileURLToPath(import.meta.url));
 
 describe("text()", () => {
   describe("Common Validation", () => {
@@ -20,33 +21,6 @@ describe("text()", () => {
         await result.rejects.toThrowError(
           "the first argument: must be an object"
         );
-      }
-    });
-    test('Should throw an error if "model" is not a string', async () => {
-      for (const notString of NOT_STRING_TYPES) {
-        const act = async () =>
-          await text({
-            // @ts-expect-error
-            model: notString,
-          });
-
-        const result = expect(act);
-
-        await result.rejects.toThrowError('"model": must be a string');
-      }
-    });
-    test('Should throw an error if "seed" is not undefined or a string', async () => {
-      for (const notString of EXCLUDE_TYPES(["undefined", "string"])) {
-        const act = async () =>
-          await text({
-            model: "_model_text_",
-            // @ts-expect-error
-            seed: notString,
-          });
-
-        const result = expect(act);
-
-        await result.rejects.toThrowError('"seed": must be a string');
       }
     });
     test('Should throw an error if "options" is not undefined or a record', async () => {
@@ -124,6 +98,79 @@ describe("text()", () => {
       }
     });
   });
+
+  describe("Model Validation", () => {
+    test('Should throw an error if "model" is not a string or record', async () => {
+      for (const notString of EXCLUDE_TYPES(["string", "record"])) {
+        const act = async () =>
+          await text({
+            // @ts-expect-error
+            model: notString,
+          });
+
+        const result = expect(act);
+
+        await result.rejects.toThrowError('"model": must be a string');
+      }
+    });
+    test('Should throw an error if "model.file" is not a string', async () => {
+      for (const notString of NOT_STRING_TYPES) {
+        const act = async () =>
+          await text({
+            model: {
+              // @ts-expect-error
+              file: notString,
+            },
+          });
+
+        const result = expect(act);
+
+        await result.rejects.toThrowError(
+          '"model": must be a string or a type { file: string }'
+        );
+      }
+    });
+  });
+
+  describe("Seed Validation", () => {
+    test('Should throw an error if "seed" is not a string or record or undefined', async () => {
+      for (const notString of EXCLUDE_TYPES([
+        "string",
+        "record",
+        "undefined",
+      ])) {
+        const act = async () =>
+          await text({
+            model: "_model_text_",
+            // @ts-expect-error
+            seed: notString,
+          });
+
+        const result = expect(act);
+
+        await result.rejects.toThrowError('"seed": must be a string');
+      }
+    });
+    test('Should throw an error if "seed.file" is not a string', async () => {
+      for (const notString of NOT_STRING_TYPES) {
+        const act = async () =>
+          await text({
+            model: "_model_text_",
+            seed: {
+              // @ts-expect-error
+              file: notString,
+            },
+          });
+
+        const result = expect(act);
+
+        await result.rejects.toThrowError(
+          '"seed": must be a string or a type { file: string }'
+        );
+      }
+    });
+  });
+
   describe("Separators", () => {
     describe("Separators Validation", () => {
       const separators = [
@@ -155,80 +202,63 @@ describe("text()", () => {
       }
     });
   });
+
   describe("Cases", () => {
-    test("The simple model", async () => {
-      const model = await getTestModelContent("model");
+    test("The simple model (in the file)", async () => {
+      const modelPath = path.resolve(__dirname, "./models/model");
 
       const result = await text({
-        model: model,
+        model: {
+          file: modelPath,
+        },
       });
-      expect(Object.keys(result).length).toBe(4);
 
-      expect(typeof result.time).toBe("number");
+      expect(result).toMatchObject({
+        time: expect.any(Number),
+        length: 4,
+      });
 
-      expect(result.pict.model).toBe(model);
-
-      expect(typeof result.pict.seed).toBe("undefined");
-
-      expect(result.pict.result).toBe("A\tB\n1\t4\n1\t3\n2\t4\n2\t3\n");
-
-      expect(result.length).toBe(4);
-
-      expect(result.cases).toEqual([
+      expect(result.cases).toIncludeSameMembers([
         { A: "1", B: "4" },
         { A: "1", B: "3" },
         { A: "2", B: "4" },
         { A: "2", B: "3" },
       ]);
     });
-    test("The simple model with alias operator", async () => {
-      const model = await getTestModelContent("model-aliases");
+    test("The simple model with alias operator and symbol key", async () => {
+      const model = await getTestModelContent("model-alias");
 
       const result = await text({
         model,
       });
 
-      expect(Object.keys(result).length).toBe(4);
+      expect(result).toMatchObject({
+        time: expect.any(Number),
+        length: 4,
+      });
 
-      expect(typeof result.time).toBe("number");
-
-      expect(result.pict.model).toBe(model);
-
-      expect(typeof result.pict.seed).toBe("undefined");
-
-      expect(result.pict.result).toBe("A\tB\n1\t4\n1\t3\n2\t4\ntwo\t3\n");
-
-      expect(result.length).toBe(4);
-
-      expect(result.cases).toEqual([
-        { A: "1", B: "4" },
-        { A: "1", B: "3" },
-        { A: "2", B: "4" },
-        { A: "two", B: "3" },
+      expect(result.cases).toIncludeAnyMembers([
+        { A: "1", ["B"]: "3" },
+        { A: "1", ["B"]: "4" },
+        { A: "2", ["B"]: "4" },
+        { A: "two", ["B"]: "3" },
       ]);
     });
-    test("The simple model with negative operator", async () => {
-      const model = await getTestModelContent("model-negative");
+    test("The simple model with negative operator and number key (in the file)", async () => {
+      const modelPath = path.resolve(__dirname, "./models/model-negative");
 
       const result = await text({
-        model,
+        model: {
+          file: modelPath,
+        },
       });
 
-      expect(Object.keys(result).length).toBe(4);
+      expect(result).toMatchObject({
+        time: expect.any(Number),
+        length: 15,
+      });
 
-      expect(typeof result.time).toBe("number");
-
-      expect(result.pict.model).toBe(model);
-
-      expect(typeof result.pict.seed).toBe("undefined");
-
-      expect(result.pict.result).toBe(
-        "A\tB\n0\t2\n0\t1\n1\t2\n2\t1\n1\t0\n2\t0\n1\t1\n2\t2\n0\t0\n0\t~-1\n1\t~-1\n~-1\t0\n~-1\t1\n2\t~-1\n~-1\t2\n"
-      );
-
-      expect(result.length).toBe(15);
-
-      expect(result.cases).toEqual([
+      expect(result.cases).toIncludeAnyMembers([
         { A: "0", B: "2" },
         { A: "0", B: "1" },
         { A: "1", B: "2" },
@@ -253,63 +283,182 @@ describe("text()", () => {
         model,
       });
 
-      expect(typeof result.time).toBe("number");
-      expect(result.pict.model).toBe(model);
-      expect(typeof result.pict.seed).toBe("undefined");
-      expect(prepareForSnapshot(result)).toMatchSnapshot();
-    });
-    test("The large model with 2 order", async () => {
-      const model = await getTestModelContent("model-large");
-
-      const result = await text({
-        model,
+      expect(result).toMatchObject({
+        time: expect.any(Number),
+        length: 21,
       });
 
-      expect(typeof result.time).toBe("number");
-      expect(result.pict.model).toBe(model);
-      expect(typeof result.pict.seed).toBe("undefined");
-      expect(prepareForSnapshot(result)).toMatchSnapshot();
+      expect(result.cases).toIncludeAnyMembers([
+        { Type: "Primary", FormatMethod: "quick", FileSystem: "FAT" },
+        { Type: "Single", FormatMethod: "slow", FileSystem: "NTFS" },
+        { Type: "Logical", FormatMethod: "slow", FileSystem: "FAT" },
+        { Type: "Stripe", FormatMethod: "quick", FileSystem: "NTFS" },
+        { Type: "Mirror", FormatMethod: "quick", FileSystem: "NTFS" },
+        { Type: "Logical", FormatMethod: "quick", FileSystem: "FAT32" },
+        { Type: "Span", FormatMethod: "slow", FileSystem: "FAT" },
+        { Type: "Span", FormatMethod: "slow", FileSystem: "FAT32" },
+        { Type: "Mirror", FormatMethod: "slow", FileSystem: "FAT32" },
+        { Type: "Primary", FormatMethod: "slow", FileSystem: "FAT32" },
+        { Type: "RAID-5", FormatMethod: "slow", FileSystem: "NTFS" },
+        { Type: "Single", FormatMethod: "quick", FileSystem: "FAT32" },
+        { Type: "Single", FormatMethod: "quick", FileSystem: "FAT" },
+        { Type: "RAID-5", FormatMethod: "quick", FileSystem: "FAT" },
+        { Type: "Span", FormatMethod: "quick", FileSystem: "NTFS" },
+        { Type: "Mirror", FormatMethod: "quick", FileSystem: "FAT" },
+        { Type: "Primary", FormatMethod: "slow", FileSystem: "NTFS" },
+        { Type: "Logical", FormatMethod: "slow", FileSystem: "NTFS" },
+        { Type: "Stripe", FormatMethod: "slow", FileSystem: "FAT32" },
+        { Type: "RAID-5", FormatMethod: "slow", FileSystem: "FAT32" },
+        { Type: "Stripe", FormatMethod: "slow", FileSystem: "FAT" },
+      ]);
     });
-    test("The large model with all combinations", async () => {
-      const model = await getTestModelContent("model-large");
+    test("The large model with all combinations (in the file)", async () => {
+      const modelPath = path.resolve(
+        __dirname,
+        "./models/model-all-combinations"
+      );
 
       const result = await text({
-        model,
+        model: {
+          file: modelPath,
+        },
         options: {
-          order: 6,
+          order: 3,
         },
       });
 
-      expect(typeof result.time).toBe("number");
-      expect(result.pict.model).toBe(model);
-      expect(typeof result.pict.seed).toBe("undefined");
-      expect(prepareForSnapshot(result)).toMatchSnapshot();
+      expect(result).toMatchObject({
+        time: expect.any(Number),
+        length: 27,
+      });
+
+      expect(result.cases).toIncludeSameMembers([
+        { Type: "Single", Size: "500", FormatMethod: "Quick" },
+        { Type: "Span", Size: "500", FormatMethod: "Slow" },
+        { Type: "Stripe", Size: "500", FormatMethod: "Slow" },
+        { Type: "Span", Size: "10", FormatMethod: "VerySlow" },
+        { Type: "Single", Size: "10", FormatMethod: "Slow" },
+        { Type: "Span", Size: "100", FormatMethod: "VerySlow" },
+        { Type: "Span", Size: "100", FormatMethod: "Quick" },
+        { Type: "Single", Size: "500", FormatMethod: "VerySlow" },
+        { Type: "Single", Size: "100", FormatMethod: "Slow" },
+        { Type: "Stripe", Size: "10", FormatMethod: "VerySlow" },
+        { Type: "Stripe", Size: "500", FormatMethod: "VerySlow" },
+        { Type: "Single", Size: "10", FormatMethod: "VerySlow" },
+        { Type: "Single", Size: "500", FormatMethod: "Slow" },
+        { Type: "Stripe", Size: "10", FormatMethod: "Quick" },
+        { Type: "Stripe", Size: "100", FormatMethod: "Slow" },
+        { Type: "Span", Size: "500", FormatMethod: "Quick" },
+        { Type: "Span", Size: "10", FormatMethod: "Quick" },
+        { Type: "Stripe", Size: "10", FormatMethod: "Slow" },
+        { Type: "Single", Size: "100", FormatMethod: "VerySlow" },
+        { Type: "Stripe", Size: "100", FormatMethod: "VerySlow" },
+        { Type: "Stripe", Size: "100", FormatMethod: "Quick" },
+        { Type: "Single", Size: "100", FormatMethod: "Quick" },
+        { Type: "Span", Size: "100", FormatMethod: "Slow" },
+        { Type: "Span", Size: "10", FormatMethod: "Slow" },
+        { Type: "Single", Size: "10", FormatMethod: "Quick" },
+        { Type: "Span", Size: "500", FormatMethod: "VerySlow" },
+        { Type: "Stripe", Size: "500", FormatMethod: "Quick" },
+      ]);
     });
     test("The model with sub models", async () => {
-      const model = await getTestModelContent("model-submodels");
+      const models = [
+        {
+          key: "A",
+          values: ["1", "2"],
+        },
+        {
+          key: "B",
+          values: ["3", "4"],
+        },
+        {
+          key: "C",
+          values: ["5", "6", "7"],
+        },
+      ] as const;
+
+      const model = await getTestModelContent("model-sub-models");
 
       const result = await text({
         model,
       });
 
-      expect(typeof result.time).toBe("number");
-      expect(result.pict.model).toBe(model);
-      expect(typeof result.pict.seed).toBe("undefined");
-      expect(prepareForSnapshot(result)).toMatchSnapshot();
+      expect(result).toMatchObject({
+        time: expect.any(Number),
+        length: 12,
+      });
+
+      expect(result.cases).toIncludeSameMembers([
+        { A: "1", B: "4", C: "7" },
+        { A: "2", B: "4", C: "6" },
+        { A: "1", B: "4", C: "5" },
+        { A: "2", B: "4", C: "5" },
+        { A: "2", B: "4", C: "7" },
+        { A: "1", B: "4", C: "6" },
+        { A: "1", B: "3", C: "5" },
+        { A: "2", B: "3", C: "6" },
+        { A: "2", B: "3", C: "7" },
+        { A: "1", B: "3", C: "7" },
+        { A: "1", B: "3", C: "6" },
+        { A: "2", B: "3", C: "5" },
+      ]);
+    });
+    test("The model with seeding (in the file)", async () => {
+      const modelPath = path.resolve(__dirname, "./models/model-for-seed");
+      const seedPath = path.resolve(__dirname, "./models/seed-for-model");
+
+      const result = await text({
+        model: {
+          file: modelPath,
+        },
+        seed: {
+          file: seedPath,
+        },
+      });
+
+      expect(result).toMatchObject({
+        time: expect.any(Number),
+        length: 9,
+      });
+
+      expect(result.cases).toIncludeSameMembers([
+        { Platform: "arm", CPUS: "2" },
+        { Platform: "arm", CPUS: "1" },
+        { Platform: "x86", CPUS: "4" },
+        { Platform: "arm", CPUS: "4" },
+        { Platform: "x86", CPUS: "2" },
+        { Platform: "x64", CPUS: "1" },
+        { Platform: "x86", CPUS: "1" },
+        { Platform: "x64", CPUS: "2" },
+        { Platform: "x64", CPUS: "4" },
+      ]);
     });
     test("The model with seeding", async () => {
-      const model = await getTestModelContent("model-large");
-      const seed = await getTestModelContent("model-large-seed");
+      const model = await getTestModelContent("model-for-seed");
+      const seed = await getTestModelContent("seed-for-model");
 
       const result = await text({
         model,
         seed,
       });
 
-      expect(typeof result.time).toBe("number");
-      expect(result.pict.model).toBe(model);
-      expect(result.pict.seed).toBe(seed);
-      expect(prepareForSnapshot(result)).toMatchSnapshot();
+      expect(result).toMatchObject({
+        time: expect.any(Number),
+        length: 9,
+      });
+
+      expect(result.cases).toIncludeSameMembers([
+        { Platform: "arm", CPUS: "2" },
+        { Platform: "arm", CPUS: "1" },
+        { Platform: "x86", CPUS: "4" },
+        { Platform: "arm", CPUS: "4" },
+        { Platform: "x86", CPUS: "2" },
+        { Platform: "x64", CPUS: "1" },
+        { Platform: "x86", CPUS: "1" },
+        { Platform: "x64", CPUS: "2" },
+        { Platform: "x64", CPUS: "4" },
+      ]);
     });
   });
 });

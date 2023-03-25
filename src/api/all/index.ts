@@ -17,6 +17,7 @@ import {
 import { createModel } from "./model";
 import { createSeed } from "./seed";
 import { parseResult } from "./parse";
+import { performance } from "perf_hooks";
 
 interface AllOptions {
   order?: number;
@@ -92,10 +93,5 @@ export async function all<M extends ReadonlyArray<PictTypedModel>>(
     cases,
     length: cases.length,
     time: end,
-    pict: {
-      model: modelText,
-      seed: callPictOptions.seedText,
-      result,
-    },
   };
 }

@@ -5,7 +5,7 @@ const filesize = require("rollup-plugin-filesize");
 const json = require("@rollup/plugin-json");
 
 const base = {
-  external: ["tmp"],
+  external: ["temp"],
   plugins: [
     typescript(),
     json(),

@@ -1,25 +1,12 @@
-import tmp from "tmp";
 import fsp from "fs/promises";
+import * as temp from "temp";
 
 /**
  * Creates a temporary file and writes the content to it.
  * @returns The path to the temporary file and a cleanup function.
  */
 export async function writeTempFile(content: string) {
-  const file = await new Promise<{ cleanup: Function; path: string }>(
-    (resolve, reject) => {
-      tmp.file((err, path, fd, cleanupCallback) => {
-        if (err) {
-          reject(err);
-        }
-
-        resolve({
-          cleanup: cleanupCallback,
-          path,
-        });
-      });
-    }
-  );
+  const file = temp.openSync();
 
   await fsp.writeFile(file.path, content);
 

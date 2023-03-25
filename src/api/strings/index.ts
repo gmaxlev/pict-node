@@ -20,6 +20,7 @@ import { createStringModel } from "./model";
 import { createSeed } from "./seed";
 import { parseResult } from "./parse";
 import { PictStringModel, InputConstraints, isInputConstraints } from "./types";
+import { performance } from "perf_hooks";
 
 export interface StringsOptions {
   order?: number;
@@ -106,6 +107,7 @@ export async function strings<M extends ReadonlyArray<PictStringModel>>(
   const callPictOptions: CallPictOptions = {
     modelText,
     options: {
+      order,
       ...separators,
     },
   };
@@ -135,10 +137,5 @@ export async function strings<M extends ReadonlyArray<PictStringModel>>(
     cases,
     length: cases.length,
     time: end,
-    pict: {
-      model: modelText,
-      seed: callPictOptions.seedText,
-      result,
-    },
   };
 }

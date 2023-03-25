@@ -1,14 +1,7 @@
-import { vol } from "memfs";
-import { isPositiveNumber, isRecord, writeTempFile } from "../common/utils";
+import { isPositiveNumber, isRecord } from "../common/utils";
 import { NOT_NUMBER_TYPES, NOT_RECORD_TYPES } from "./utils";
 
-jest.mock("fs/promises");
-
 describe("utils.ts", () => {
-  afterEach(() => {
-    vol.reset();
-  });
-
   describe("isPositiveNumber()", () => {
     it("Should return true if the value is a positive number", () => {
       expect(isPositiveNumber(1)).toBe(true);

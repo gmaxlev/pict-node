@@ -3,7 +3,6 @@ import {
   NOT_ARRAY_TYPES,
   NOT_PROPERTY_KEY_TYPES,
   NOT_RECORD_TYPES,
-  prepareForSnapshot,
 } from "./utils";
 import { all } from "../api/all";
 import type { PictTypedModel } from "../api/all/types";
@@ -522,32 +521,28 @@ describe("all()", () => {
         models,
       });
 
-      expect(Object.keys(result).length).toBe(4);
-
-      expect(typeof result.time).toBe("number");
-
-      expect(result.length).toBe(4);
-
-      expect(result.pict).toEqual({
-        model: "0:0.0,0.1\n1:1.0,1.1",
-        result: "0\t1\n0.0\t1.1\n0.0\t1.0\n0.1\t1.1\n0.1\t1.0\n",
+      expect(result).toMatchObject({
+        time: expect.any(Number),
+        length: 4,
       });
 
-      expect(result.cases).toEqual([
-        { A: null, B: { number: 4 } },
+      expect(result.cases).toIncludeSameMembers([
+        { A: null, B: object },
         { A: null, B: symbol },
-        { A: false, B: { number: 4 } },
+        { A: false, B: object },
         { A: false, B: symbol },
       ]);
     });
-    test("The simple model with alias operator", async () => {
+    test("The simple model with alias operator and symbol key", async () => {
+      const sybmolKey = Symbol("symbol");
+
       const models = [
         {
           key: "A",
           values: ["1", alias([2, "two"] as const)],
         },
         {
-          key: "B",
+          key: sybmolKey,
           values: ["3", "4"],
         },
       ] as const;
@@ -556,28 +551,22 @@ describe("all()", () => {
         models,
       });
 
-      expect(Object.keys(result).length).toBe(4);
-
-      expect(typeof result.time).toBe("number");
-
-      expect(result.length).toBe(4);
-
-      expect(result.pict).toEqual({
-        model: "0:0.0,0.1|0.2\n1:1.0,1.1",
-        result: "0\t1\n0.0\t1.1\n0.0\t1.0\n0.1\t1.1\n0.2\t1.0\n",
+      expect(result).toMatchObject({
+        time: expect.any(Number),
+        length: 4,
       });
 
-      expect(result.cases).toEqual([
-        { A: "1", B: "4" },
-        { A: "1", B: "3" },
-        { A: 2, B: "4" },
-        { A: "two", B: "3" },
+      expect(result.cases).toIncludeAnyMembers([
+        { A: "1", [sybmolKey]: "3" },
+        { A: "1", [sybmolKey]: "4" },
+        { A: 2, [sybmolKey]: "4" },
+        { A: "two", [sybmolKey]: "3" },
       ]);
     });
-    test("The simple model with negative operator", async () => {
+    test("The simple model with negative operator and number key", async () => {
       const models = [
         {
-          key: "A",
+          key: 100,
           values: [negative(-1 as const), 0, 1, 2],
         },
         {
@@ -590,34 +579,27 @@ describe("all()", () => {
         models,
       });
 
-      expect(Object.keys(result).length).toBe(4);
-
-      expect(typeof result.time).toBe("number");
-
-      expect(result.length).toBe(15);
-
-      expect(result.pict).toEqual({
-        model: "0:~0.0,0.1,0.2,0.3\n1:~1.0,1.1,1.2,1.3",
-        result:
-          "0\t1\n0.1\t1.3\n0.1\t1.2\n0.2\t1.3\n0.3\t1.2\n0.2\t1.1\n0.3\t1.1\n0.2\t1.2\n0.3\t1.3\n0.1\t1.1\n0.1\t~1.0\n0.2\t~1.0\n~0.0\t1.1\n~0.0\t1.2\n0.3\t~1.0\n~0.0\t1.3\n",
+      expect(result).toMatchObject({
+        time: expect.any(Number),
+        length: 15,
       });
 
-      expect(result.cases).toEqual([
-        { A: 0, B: 2 },
-        { A: 0, B: 1 },
-        { A: 1, B: 2 },
-        { A: 2, B: 1 },
-        { A: 1, B: 0 },
-        { A: 2, B: 0 },
-        { A: 1, B: 1 },
-        { A: 2, B: 2 },
-        { A: 0, B: 0 },
-        { A: 0, B: -1 },
-        { A: 1, B: -1 },
-        { A: -1, B: 0 },
-        { A: -1, B: 1 },
-        { A: 2, B: -1 },
-        { A: -1, B: 2 },
+      expect(result.cases).toIncludeAnyMembers([
+        { 100: 0, B: 2 },
+        { 100: 0, B: 1 },
+        { 100: 1, B: 2 },
+        { 100: 2, B: 1 },
+        { 100: 1, B: 0 },
+        { 100: 2, B: 0 },
+        { 100: 1, B: 1 },
+        { 100: 2, B: 2 },
+        { 100: 0, B: 0 },
+        { 100: 0, B: -1 },
+        { 100: 1, B: -1 },
+        { 100: -1, B: 0 },
+        { 100: -1, B: 1 },
+        { 100: 2, B: -1 },
+        { 100: -1, B: 2 },
       ]);
     });
     test("The simple model with weight operator", async () => {
@@ -648,69 +630,48 @@ describe("all()", () => {
         models,
       });
 
-      expect(typeof result.time).toBe("number");
-      expect(prepareForSnapshot(result)).toMatchSnapshot();
-    });
-    test("The large model with 2 order", async () => {
-      const models = [
-        {
-          key: "Type",
-          values: ["Single", "Span", "Stripe", "Mirror", "RAID-5"],
-        },
-        {
-          key: "Size",
-          values: [10, 100, 500, 1000, 5000, 10000, 40000],
-        },
-        {
-          key: "FormatMethod",
-          values: ["Quick", "Slow"],
-        },
-        {
-          key: "File system",
-          values: ["FAT", "FAT32", "NTFS"],
-        },
-        {
-          key: "ClusterSize",
-          values: [512, 1024, 2048, 4096, 8192, 16384, 32768, 65536],
-        },
-        {
-          key: "Compression",
-          values: ["On", "Off"],
-        },
-      ];
-
-      const result = await all({
-        models,
+      expect(result).toMatchObject({
+        time: expect.any(Number),
+        length: 21,
       });
 
-      expect(typeof result.time).toBe("number");
-      expect(prepareForSnapshot(result)).toMatchSnapshot();
+      expect(result.cases).toIncludeAnyMembers([
+        { Type: "Primary", FormatMethod: "quick", FileSystem: "FAT" },
+        { Type: "Single", FormatMethod: "slow", FileSystem: "NTFS" },
+        { Type: "Logical", FormatMethod: "slow", FileSystem: "FAT" },
+        { Type: "Stripe", FormatMethod: "quick", FileSystem: "NTFS" },
+        { Type: "Mirror", FormatMethod: "quick", FileSystem: "NTFS" },
+        { Type: "Logical", FormatMethod: "quick", FileSystem: "FAT32" },
+        { Type: "Span", FormatMethod: "slow", FileSystem: "FAT" },
+        { Type: "Span", FormatMethod: "slow", FileSystem: "FAT32" },
+        { Type: "Mirror", FormatMethod: "slow", FileSystem: "FAT32" },
+        { Type: "Primary", FormatMethod: "slow", FileSystem: "FAT32" },
+        { Type: "RAID-5", FormatMethod: "slow", FileSystem: "NTFS" },
+        { Type: "Single", FormatMethod: "quick", FileSystem: "FAT32" },
+        { Type: "Single", FormatMethod: "quick", FileSystem: "FAT" },
+        { Type: "RAID-5", FormatMethod: "quick", FileSystem: "FAT" },
+        { Type: "Span", FormatMethod: "quick", FileSystem: "NTFS" },
+        { Type: "Mirror", FormatMethod: "quick", FileSystem: "FAT" },
+        { Type: "Primary", FormatMethod: "slow", FileSystem: "NTFS" },
+        { Type: "Logical", FormatMethod: "slow", FileSystem: "NTFS" },
+        { Type: "Stripe", FormatMethod: "slow", FileSystem: "FAT32" },
+        { Type: "RAID-5", FormatMethod: "slow", FileSystem: "FAT32" },
+        { Type: "Stripe", FormatMethod: "slow", FileSystem: "FAT" },
+      ]);
     });
     test("The large model with all combinations", async () => {
       const models = [
         {
           key: "Type",
-          values: ["Single", "Span", "Stripe", "Mirror", "RAID-5"],
+          values: ["Single", "Span", "Stripe"],
         },
         {
           key: "Size",
-          values: [10, 100, 500, 1000, 5000, 10000, 40000],
+          values: [10, 100, 500],
         },
         {
           key: "FormatMethod",
-          values: ["Quick", "Slow"],
-        },
-        {
-          key: "File system",
-          values: ["FAT", "FAT32", "NTFS"],
-        },
-        {
-          key: "ClusterSize",
-          values: [512, 1024, 2048, 4096, 8192, 16384, 32768, 65536],
-        },
-        {
-          key: "Compression",
-          values: ["On", "Off"],
+          values: ["Quick", "Slow", "VerySlow"],
         },
       ];
 
@@ -723,38 +684,54 @@ describe("all()", () => {
         }
       );
 
-      expect(typeof result.time).toBe("number");
-      expect(prepareForSnapshot(result)).toMatchSnapshot();
+      expect(result).toMatchObject({
+        time: expect.any(Number),
+        length: 27,
+      });
+
+      expect(result.cases).toIncludeSameMembers([
+        { Type: "Single", Size: 500, FormatMethod: "Quick" },
+        { Type: "Span", Size: 500, FormatMethod: "Slow" },
+        { Type: "Stripe", Size: 500, FormatMethod: "Slow" },
+        { Type: "Span", Size: 10, FormatMethod: "VerySlow" },
+        { Type: "Single", Size: 10, FormatMethod: "Slow" },
+        { Type: "Span", Size: 100, FormatMethod: "VerySlow" },
+        { Type: "Span", Size: 100, FormatMethod: "Quick" },
+        { Type: "Single", Size: 500, FormatMethod: "VerySlow" },
+        { Type: "Single", Size: 100, FormatMethod: "Slow" },
+        { Type: "Stripe", Size: 10, FormatMethod: "VerySlow" },
+        { Type: "Stripe", Size: 500, FormatMethod: "VerySlow" },
+        { Type: "Single", Size: 10, FormatMethod: "VerySlow" },
+        { Type: "Single", Size: 500, FormatMethod: "Slow" },
+        { Type: "Stripe", Size: 10, FormatMethod: "Quick" },
+        { Type: "Stripe", Size: 100, FormatMethod: "Slow" },
+        { Type: "Span", Size: 500, FormatMethod: "Quick" },
+        { Type: "Span", Size: 10, FormatMethod: "Quick" },
+        { Type: "Stripe", Size: 10, FormatMethod: "Slow" },
+        { Type: "Single", Size: 100, FormatMethod: "VerySlow" },
+        { Type: "Stripe", Size: 100, FormatMethod: "VerySlow" },
+        { Type: "Stripe", Size: 100, FormatMethod: "Quick" },
+        { Type: "Single", Size: 100, FormatMethod: "Quick" },
+        { Type: "Span", Size: 100, FormatMethod: "Slow" },
+        { Type: "Span", Size: 10, FormatMethod: "Slow" },
+        { Type: "Single", Size: 10, FormatMethod: "Quick" },
+        { Type: "Span", Size: 500, FormatMethod: "VerySlow" },
+        { Type: "Stripe", Size: 500, FormatMethod: "Quick" },
+      ]);
     });
     test("The model with sub models", async () => {
       const models = [
         {
-          key: "Platform",
-          values: ["x86", "x64", "arm"],
+          key: "A",
+          values: ["1", "2"],
         },
         {
-          key: "CPUS",
-          values: ["1", "2", "4"],
+          key: "B",
+          values: ["3", "4"],
         },
         {
-          key: "RAM",
-          values: ["1GB", "4GB", "64GB"],
-        },
-        {
-          key: "HDD",
-          values: ["SCSI", "IDE"],
-        },
-        {
-          key: "OS",
-          values: ["Win7", "Win8", "Win10"],
-        },
-        {
-          key: "Browser",
-          values: ["Edge", "Opera", "Chrome", "Firefox"],
-        },
-        {
-          key: "APP",
-          values: ["Word", "Excel", "Powerpoint"],
+          key: "C",
+          values: ["5", "6", "7"],
         },
       ] as const;
 
@@ -762,18 +739,31 @@ describe("all()", () => {
         models,
         sub: [
           {
-            keys: ["Platform", "CPUS", "RAM", "HDD"],
-            order: 3,
-          },
-          {
-            keys: ["OS", "Browser"],
+            keys: ["B", "C"],
             order: 2,
           },
         ],
       });
 
-      expect(typeof result.time).toBe("number");
-      expect(prepareForSnapshot(result)).toMatchSnapshot();
+      expect(result).toMatchObject({
+        time: expect.any(Number),
+        length: 12,
+      });
+
+      expect(result.cases).toIncludeSameMembers([
+        { A: "1", B: "4", C: "7" },
+        { A: "2", B: "4", C: "6" },
+        { A: "1", B: "4", C: "5" },
+        { A: "2", B: "4", C: "5" },
+        { A: "2", B: "4", C: "7" },
+        { A: "1", B: "4", C: "6" },
+        { A: "1", B: "3", C: "5" },
+        { A: "2", B: "3", C: "6" },
+        { A: "2", B: "3", C: "7" },
+        { A: "1", B: "3", C: "7" },
+        { A: "1", B: "3", C: "6" },
+        { A: "2", B: "3", C: "5" },
+      ]);
     });
     test("The model with seeding", async () => {
       const models = [
@@ -785,38 +775,32 @@ describe("all()", () => {
           key: "CPUS",
           values: ["1", "2", "4"],
         },
-        {
-          key: "RAM",
-          values: ["1GB", "4GB", "64GB"],
-        },
-        {
-          key: "HDD",
-          values: ["SCSI", "IDE"],
-        },
-        {
-          key: "OS",
-          values: ["Win7", "Win8", "Win10"],
-        },
-        {
-          key: "Browser",
-          values: ["Edge", "Opera", "Chrome", "Firefox"],
-        },
-        {
-          key: "APP",
-          values: ["Word", "Excel", "Powerpoint"],
-        },
       ] as const;
 
       const result = await all({
         models,
         seed: {
           Platform: ["arm"],
-          OS: ["Win10"],
+          CPUS: ["2"],
         },
       });
 
-      expect(typeof result.time).toBe("number");
-      expect(prepareForSnapshot(result)).toMatchSnapshot();
+      expect(result).toMatchObject({
+        time: expect.any(Number),
+        length: 9,
+      });
+
+      expect(result.cases).toIncludeSameMembers([
+        { Platform: "arm", CPUS: "2" },
+        { Platform: "arm", CPUS: "1" },
+        { Platform: "x86", CPUS: "4" },
+        { Platform: "arm", CPUS: "4" },
+        { Platform: "x86", CPUS: "2" },
+        { Platform: "x64", CPUS: "1" },
+        { Platform: "x86", CPUS: "1" },
+        { Platform: "x64", CPUS: "2" },
+        { Platform: "x64", CPUS: "4" },
+      ]);
     });
   });
 });

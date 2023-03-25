@@ -1,2 +1,3 @@
-Type:          Primary(10),Logical,Single,Span,Stripe,Mirror,RAID-5
-FormatMethod:  quick,slow
+Type:           Primary(10),Logical,Single,Span,Stripe,Mirror,RAID-5
+FormatMethod:   quick,slow
+FileSystem:     FAT,FAT32,NTFS(10)

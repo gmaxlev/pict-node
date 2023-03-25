@@ -1,5 +1,6 @@
 import { SeedBuilder } from "../common/SeedBuilder";
 import { NOT_STRING_TYPES } from "./utils";
+import { EOL } from "os";
 
 describe("SeedBuilder", () => {
   let instance: SeedBuilder;
@@ -40,7 +41,7 @@ describe("SeedBuilder", () => {
       instance.add("B", "3");
       instance.add("C", "7");
       const result = instance.getString();
-      expect(result).toBe("A\tB\tC\n1\t3\t7\n2");
+      expect(result).toBe(`A\tB\tC${EOL}1\t3\t7${EOL}2`);
     });
     test("Should return PICT sub model text", () => {
       instance.add("A", "1");
@@ -50,7 +51,7 @@ describe("SeedBuilder", () => {
       instance.add("C", "5");
       instance.add("C", "6");
       const result = instance.getString();
-      expect(result).toBe("A\tB\tC\n1\t2\t4\t3\t5\t6");
+      expect(result).toBe(`A\tB\tC${EOL}1\t2\t4\t3\t5\t6`);
     });
   });
 });

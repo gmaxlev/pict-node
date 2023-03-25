@@ -1,5 +1,7 @@
 import fsp from "fs/promises";
 import path from "path";
+import url from "url";
+const __dirname = path.dirname(url.fileURLToPath(import.meta.url));
 
 /**
  * Types Utils
@@ -46,14 +48,6 @@ export const NOT_PROPERTY_KEY_TYPES = EXCLUDE_TYPES([
 /**
  * Pict Utils
  */
-
-export function prepareForSnapshot(result: any) {
-  const copy = { ...result };
-  delete copy.time;
-  delete copy.modelFile;
-  delete copy.seedFile;
-  return copy;
-}
 
 export async function getTestModelContent(fileName: string) {
   const buffer = await fsp.readFile(

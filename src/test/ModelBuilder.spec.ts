@@ -1,5 +1,6 @@
 import { ModelBuilder } from "../common/ModelBuilder";
 import { EXCLUDE_TYPES, NOT_NUMBER_TYPES, NOT_STRING_TYPES } from "./utils";
+import { EOL } from "os";
 
 describe("ModelBuilder", () => {
   let instance: ModelBuilder;
@@ -341,7 +342,7 @@ describe("ModelBuilder", () => {
 
     const result = instance.getModelText();
 
-    expect(result).toBe("A:1,2\nB:3,4");
+    expect(result).toBe(`A:1,2${EOL}B:3,4`);
   });
 
   test('Should delete \\n and \\t from values return valid model"', () => {
@@ -366,7 +367,7 @@ describe("ModelBuilder", () => {
 
     const result = instance.getModelText();
 
-    expect(result).toBe("A:1 one,2\nB:3,4");
+    expect(result).toBe(`A:1 one,2${EOL}B:3,4`);
   });
 
   test('Should return valid model using sub models"', () => {
@@ -384,7 +385,9 @@ describe("ModelBuilder", () => {
 
     const result = instance.getModelText();
 
-    expect(result).toBe("A:1,2\nB:3,4\nC:5,6\nD:7,8\n{A,B}@2\n{C,D}");
+    expect(result).toBe(
+      `A:1,2${EOL}B:3,4${EOL}C:5,6${EOL}D:7,8${EOL}{A,B}@2${EOL}{C,D}`
+    );
   });
 
   test('Should return valid model using constraints"', () => {
@@ -404,7 +407,7 @@ describe("ModelBuilder", () => {
     const result = instance.getModelText();
 
     expect(result).toBe(
-      'A:1,2\nB:3,4\nC:5,6\nD:7,8\n{A,B}@2\n{C,D}\nIF [A] = "1"   THEN [B] <= 4;'
+      `A:1,2${EOL}B:3,4${EOL}C:5,6${EOL}D:7,8${EOL}{A,B}@2${EOL}{C,D}${EOL}IF [A] = "1"   THEN [B] <= 4;`
     );
   });
 
@@ -426,7 +429,7 @@ describe("ModelBuilder", () => {
     const result = instance.getModelText();
 
     expect(result).toBe(
-      'A:1(2),2\nB:3,4\nC:5|five,6,~9\nD:7,8\n{A,B}@2\n{C,D}\nIF [A] = "1"   THEN [B] <= 4;'
+      `A:1(2),2${EOL}B:3,4${EOL}C:5|five,6,~9${EOL}D:7,8${EOL}{A,B}@2${EOL}{C,D}${EOL}IF [A] = "1"   THEN [B] <= 4;`
     );
   });
 });

@@ -1,3 +1,5 @@
+import fsp from "fs/promises";
+import { ModelSource, isModelSource } from "./types";
 import type { CallPictOptions } from "./../../common/pict";
 import {
   isString,
@@ -11,20 +13,21 @@ import {
   isModelSeparator,
 } from "../../common/types";
 import { isRecord } from "../../common/utils";
-import { callPict, callPictBinary, pictEntries } from "../../common/pict";
+import { callPict, pictEntries } from "../../common/pict";
+import { performance } from "perf_hooks";
 
 interface FileOptions {
-  model: string;
-  seed?: string;
+  model: ModelSource;
+  seed?: ModelSource;
   options?: Partial<Omit<PictCliOptions, "seed">>;
 }
 
 function validate(options: FileOptions) {
   isRecord.assert(options, "the first argument");
-  isString.assert(options.model, '"model"');
+  isModelSource.assert(options.model, '"model"');
 
   if (!isUndefined(options.seed)) {
-    isString.assert(options.seed, '"seed"');
+    isModelSource.assert(options.seed, '"seed"');
   }
 
   if (!isUndefined(options.options)) {
@@ -87,18 +90,28 @@ function parseResult(result: string): Array<Record<string, string>> {
   return cases;
 }
 
+async function getModelFromSource(source: ModelSource) {
+  if (isString(source)) {
+    return source;
+  }
+
+  const fileContent = await fsp.readFile(source.file);
+
+  return fileContent.toString();
+}
+
 export async function text(options: FileOptions) {
   const start = performance.now();
 
   validate(options);
 
   const callPictOptions: CallPictOptions = {
-    modelText: options.model,
+    modelText: await getModelFromSource(options.model),
     options: {},
   };
 
-  if (isString(options.seed)) {
-    callPictOptions.seedText = options.seed;
+  if (!isUndefined(options.seed)) {
+    callPictOptions.seedText = await getModelFromSource(options.seed);
   }
 
   if (isRecord(options.options)) {
@@ -115,10 +128,5 @@ export async function text(options: FileOptions) {
     cases,
     length: cases.length,
     time: end,
-    pict: {
-      model: options.model,
-      seed: options.seed,
-      result,
-    },
   };
 }
