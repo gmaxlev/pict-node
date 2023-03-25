@@ -7,6 +7,7 @@ import {
   isUndefined,
   writeTempFile,
 } from "./utils";
+import path from "path";
 
 export interface CallPictOptions {
   modelText: string;
@@ -21,6 +22,22 @@ export interface CallPictOptions {
       | "caseSensitive"
     >
   >;
+}
+
+function getRootPath() {
+  if (process.env["NODE_ENV"] === "development") {
+    return path.resolve(__dirname, "..", "..");
+  } else {
+    return path.resolve("./");
+  }
+}
+
+function getBinaryPath() {
+  if (process.platform === "win32") {
+    return path.resolve(getRootPath(), "bin", "pict.exe");
+  } else {
+    return path.resolve(getRootPath(), "bin", "pict");
+  }
 }
 
 export async function callPict(options: CallPictOptions) {
@@ -79,9 +96,7 @@ export function callPictBinary(
     }
   }
 
-  return execSync(
-    `./vendor/repository/pict ${modelPath} ${cliOptions}`
-  ).toString();
+  return execSync(`${getBinaryPath()} ${modelPath} ${cliOptions}`).toString();
 }
 
 export function* pictEntries(result: string) {
