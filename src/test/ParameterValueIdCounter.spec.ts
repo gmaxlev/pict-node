@@ -1,4 +1,4 @@
-import { ParameterValuesIdCounter } from "../api/all/ParameterValueIdCounter";
+import { ParameterValuesIdCounter } from "../api/pict/ParameterValueIdCounter";
 
 describe("ParameterValueIdCounter", () => {
   let instance: ParameterValuesIdCounter;

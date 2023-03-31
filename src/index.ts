@@ -1,8 +1,11 @@
 import * as temp from "temp";
-import { all } from "./api/all";
+import { pict } from "./api/pict";
 import { strings } from "./api/strings";
-import { text } from "./api/text";
+import { native } from "./api/native";
+import { alias } from "./common/operators/alias";
+import { negative } from "./common/operators/negative";
+import { weight } from "./common/operators/weight";
 
 temp.track();
 
-export { all, strings, text };
+export { pict, strings, native, alias, negative, weight };

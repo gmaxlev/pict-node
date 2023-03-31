@@ -20,7 +20,7 @@ export function parseResult(
     const from = valuesIdMap.idToValuesMap.get(item.value);
 
     if (!from) {
-      throw new Error(`Can't find value by id ${item.value}`);
+      throw new Error(`Internal Error: Can't find value by id ${item.value}`);
     }
 
     currentCase[from.parameter.name] = from.value;

@@ -65,30 +65,31 @@ async function isBinaryExist() {
 }
 
 async function run() {
-  const exist = await isBinaryExist();
-
-  if (exist) {
-    console.log("PICT binary already installed, skipping installation...");
-    return;
-  }
-
-  console.log("Installing PICT binary...");
-
-  await fsp.mkdir(BINARY_DIR, { recursive: true });
-
-  if (IS_WIN) {
-    await loadForWin();
-  } else {
-    await loadForNonWin();
-  }
-
   try {
+    const exist = await isBinaryExist();
+
+    if (exist) {
+      console.log("PICT binary already installed, skipping installation...");
+      return;
+    }
+
+    console.log("Installing PICT binary...");
+
+    await fsp.mkdir(BINARY_DIR, { recursive: true });
+
+    if (IS_WIN) {
+      await loadForWin();
+    } else {
+      await loadForNonWin();
+    }
+
     const binaryExisted = await isBinaryExist();
-    console.log(
-      binaryExisted
-        ? "PICT binary installed successfully"
-        : "Failed to install PICT binary"
-    );
+
+    if (binaryExisted) {
+      console.log("Making PICT binary executable...");
+    } else {
+      throw new Error("PICT binary not found after installation");
+    }
   } catch (e) {
     console.log("Failed to install PICT binary");
     throw e;

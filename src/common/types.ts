@@ -100,7 +100,7 @@ export type InputSeed<
 
 export const isInputSeed: TypeGuard<InputSeed<ReadonlyArray<PictModel>>> =
   createTypeGuard(
-    "must be a type { [key: PropertyKey]: Array<PropertyKey> }",
+    "must be a type { [key: PropertyKey]: Array<unknown> }",
     (value: unknown): value is InputSeed<ReadonlyArray<PictModel>> =>
       isRecord(value)
   );
@@ -120,9 +120,8 @@ export type InputPictModelToRecord<ModelArg> = UnionToIntersection<
 export type RandomOption = number | string | boolean;
 
 export const isRandomOption: TypeGuard<RandomOption> = createTypeGuard(
-  "must be a number, string or boolean",
-  (value: unknown): value is RandomOption =>
-    isNumber(value) || isString(value) || value === true
+  "must be a number or boolean",
+  (value: unknown): value is RandomOption => isNumber(value) || value === true
 );
 
 export type ModelSeparator = string;

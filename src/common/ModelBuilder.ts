@@ -39,13 +39,19 @@ export class ModelBuilder {
       return;
     }
     if (!isUndefined(options["aliasSeparator"])) {
-      this.aliasSeparator = this.validateSeparator(options["aliasSeparator"]);
+      this.aliasSeparator = ModelBuilder.validateSeparator(
+        options["aliasSeparator"]
+      );
     }
     if (!isUndefined(options["valueSeparator"])) {
-      this.valueSeparator = this.validateSeparator(options["valueSeparator"]);
+      this.valueSeparator = ModelBuilder.validateSeparator(
+        options["valueSeparator"]
+      );
     }
     if (!isUndefined(options["negativePrefix"])) {
-      this.negativePrefix = this.validateSeparator(options["negativePrefix"]);
+      this.negativePrefix = ModelBuilder.validateSeparator(
+        options["negativePrefix"]
+      );
     }
   }
 
@@ -223,7 +229,7 @@ export class ModelBuilder {
     return value.trim().replace(/[\n|\t]/gm, "");
   }
 
-  private validateSeparator(separator: unknown) {
+  static validateSeparator(separator: unknown) {
     if (!isString(separator)) {
       throw new Error("Separator must be a string");
     }

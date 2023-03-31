@@ -14,15 +14,14 @@ import {
 } from "../../common/types";
 import { isRecord } from "../../common/utils";
 import { callPict, pictEntries } from "../../common/pict";
-import { performance } from "perf_hooks";
 
-interface FileOptions {
+interface NativeOptions {
   model: ModelSource;
   seed?: ModelSource;
   options?: Partial<Omit<PictCliOptions, "seed">>;
 }
 
-function validate(options: FileOptions) {
+function validate(options: NativeOptions) {
   isRecord.assert(options, "the first argument");
   isModelSource.assert(options.model, '"model"');
 
@@ -95,38 +94,37 @@ async function getModelFromSource(source: ModelSource) {
     return source;
   }
 
-  const fileContent = await fsp.readFile(source.file);
-
-  return fileContent.toString();
+  try {
+    const fileContent = await fsp.readFile(source.file);
+    return fileContent.toString();
+  } catch (error) {
+    console.error(`Error while reading model file. ${source.file}`);
+    throw error;
+  }
 }
 
-export async function text(options: FileOptions) {
-  const start = performance.now();
+export async function native(options: NativeOptions) {
+  try {
+    validate(options);
 
-  validate(options);
+    const callPictOptions: CallPictOptions = {
+      modelText: await getModelFromSource(options.model),
+      options: {},
+    };
 
-  const callPictOptions: CallPictOptions = {
-    modelText: await getModelFromSource(options.model),
-    options: {},
-  };
+    if (!isUndefined(options.seed)) {
+      callPictOptions.seedText = await getModelFromSource(options.seed);
+    }
 
-  if (!isUndefined(options.seed)) {
-    callPictOptions.seedText = await getModelFromSource(options.seed);
+    if (!isUndefined(options.options)) {
+      callPictOptions.options = options.options;
+    }
+
+    const result = await callPict(callPictOptions);
+
+    return parseResult(result);
+  } catch (error) {
+    console.error('Error while calling "native" function.');
+    throw error;
   }
-
-  if (isRecord(options.options)) {
-    callPictOptions.options = options.options;
-  }
-
-  const result = await callPict(callPictOptions);
-
-  const cases = parseResult(result);
-
-  const end = performance.now() - start;
-
-  return {
-    cases,
-    length: cases.length,
-    time: end,
-  };
 }

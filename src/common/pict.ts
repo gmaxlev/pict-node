@@ -89,9 +89,13 @@ export async function callPictBinary(
     }
   }
 
-  const result = execSync(`${getBinaryPath()} ${modelPath} ${cliOptions}`);
-
-  return Promise.resolve(result.toString());
+  try {
+    const result = execSync(`${getBinaryPath()} ${modelPath} ${cliOptions}`);
+    return Promise.resolve(result.toString());
+  } catch (error) {
+    console.error("Error while calling PICT binary.");
+    throw error;
+  }
 }
 
 export function* pictEntries(result: string) {

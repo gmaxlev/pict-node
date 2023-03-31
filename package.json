@@ -1,7 +1,20 @@
 {
   "name": "pict-node",
-  "version": "0.0.1",
-  "description": "",
+  "version": "1.0.0",
+  "description": "Combinatorial Test Case Generation",
+  "keywords": [
+    "pict",
+    "pairwise",
+    "combinatorial",
+    "testing",
+    "automation"
+  ],
+  "homepage": "https://github.com/gmaxlev/pict-node",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gmaxlev/pict-node.git"
+  },
+  "bugs": "https://github.com/gmaxlev/pict-node/issues",
   "main": "./lib/index.js",
   "module": "./lib/index.esm.js",
   "types": "./lib/index.d.ts",
@@ -9,7 +22,7 @@
   "license": "MIT",
   "scripts": {
     "test": "npm run prettier && npm run lint && node --experimental-vm-modules node_modules/jest/bin/jest.js . --verbose",
-    "test:watch": "node --experimental-vm-modules node_modules/jest/bin/jest.js . --watch --verbose -r esm",
+    "test:watch": "node --experimental-vm-modules node_modules/jest/bin/jest.js . --watch --verbose",
     "build:dts": "tsc --declaration --emitDeclarationOnly -p . --outDir dts",
     "build": "rm -rf lib && rm -rf dts && npm run build:dts && rollup -c rollup.config.cjs --bundleConfigAsCjs && rm -rf dts",
     "lint": "eslint .",

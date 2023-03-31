@@ -41,7 +41,7 @@ export function createStringModel<M extends ReadonlyArray<PictStringModel>>({
   for (const paramIndex in models) {
     const paramItem = models[paramIndex];
 
-    isPictStringModel.assert(paramItem, `models[${paramIndex}]`);
+    isPictStringModel.assert(paramItem, `model[${paramIndex}]`);
 
     const paramKey = paramItem.key;
 
@@ -54,7 +54,7 @@ export function createStringModel<M extends ReadonlyArray<PictStringModel>>({
         aliasValues.forEach((aliasValueItem) => {
           isString.assert(
             aliasValueItem,
-            `models[${paramIndex}].values[${valueIndex}]`
+            `model[${paramIndex}].values[${valueIndex}]`
           );
         });
 
@@ -65,7 +65,7 @@ export function createStringModel<M extends ReadonlyArray<PictStringModel>>({
 
       if (isNegativeOperator(valueItem)) {
         const value = valueItem.getValue();
-        isString.assert(value, `models[${paramIndex}].values[${valueIndex}]`);
+        isString.assert(value, `model[${paramIndex}].values[${valueIndex}]`);
         modelBuilder.addNegativeParameter(paramKey, value);
         continue;
       }
@@ -73,12 +73,12 @@ export function createStringModel<M extends ReadonlyArray<PictStringModel>>({
       if (isWeightOperator(valueItem)) {
         const value = valueItem.getValue();
         const weight = valueItem.getWeight();
-        isString.assert(value, `models[${paramIndex}].values[${valueIndex}]`);
+        isString.assert(value, `model[${paramIndex}].values[${valueIndex}]`);
         modelBuilder.addParameterWithWeight(paramKey, value, weight);
         continue;
       }
 
-      isString.assert(valueItem, `models[${paramIndex}].values[${valueIndex}]`);
+      isString.assert(valueItem, `model[${paramIndex}].values[${valueIndex}]`);
 
       modelBuilder.addParameter(paramKey, valueItem);
     }

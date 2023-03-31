@@ -23,7 +23,7 @@ describe("strings()", () => {
       }
     });
     test("Should throw an error if the second argument is not a record or undefined", async () => {
-      const models = [
+      const model = [
         {
           key: "A",
           values: ["1", "2"],
@@ -36,7 +36,7 @@ describe("strings()", () => {
 
       for (const notRecord of EXCLUDE_TYPES(["undefined", "record"])) {
         // @ts-expect-error
-        const act = async () => await strings({ models }, notRecord);
+        const act = async () => await strings({ model }, notRecord);
 
         const result = expect(act);
 
@@ -46,7 +46,7 @@ describe("strings()", () => {
       }
     });
     test('Should throw an error if "order" is not undefined or a positive number', async () => {
-      const models = [
+      const model = [
         {
           key: "A",
           values: ["1", "2"],
@@ -61,7 +61,7 @@ describe("strings()", () => {
         const act = async () =>
           await strings(
             {
-              models,
+              model,
             },
             {
               // @ts-expect-error
@@ -75,7 +75,7 @@ describe("strings()", () => {
       }
     });
     test('Should throw an error if "order" is larger than number of parameters', async () => {
-      const models = [
+      const model = [
         {
           key: "A",
           values: ["1", "2"],
@@ -93,7 +93,7 @@ describe("strings()", () => {
       const act = async () =>
         await strings(
           {
-            models,
+            model,
           },
           {
             order: 4,
@@ -107,7 +107,7 @@ describe("strings()", () => {
       );
     });
     test('Should throw an error if "random" has an invalid type', async () => {
-      const models = [
+      const model = [
         {
           key: "A",
           values: ["1", "2"],
@@ -120,14 +120,13 @@ describe("strings()", () => {
 
       for (const invalidType of EXCLUDE_TYPES([
         "undefined",
-        "string",
         "number",
         "boolean",
       ])) {
         const act = async () =>
           await strings(
             {
-              models,
+              model,
             },
             {
               // @ts-expect-error
@@ -138,12 +137,12 @@ describe("strings()", () => {
         const result = expect(act);
 
         await result.rejects.toThrowError(
-          "options.random: must be a number, string or boolean"
+          "options.random: must be a number or boolean"
         );
       }
     });
     test('Should throw an error if "caseSensitive" is not undefined or a boolean', async () => {
-      const models = [
+      const model = [
         {
           key: "A",
           values: ["1", "2"],
@@ -158,7 +157,7 @@ describe("strings()", () => {
         const act = async () =>
           await strings(
             {
-              models,
+              model,
             },
             {
               // @ts-expect-error
@@ -176,7 +175,7 @@ describe("strings()", () => {
   describe("Operators", () => {
     test('Should throw an error if "alias" does not contain a string value', async () => {
       for (const notString of NOT_STRING_TYPES) {
-        const models = [
+        const model = [
           {
             key: "A",
             values: ["1", alias([notString, "two"] as const)],
@@ -190,15 +189,15 @@ describe("strings()", () => {
         const act = () =>
           strings({
             // @ts-expect-error
-            models,
+            model,
           });
 
-        expect(act).rejects.toThrow("models[0].values[1]: must be a string");
+        expect(act).rejects.toThrow("model[0].values[1]: must be a string");
       }
     });
     test('Should throw an error if "negative" does not contain a string value', async () => {
       for (const notString of NOT_STRING_TYPES) {
-        const models = [
+        const model = [
           {
             key: "A",
             // @ts-expect-error
@@ -213,15 +212,15 @@ describe("strings()", () => {
         const act = () =>
           strings({
             // @ts-expect-error
-            models,
+            model,
           });
 
-        expect(act).rejects.toThrow("models[0].values[0]: must be a string");
+        expect(act).rejects.toThrow("model[0].values[0]: must be a string");
       }
     });
     test('Should throw an error if "weight" does not contain a string value', async () => {
       for (const notString of NOT_STRING_TYPES) {
-        const models = [
+        const model = [
           {
             key: "A",
             values: ["1", "2"],
@@ -236,10 +235,10 @@ describe("strings()", () => {
         const act = () =>
           strings({
             // @ts-expect-error
-            models,
+            model,
           });
 
-        expect(act).rejects.toThrow("models[1].values[1]: must be a string");
+        expect(act).rejects.toThrow("model[1].values[1]: must be a string");
       }
     });
   });
@@ -254,7 +253,7 @@ describe("strings()", () => {
 
       for (const separator of separators) {
         test(`Should throw an error if "${separator}" is not a string containing a single character`, async () => {
-          const models = [
+          const model = [
             {
               key: "A",
               values: ["1", "2"],
@@ -271,7 +270,7 @@ describe("strings()", () => {
             const act = async () =>
               await strings(
                 {
-                  models,
+                  model,
                 },
                 {
                   [separator]: format,
@@ -290,37 +289,35 @@ describe("strings()", () => {
   });
 
   describe("Models", () => {
-    test("Should throw an error if models is not an array", async () => {
+    test("Should throw an error if model is not an array", async () => {
       for (const notArray of NOT_ARRAY_TYPES) {
         const act = async () =>
           await strings({
             // @ts-expect-error
-            models: notArray,
+            model: notArray,
           });
         const result = expect(act);
-        await result.rejects.toThrowError('"models": must be an array');
+        await result.rejects.toThrowError('"model": must be an array');
       }
     });
-    test("Should throw an error if models is en empty array", async () => {
+    test("Should throw an error if model is en empty array", async () => {
       const act = async () =>
         await strings({
-          models: [],
+          model: [],
         });
 
       const result = expect(act);
-      await result.rejects.toThrowError(
-        '"models" must contain at least 1 item'
-      );
+      await result.rejects.toThrowError('"model" must contain at least 1 item');
     });
-    test("Should throw an error if models contain an invalid parameter", async () => {
+    test("Should throw an error if model contain an invalid parameter", async () => {
       const models = [
         ...NOT_RECORD_TYPES.map((notRecord) => ({
           index: 0,
-          models: [notRecord],
+          model: [notRecord],
         })),
         ...NOT_STRING_TYPES.map((notString) => ({
           index: 0,
-          models: [
+          model: [
             {
               key: notString,
               values: ["1", "2"],
@@ -329,7 +326,7 @@ describe("strings()", () => {
         })),
         ...NOT_ARRAY_TYPES.map((notArray) => ({
           index: 0,
-          models: [
+          model: [
             {
               key: "key",
               values: notArray,
@@ -338,18 +335,18 @@ describe("strings()", () => {
         })),
         {
           index: 0,
-          models: [{}],
+          model: [{}],
         },
       ] as const;
 
       for (const item of models) {
         // @ts-expect-error
-        const act = async () => await strings({ models: item.models });
+        const act = async () => await strings({ model: item.model });
 
         const result = expect(act);
 
         await result.rejects.toThrowError(
-          `models[${item.index}]: must be a type { key: string, values: Array<string> }`
+          `model[${item.index}]: must be a type { key: string, values: Array<string> }`
         );
       }
     });
@@ -358,7 +355,7 @@ describe("strings()", () => {
         ...NOT_STRING_TYPES.map((notString) => ({
           parameterIndex: 0,
           valueIndex: 1,
-          models: [
+          model: [
             {
               key: "key",
               values: ["1", notString],
@@ -369,12 +366,12 @@ describe("strings()", () => {
 
       for (const item of models) {
         // @ts-expect-error
-        const act = async () => await strings({ models: item.models });
+        const act = async () => await strings({ model: item.model });
 
         const result = expect(act);
 
         await result.rejects.toThrowError(
-          `models[${item.parameterIndex}].values[${item.valueIndex}]: must be a string`
+          `model[${item.parameterIndex}].values[${item.valueIndex}]: must be a string`
         );
       }
     });
@@ -383,7 +380,7 @@ describe("strings()", () => {
   describe("Sub Models", () => {
     test('Should throw an error if "sub" models is not undefined and an array', async () => {
       for (const notRecord of EXCLUDE_TYPES(["undefined", "array"])) {
-        const models = [
+        const model = [
           {
             key: "A",
             values: ["1", "2"],
@@ -392,7 +389,7 @@ describe("strings()", () => {
 
         const act = async () =>
           await strings({
-            models,
+            model,
             // @ts-expect-error
             sub: notRecord,
           });
@@ -401,7 +398,7 @@ describe("strings()", () => {
       }
     });
     test("Should throw an error if sub models contains a non-existent parameter", async () => {
-      const models = [
+      const model = [
         {
           key: "A",
           values: ["1", "2"],
@@ -414,7 +411,7 @@ describe("strings()", () => {
 
       const act = async () =>
         await strings({
-          models,
+          model,
           sub: [
             {
               // @ts-expect-error
@@ -468,7 +465,7 @@ describe("strings()", () => {
       ];
 
       for (const item of invalidSubModels) {
-        const models = [
+        const model = [
           {
             key: "A",
             values: ["1", "2"],
@@ -489,7 +486,7 @@ describe("strings()", () => {
 
         const act = async () =>
           await strings({
-            models,
+            model,
             sub: item.subModels,
           });
 
@@ -504,7 +501,7 @@ describe("strings()", () => {
 
   describe("Seeding", () => {
     test('Should throw an error if "seed" is not a record', async () => {
-      const models = [
+      const model = [
         {
           key: "A",
           values: ["1", "2"],
@@ -518,7 +515,7 @@ describe("strings()", () => {
       for (const invalidType of EXCLUDE_TYPES(["undefined", "record"])) {
         const act = async () =>
           await strings({
-            models,
+            model,
             // @ts-expect-error
             seed: invalidType,
           });
@@ -526,12 +523,12 @@ describe("strings()", () => {
         const result = expect(act);
 
         await result.rejects.toThrowError(
-          `"seed": must be a type { [key: PropertyKey]: Array<PropertyKey> }`
+          `"seed": must be a type { [key: PropertyKey]: Array<unknown> }`
         );
       }
     });
     test("Should throw an error if seed contains non-existing parameter", async () => {
-      const models = [
+      const model = [
         {
           key: "A",
           values: ["1", "2"],
@@ -544,7 +541,7 @@ describe("strings()", () => {
 
       const act = async () =>
         await strings({
-          models,
+          model,
           seed: {
             // @ts-expect-error
             ["C"]: ["1"],
@@ -559,7 +556,7 @@ describe("strings()", () => {
     });
     test("Should throw an error if seed parameter values is not an array", async () => {
       for (const notArray of NOT_ARRAY_TYPES) {
-        const models = [
+        const model = [
           {
             key: "A",
             values: ["1", "2"],
@@ -572,7 +569,7 @@ describe("strings()", () => {
 
         const act = async () =>
           await strings({
-            models,
+            model,
             seed: {
               // @ts-expect-error
               ["A"]: notArray,
@@ -586,7 +583,7 @@ describe("strings()", () => {
     });
     test("Should throw an error if seed parameter value is not a string", async () => {
       for (const notString of NOT_STRING_TYPES) {
-        const models = [
+        const model = [
           {
             key: "A",
             values: ["1", "2"],
@@ -599,7 +596,7 @@ describe("strings()", () => {
 
         const act = async () =>
           await strings({
-            models,
+            model,
             seed: {
               // @ts-expect-error
               ["A"]: ["1", notString],
@@ -612,7 +609,7 @@ describe("strings()", () => {
       }
     });
     test("Should throw an error if seed parameter value is not in the model", async () => {
-      const models = [
+      const model = [
         {
           key: "A",
           values: ["1", "2"],
@@ -625,7 +622,7 @@ describe("strings()", () => {
 
       const act = async () =>
         await strings({
-          models,
+          model,
           seed: {
             // @ts-expect-error
             ["A"]: ["1", "3"],
@@ -642,7 +639,7 @@ describe("strings()", () => {
 
   describe("Constraints", () => {
     test(`Should throw an error if "constraints" in not an array or string`, async () => {
-      const models = [
+      const model = [
         {
           key: "A",
           values: ["1", "2"],
@@ -660,7 +657,7 @@ describe("strings()", () => {
       ])) {
         const act = async () =>
           await strings({
-            models,
+            model,
             // @ts-expect-error
             constraints: invalidType,
           });
@@ -673,7 +670,7 @@ describe("strings()", () => {
       }
     });
     test(`Should throw an error if "constraints" is an array containing non strings`, async () => {
-      const models = [
+      const model = [
         {
           key: "A",
           values: ["1", "2"],
@@ -687,7 +684,7 @@ describe("strings()", () => {
       for (const notString of NOT_STRING_TYPES) {
         const act = async () =>
           await strings({
-            models,
+            model,
             constraints: [
               'IF [A] = "2" THEN [B] <= 3;',
               // @ts-expect-error
@@ -704,7 +701,7 @@ describe("strings()", () => {
 
   describe("Cases", () => {
     test("The simple model", async () => {
-      const models = [
+      const model = [
         {
           key: "A",
           values: ["1", "2"],
@@ -716,15 +713,12 @@ describe("strings()", () => {
       ] as const;
 
       const result = await strings({
-        models,
+        model,
       });
 
-      expect(result).toMatchObject({
-        time: expect.any(Number),
-        length: 4,
-      });
+      expect(result).toHaveLength(4);
 
-      expect(result.cases).toIncludeSameMembers([
+      expect(result).toIncludeSameMembers([
         { A: "1", B: "4" },
         { A: "1", B: "3" },
         { A: "2", B: "4" },
@@ -732,7 +726,7 @@ describe("strings()", () => {
       ]);
     });
     test("The simple model with alias operator and symbol key", async () => {
-      const models = [
+      const model = [
         {
           key: "A",
           values: ["1", alias(["2", "two"] as const)],
@@ -744,15 +738,12 @@ describe("strings()", () => {
       ] as const;
 
       const result = await strings({
-        models,
+        model,
       });
 
-      expect(result).toMatchObject({
-        time: expect.any(Number),
-        length: 4,
-      });
+      expect(result).toHaveLength(4);
 
-      expect(result.cases).toIncludeAnyMembers([
+      expect(result).toIncludeAnyMembers([
         { A: "1", ["B"]: "3" },
         { A: "1", ["B"]: "4" },
         { A: "2", ["B"]: "4" },
@@ -760,7 +751,7 @@ describe("strings()", () => {
       ]);
     });
     test("The simple model with negative operator and number key", async () => {
-      const models = [
+      const model = [
         {
           key: "A",
           values: [negative("-1" as const), "0", "1", "2"],
@@ -772,15 +763,12 @@ describe("strings()", () => {
       ] as const;
 
       const result = await strings({
-        models,
+        model,
       });
 
-      expect(result).toMatchObject({
-        time: expect.any(Number),
-        length: 15,
-      });
+      expect(result).toHaveLength(15);
 
-      expect(result.cases).toIncludeAnyMembers([
+      expect(result).toIncludeAnyMembers([
         { A: "0", B: "2" },
         { A: "0", B: "1" },
         { A: "1", B: "2" },
@@ -799,7 +787,7 @@ describe("strings()", () => {
       ]);
     });
     test("The simple model with weight operator", async () => {
-      const models = [
+      const model = [
         {
           key: "Type",
           values: [
@@ -823,15 +811,12 @@ describe("strings()", () => {
       ] as const;
 
       const result = await strings({
-        models,
+        model,
       });
 
-      expect(result).toMatchObject({
-        time: expect.any(Number),
-        length: 21,
-      });
+      expect(result).toHaveLength(21);
 
-      expect(result.cases).toIncludeAnyMembers([
+      expect(result).toIncludeAnyMembers([
         { Type: "Primary", FormatMethod: "quick", FileSystem: "FAT" },
         { Type: "Single", FormatMethod: "slow", FileSystem: "NTFS" },
         { Type: "Logical", FormatMethod: "slow", FileSystem: "FAT" },
@@ -856,7 +841,7 @@ describe("strings()", () => {
       ]);
     });
     test("The large model with all combinations", async () => {
-      const models = [
+      const model = [
         {
           key: "Type",
           values: ["Single", "Span", "Stripe"],
@@ -873,19 +858,16 @@ describe("strings()", () => {
 
       const result = await strings(
         {
-          models,
+          model,
         },
         {
-          order: models.length,
+          order: model.length,
         }
       );
 
-      expect(result).toMatchObject({
-        time: expect.any(Number),
-        length: 27,
-      });
+      expect(result).toHaveLength(27);
 
-      expect(result.cases).toIncludeSameMembers([
+      expect(result).toIncludeSameMembers([
         { Type: "Single", Size: "500", FormatMethod: "Quick" },
         { Type: "Span", Size: "500", FormatMethod: "Slow" },
         { Type: "Stripe", Size: "500", FormatMethod: "Slow" },
@@ -916,7 +898,7 @@ describe("strings()", () => {
       ]);
     });
     test("The model with sub models", async () => {
-      const models = [
+      const model = [
         {
           key: "A",
           values: ["1", "2"],
@@ -932,7 +914,7 @@ describe("strings()", () => {
       ] as const;
 
       const result = await strings({
-        models,
+        model,
         sub: [
           {
             keys: ["B", "C"],
@@ -941,12 +923,9 @@ describe("strings()", () => {
         ],
       });
 
-      expect(result).toMatchObject({
-        time: expect.any(Number),
-        length: 12,
-      });
+      expect(result).toHaveLength(12);
 
-      expect(result.cases).toIncludeSameMembers([
+      expect(result).toIncludeSameMembers([
         { A: "1", B: "4", C: "7" },
         { A: "2", B: "4", C: "6" },
         { A: "1", B: "4", C: "5" },
@@ -962,7 +941,7 @@ describe("strings()", () => {
       ]);
     });
     test("The model with seeding", async () => {
-      const models = [
+      const model = [
         {
           key: "Platform",
           values: ["x86", "x64", "arm"],
@@ -974,19 +953,16 @@ describe("strings()", () => {
       ] as const;
 
       const result = await strings({
-        models,
+        model,
         seed: {
           Platform: ["arm"],
           CPUS: ["2"],
         },
       });
 
-      expect(result).toMatchObject({
-        time: expect.any(Number),
-        length: 9,
-      });
+      expect(result).toHaveLength(9);
 
-      expect(result.cases).toIncludeSameMembers([
+      expect(result).toIncludeSameMembers([
         { Platform: "arm", CPUS: "2" },
         { Platform: "arm", CPUS: "1" },
         { Platform: "x86", CPUS: "4" },

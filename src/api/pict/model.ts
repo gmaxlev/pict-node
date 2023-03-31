@@ -21,7 +21,7 @@ export function createModel<M extends ReadonlyArray<PictTypedModel>>(
   for (const paramIndex in models) {
     const paramItem = models[paramIndex];
 
-    isPictTypedModel.assert(paramItem, `models[${paramIndex}]`);
+    isPictTypedModel.assert(paramItem, `model[${paramIndex}]`);
 
     const paramId = parameterValueIdCounter.nextParameter();
 

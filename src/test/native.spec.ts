@@ -1,5 +1,5 @@
 import path from "path";
-import { text } from "../api/text";
+import { native } from "../api/native";
 import {
   EXCLUDE_TYPES,
   NOT_RECORD_TYPES,
@@ -9,12 +9,12 @@ import {
 import url from "url";
 const __dirname = path.dirname(url.fileURLToPath(import.meta.url));
 
-describe("text()", () => {
+describe("native()", () => {
   describe("Common Validation", () => {
     test("Should throw an error if the first argument is not a record", async () => {
       for (const notRecord of NOT_RECORD_TYPES) {
         // @ts-expect-error
-        const act = async () => await text(notRecord);
+        const act = async () => await native(notRecord);
 
         const result = expect(act);
 
@@ -26,7 +26,7 @@ describe("text()", () => {
     test('Should throw an error if "options" is not undefined or a record', async () => {
       for (const notString of EXCLUDE_TYPES(["undefined", "record"])) {
         const act = async () =>
-          await text({
+          await native({
             model: "_model_text_",
             // @ts-expect-error
             options: notString,
@@ -41,7 +41,7 @@ describe("text()", () => {
       const invalidTypes = [...EXCLUDE_TYPES(["undefined", "number"]), -1, 0];
       for (const notNumber of invalidTypes) {
         const act = async () =>
-          await text({
+          await native({
             model: "_model_text_",
             options: {
               // @ts-expect-error
@@ -59,12 +59,11 @@ describe("text()", () => {
     test('Should throw an error if "random" has an invalid type', async () => {
       for (const invalidType of EXCLUDE_TYPES([
         "undefined",
-        "string",
         "number",
         "boolean",
       ])) {
         const act = async () =>
-          await text({
+          await native({
             model: "_model_text_",
             options: {
               // @ts-expect-error
@@ -75,14 +74,14 @@ describe("text()", () => {
         const result = expect(act);
 
         await result.rejects.toThrowError(
-          '"options.random": must be a number, string or boolean'
+          '"options.random": must be a number or boolean'
         );
       }
     });
     test('Should throw an error if "caseSensitive" is not undefined or a boolean', async () => {
       for (const invalidType of EXCLUDE_TYPES(["undefined", "boolean"])) {
         const act = async () =>
-          await text({
+          await native({
             model: "_model_text_",
             options: {
               // @ts-expect-error
@@ -103,7 +102,7 @@ describe("text()", () => {
     test('Should throw an error if "model" is not a string or record', async () => {
       for (const notString of EXCLUDE_TYPES(["string", "record"])) {
         const act = async () =>
-          await text({
+          await native({
             // @ts-expect-error
             model: notString,
           });
@@ -116,7 +115,7 @@ describe("text()", () => {
     test('Should throw an error if "model.file" is not a string', async () => {
       for (const notString of NOT_STRING_TYPES) {
         const act = async () =>
-          await text({
+          await native({
             model: {
               // @ts-expect-error
               file: notString,
@@ -140,7 +139,7 @@ describe("text()", () => {
         "undefined",
       ])) {
         const act = async () =>
-          await text({
+          await native({
             model: "_model_text_",
             // @ts-expect-error
             seed: notString,
@@ -154,7 +153,7 @@ describe("text()", () => {
     test('Should throw an error if "seed.file" is not a string', async () => {
       for (const notString of NOT_STRING_TYPES) {
         const act = async () =>
-          await text({
+          await native({
             model: "_model_text_",
             seed: {
               // @ts-expect-error
@@ -185,7 +184,7 @@ describe("text()", () => {
             const format = typeof invalidType === "string" ? ",," : invalidType;
 
             const act = async () =>
-              await text({
+              await native({
                 model: "_model_text_",
                 options: {
                   [separator]: format,
@@ -207,18 +206,15 @@ describe("text()", () => {
     test("The simple model (in the file)", async () => {
       const modelPath = path.resolve(__dirname, "./models/model");
 
-      const result = await text({
+      const result = await native({
         model: {
           file: modelPath,
         },
       });
 
-      expect(result).toMatchObject({
-        time: expect.any(Number),
-        length: 4,
-      });
+      expect(result).toHaveLength(4);
 
-      expect(result.cases).toIncludeSameMembers([
+      expect(result).toIncludeSameMembers([
         { A: "1", B: "4" },
         { A: "1", B: "3" },
         { A: "2", B: "4" },
@@ -228,16 +224,13 @@ describe("text()", () => {
     test("The simple model with alias operator and symbol key", async () => {
       const model = await getTestModelContent("model-alias");
 
-      const result = await text({
+      const result = await native({
         model,
       });
 
-      expect(result).toMatchObject({
-        time: expect.any(Number),
-        length: 4,
-      });
+      expect(result).toHaveLength(4);
 
-      expect(result.cases).toIncludeAnyMembers([
+      expect(result).toIncludeAnyMembers([
         { A: "1", ["B"]: "3" },
         { A: "1", ["B"]: "4" },
         { A: "2", ["B"]: "4" },
@@ -247,18 +240,15 @@ describe("text()", () => {
     test("The simple model with negative operator and number key (in the file)", async () => {
       const modelPath = path.resolve(__dirname, "./models/model-negative");
 
-      const result = await text({
+      const result = await native({
         model: {
           file: modelPath,
         },
       });
 
-      expect(result).toMatchObject({
-        time: expect.any(Number),
-        length: 15,
-      });
+      expect(result).toHaveLength(15);
 
-      expect(result.cases).toIncludeAnyMembers([
+      expect(result).toIncludeAnyMembers([
         { A: "0", B: "2" },
         { A: "0", B: "1" },
         { A: "1", B: "2" },
@@ -279,16 +269,13 @@ describe("text()", () => {
     test("The simple model with weight operator", async () => {
       const model = await getTestModelContent("model-weight");
 
-      const result = await text({
+      const result = await native({
         model,
       });
 
-      expect(result).toMatchObject({
-        time: expect.any(Number),
-        length: 21,
-      });
+      expect(result).toHaveLength(21);
 
-      expect(result.cases).toIncludeAnyMembers([
+      expect(result).toIncludeAnyMembers([
         { Type: "Primary", FormatMethod: "quick", FileSystem: "FAT" },
         { Type: "Single", FormatMethod: "slow", FileSystem: "NTFS" },
         { Type: "Logical", FormatMethod: "slow", FileSystem: "FAT" },
@@ -318,7 +305,7 @@ describe("text()", () => {
         "./models/model-all-combinations"
       );
 
-      const result = await text({
+      const result = await native({
         model: {
           file: modelPath,
         },
@@ -327,12 +314,9 @@ describe("text()", () => {
         },
       });
 
-      expect(result).toMatchObject({
-        time: expect.any(Number),
-        length: 27,
-      });
+      expect(result).toHaveLength(27);
 
-      expect(result.cases).toIncludeSameMembers([
+      expect(result).toIncludeSameMembers([
         { Type: "Single", Size: "500", FormatMethod: "Quick" },
         { Type: "Span", Size: "500", FormatMethod: "Slow" },
         { Type: "Stripe", Size: "500", FormatMethod: "Slow" },
@@ -380,16 +364,13 @@ describe("text()", () => {
 
       const model = await getTestModelContent("model-sub-models");
 
-      const result = await text({
+      const result = await native({
         model,
       });
 
-      expect(result).toMatchObject({
-        time: expect.any(Number),
-        length: 12,
-      });
+      expect(result).toHaveLength(12);
 
-      expect(result.cases).toIncludeSameMembers([
+      expect(result).toIncludeSameMembers([
         { A: "1", B: "4", C: "7" },
         { A: "2", B: "4", C: "6" },
         { A: "1", B: "4", C: "5" },
@@ -408,7 +389,7 @@ describe("text()", () => {
       const modelPath = path.resolve(__dirname, "./models/model-for-seed");
       const seedPath = path.resolve(__dirname, "./models/seed-for-model");
 
-      const result = await text({
+      const result = await native({
         model: {
           file: modelPath,
         },
@@ -417,12 +398,9 @@ describe("text()", () => {
         },
       });
 
-      expect(result).toMatchObject({
-        time: expect.any(Number),
-        length: 9,
-      });
+      expect(result).toHaveLength(9);
 
-      expect(result.cases).toIncludeSameMembers([
+      expect(result).toIncludeSameMembers([
         { Platform: "arm", CPUS: "2" },
         { Platform: "arm", CPUS: "1" },
         { Platform: "x86", CPUS: "4" },
@@ -438,17 +416,14 @@ describe("text()", () => {
       const model = await getTestModelContent("model-for-seed");
       const seed = await getTestModelContent("seed-for-model");
 
-      const result = await text({
+      const result = await native({
         model,
         seed,
       });
 
-      expect(result).toMatchObject({
-        time: expect.any(Number),
-        length: 9,
-      });
+      expect(result).toHaveLength(9);
 
-      expect(result.cases).toIncludeSameMembers([
+      expect(result).toIncludeSameMembers([
         { Platform: "arm", CPUS: "2" },
         { Platform: "arm", CPUS: "1" },
         { Platform: "x86", CPUS: "4" },
