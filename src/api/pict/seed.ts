@@ -1,4 +1,4 @@
-import { isArray } from "../../common/utils";
+import { isArray } from "tsguarder";
 import { SeedBuilder } from "../../common/SeedBuilder";
 import type { ValuesIdMap } from "./ValuesIdMap";
 import type { PictTypedModel } from "./types";

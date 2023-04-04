@@ -1,9 +1,5 @@
-import {
-  createTypeGuard,
-  isPropertyKey,
-  isRecord,
-  TypeGuard,
-} from "../../common/utils";
+import { createTypeGuard, isRecord, TypeGuard } from "tsguarder";
+import { isPropertyKey } from "../../common/utils";
 import type { PictModel } from "../../common/types";
 
 export type PictTypedModel = PictModel<PropertyKey, unknown>;

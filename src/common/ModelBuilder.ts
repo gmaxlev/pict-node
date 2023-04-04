@@ -1,4 +1,4 @@
-import { isNumber, isRecord, isString, isUndefined } from "./utils";
+import { isNumber, isRecord, isString, isUndefined } from "tsguarder";
 import { EOL } from "os";
 
 type ModelBuilderConstraint = string;

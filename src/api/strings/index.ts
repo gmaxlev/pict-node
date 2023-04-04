@@ -1,3 +1,4 @@
+import { isArray, isRecord, isUndefined, isBoolean } from "tsguarder";
 import {
   isInputSeed,
   isRandomOption,
@@ -9,13 +10,7 @@ import {
   InputSubModel,
 } from "../../common/types";
 import { callPict, CallPictOptions } from "../../common/pict";
-import {
-  isArray,
-  isRecord,
-  isUndefined,
-  isPositiveNumber,
-  isBoolean,
-} from "../../common/utils";
+import { isPositiveNumber } from "../../common/utils";
 import { createStringModel } from "./model";
 import { createSeed } from "./seed";
 import { parseResult } from "./parse";
