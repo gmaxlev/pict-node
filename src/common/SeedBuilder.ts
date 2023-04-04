@@ -1,4 +1,4 @@
-import { isString, isUndefined } from "./utils";
+import { isString, isUndefined } from "tsguarder";
 import { EOL } from "os";
 
 /**

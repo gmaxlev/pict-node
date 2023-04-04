@@ -1,5 +1,5 @@
 import type { PictModelId } from "../../common/types";
-import { isString } from "../../common/utils";
+import { isString } from "tsguarder";
 
 type ParameterValueToIdMap = Map<unknown, PictModelId>;
 

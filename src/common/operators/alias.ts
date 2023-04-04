@@ -1,4 +1,4 @@
-import { isRecord } from "../utils";
+import { isRecord } from "tsguarder";
 
 export const ALIAS_OPERATOR: unique symbol = Symbol("ALIAS_OPERATOR");
 

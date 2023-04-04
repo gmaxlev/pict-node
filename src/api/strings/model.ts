@@ -1,9 +1,9 @@
+import { isString, isArray } from "tsguarder";
 import {
   isPictStringModel,
   PictStringModel,
   CreateModelOptions,
 } from "./types";
-import { isString, isArray } from "../../common/utils";
 import { ModelBuilder, ModelBuilderOptions } from "../../common/ModelBuilder";
 import { isAliasOperator } from "../../common/operators/alias";
 import { isNegativeOperator } from "../../common/operators/negative";

@@ -1,14 +1,14 @@
+import {
+  createTypeGuard,
+  TypeGuard,
+  isString,
+  isArray,
+  isRecord,
+} from "tsguarder";
 import type { WeightOperatorObject } from "./../../common/operators/weight";
 import type { NegativeOperatorObject } from "./../../common/operators/negative";
 import type { AliasOperatorObject } from "./../../common/operators/alias";
 import type { InputSubModel, PictModel } from "../../common/types";
-import {
-  isString,
-  isArray,
-  isRecord,
-  createTypeGuard,
-  TypeGuard,
-} from "../../common/utils";
 
 export interface CreateModelOptions<M extends ReadonlyArray<PictStringModel>> {
   models: M;

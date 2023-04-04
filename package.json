@@ -77,6 +77,7 @@
   },
   "dependencies": {
     "temp": "^0.9.4",
+    "tsguarder": "^1.0.1",
     "type-fest": "^3.6.1"
   }
 }

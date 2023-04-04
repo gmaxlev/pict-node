@@ -18,7 +18,7 @@ describe("strings()", () => {
         // @ts-expect-error
         const act = () => strings(notRecord);
         await expect(act).rejects.toThrowError(
-          "the first argument: must be an object"
+          "the first argument: must be a record"
         );
       }
     });
@@ -41,7 +41,7 @@ describe("strings()", () => {
         const result = expect(act);
 
         await result.rejects.toThrowError(
-          "the second argument: must be an object"
+          "the second argument: must be a record"
         );
       }
     });
@@ -167,7 +167,7 @@ describe("strings()", () => {
 
         const result = expect(act);
 
-        await result.rejects.toThrowError('"caseSensitive": must be a boolean');
+        await result.rejects.toThrowError('"caseSensitive": must be boolean');
       }
     });
   });

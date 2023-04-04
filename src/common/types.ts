@@ -4,13 +4,13 @@ import type { WeightOperatorObject } from "./operators/weight";
 import type { UnionToIntersection } from "type-fest";
 import {
   createTypeGuard,
-  isNumber,
-  isPositiveNumber,
+  TypeGuard,
   isRecord,
   isString,
   isUndefined,
-  TypeGuard,
-} from "./utils";
+  isNumber,
+} from "tsguarder";
+import { isPositiveNumber } from "./utils";
 
 export interface PictCliOptions {
   order: number;

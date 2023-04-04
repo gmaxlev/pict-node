@@ -1,4 +1,5 @@
-import { isRecord, isPositiveNumber } from "../utils";
+import { isRecord } from "tsguarder";
+import { isPositiveNumber } from "../utils";
 
 export const WEIGHT_OPERATOR: unique symbol = Symbol("WEIGHT_OPERATOR");
 

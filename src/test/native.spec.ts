@@ -19,7 +19,7 @@ describe("native()", () => {
         const result = expect(act);
 
         await result.rejects.toThrowError(
-          "the first argument: must be an object"
+          "the first argument: must be a record"
         );
       }
     });
@@ -34,7 +34,7 @@ describe("native()", () => {
 
         const result = expect(act);
 
-        await result.rejects.toThrowError('"options": must be an object');
+        await result.rejects.toThrowError('"options": must be a record');
       }
     });
     test('Should throw an error if "options.order" is not a positive number', async () => {
@@ -92,7 +92,7 @@ describe("native()", () => {
         const result = expect(act);
 
         await result.rejects.toThrowError(
-          '"options.caseSensitive": must be a boolean'
+          '"options.caseSensitive": must be boolean'
         );
       }
     });

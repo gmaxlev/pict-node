@@ -1,4 +1,4 @@
-import { isRecord } from "../utils";
+import { isRecord } from "tsguarder";
 
 export const NEGATIVE_OPERATOR: unique symbol = Symbol("NEGATIVE_OPERATOR");
 

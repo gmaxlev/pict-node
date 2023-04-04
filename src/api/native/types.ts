@@ -1,5 +1,4 @@
-import { isRecord, isString } from "./../../common/utils";
-import { createTypeGuard, TypeGuard } from "../../common/utils";
+import { createTypeGuard, TypeGuard, isRecord, isString } from "tsguarder";
 
 export interface ModelFileSource {
   file: string;

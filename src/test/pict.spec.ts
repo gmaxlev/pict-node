@@ -19,7 +19,7 @@ describe("pict()", () => {
         const act = async () => await pict(notRecord);
         const result = expect(act);
         await result.rejects.toThrowError(
-          "the first argument: must be an object"
+          "the first argument: must be a record"
         );
       }
     });
@@ -42,7 +42,7 @@ describe("pict()", () => {
         const result = expect(act);
 
         await result.rejects.toThrowError(
-          "the second argument: must be an object"
+          "the second argument: must be a record"
         );
       }
     });

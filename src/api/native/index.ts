@@ -1,18 +1,13 @@
 import fsp from "fs/promises";
+import { isString, isUndefined, isBoolean, isRecord } from "tsguarder";
 import { ModelSource, isModelSource } from "./types";
 import type { CallPictOptions } from "./../../common/pict";
-import {
-  isString,
-  isUndefined,
-  isPositiveNumber,
-  isBoolean,
-} from "./../../common/utils";
+import { isPositiveNumber } from "./../../common/utils";
 import {
   PictCliOptions,
   isRandomOption,
   isModelSeparator,
 } from "../../common/types";
-import { isRecord } from "../../common/utils";
 import { callPict, pictEntries } from "../../common/pict";
 
 interface NativeOptions {

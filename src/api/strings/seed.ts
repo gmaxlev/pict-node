@@ -1,8 +1,8 @@
+import { isArray, isString } from "tsguarder";
 import type { PictModel } from "./../../common/types";
 import { SeedBuilder } from "../../common/SeedBuilder";
 import type { InputSeed } from "../../common/types";
 import type { PictStringModel } from "./types";
-import { isArray, isString } from "../../common/utils";
 
 export function createSeed<
   S extends InputSeed<ReadonlyArray<PictModel>>,
