@@ -4,12 +4,12 @@ import {
   NOT_PROPERTY_KEY_TYPES,
   NOT_RECORD_TYPES,
 } from "./utils";
-import { pict } from "../api/pict";
-import type { PictTypedModel } from "../api/pict/types";
-import type { InputSubModel, PictModel } from "../common/types";
-import { alias } from "../common/operators/alias";
-import { negative } from "../common/operators/negative";
-import { weight } from "../common/operators/weight";
+import { pict } from "../src/api/pict";
+import type { PictTypedModel } from "../src/api/pict/types";
+import type { InputSubModel, PictModel } from "../src/common/types";
+import { alias } from "../src/common/operators/alias";
+import { negative } from "../src/common/operators/negative";
+import { weight } from "../src/common/operators/weight";
 
 describe("pict()", () => {
   describe("Common Validation", () => {

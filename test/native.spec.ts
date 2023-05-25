@@ -1,5 +1,5 @@
 import path from "path";
-import { native } from "../api/native";
+import { native } from "../src/api/native";
 import {
   EXCLUDE_TYPES,
   NOT_RECORD_TYPES,

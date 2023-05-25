@@ -1,15 +1,15 @@
-import type { PictStringModel } from "../api/strings/types";
+import type { PictStringModel } from "../src/api/strings/types";
 import {
   NOT_RECORD_TYPES,
   NOT_ARRAY_TYPES,
   EXCLUDE_TYPES,
   NOT_STRING_TYPES,
 } from "./utils";
-import { strings } from "../api/strings";
-import type { InputSubModel } from "../common/types";
-import { alias } from "../common/operators/alias";
-import { negative } from "../common/operators/negative";
-import { weight } from "../common/operators/weight";
+import { strings } from "../src/api/strings";
+import type { InputSubModel } from "../src/common/types";
+import { alias } from "../src/common/operators/alias";
+import { negative } from "../src/common/operators/negative";
+import { weight } from "../src/common/operators/weight";
 
 describe("strings()", () => {
   describe("Common Validations", () => {

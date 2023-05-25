@@ -1,5 +1,5 @@
 import { NOT_ARRAY_TYPES, NOT_NUMBER_TYPES } from "./utils";
-import { weight, WEIGHT_OPERATOR } from "../common/operators/weight";
+import { weight, WEIGHT_OPERATOR } from "../src/common/operators/weight";
 
 describe('"weight" operator', () => {
   test('Should throw an error if "weight" is not provided', () => {

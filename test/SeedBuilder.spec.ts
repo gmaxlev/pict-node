@@ -1,4 +1,4 @@
-import { SeedBuilder } from "../common/SeedBuilder";
+import { SeedBuilder } from "../src/common/SeedBuilder";
 import { NOT_STRING_TYPES } from "./utils";
 import { EOL } from "os";
 

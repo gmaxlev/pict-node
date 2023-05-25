@@ -1,4 +1,4 @@
-import { ValuesIdMap } from "../api/pict/ValuesIdMap";
+import { ValuesIdMap } from "../src/api/pict/ValuesIdMap";
 
 describe("ValuesIdMap", () => {
   let instance: ValuesIdMap;

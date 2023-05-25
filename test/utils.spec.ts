@@ -1,4 +1,4 @@
-import { isPositiveNumber } from "../common/utils";
+import { isPositiveNumber } from "../src/common/utils";
 import { NOT_NUMBER_TYPES } from "./utils";
 
 describe("utils.ts", () => {

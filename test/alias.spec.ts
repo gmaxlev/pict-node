@@ -1,5 +1,5 @@
 import { NOT_ARRAY_TYPES } from "./utils";
-import { alias, ALIAS_OPERATOR } from "../common/operators/alias";
+import { alias, ALIAS_OPERATOR } from "../src/common/operators/alias";
 
 describe('"alias" operator', () => {
   test('Should throw an error if "values" is not an array', () => {

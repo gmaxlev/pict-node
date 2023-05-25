@@ -1,4 +1,4 @@
-import { ModelBuilder } from "../common/ModelBuilder";
+import { ModelBuilder } from "../src/common/ModelBuilder";
 import { EXCLUDE_TYPES, NOT_NUMBER_TYPES, NOT_STRING_TYPES } from "./utils";
 import { EOL } from "os";
 

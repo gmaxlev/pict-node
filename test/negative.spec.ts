@@ -1,5 +1,4 @@
-import { NOT_ARRAY_TYPES } from "./utils";
-import { negative, NEGATIVE_OPERATOR } from "../common/operators/negative";
+import { negative, NEGATIVE_OPERATOR } from "../src/common/operators/negative";
 
 describe('"negative" operator', () => {
   test('Should return an object with property "getValues" and "NEGATIVE_OPERATOR" symbol', () => {
