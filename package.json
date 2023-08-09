@@ -21,8 +21,9 @@
   "author": "Maksym Levytskyi https://github.com/gmaxlev",
   "license": "MIT",
   "scripts": {
-    "test": "npm run prettier && npm run lint && node --experimental-vm-modules node_modules/jest/bin/jest.js . --verbose",
-    "test:watch": "node --experimental-vm-modules node_modules/jest/bin/jest.js . --watch --verbose",
+    "test": "npm run prettier && npm run lint && npm run jest",
+    "jest": "node --experimental-vm-modules node_modules/jest/bin/jest.js . --silent",
+    "jest:watch": "npm run jest -- --watch",
     "build:dts": "tsc --declaration --emitDeclarationOnly -p . --outDir dts",
     "build": "rm -rf lib && rm -rf dts && npm run build:dts && rollup -c rollup.config.cjs --bundleConfigAsCjs && rm -rf dts",
     "lint": "eslint .",

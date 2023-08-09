@@ -23,6 +23,7 @@ describe("native()", () => {
         );
       }
     });
+
     test('Should throw an error if "options" is not undefined or a record', async () => {
       for (const notString of EXCLUDE_TYPES(["undefined", "record"])) {
         const act = async () =>
@@ -37,6 +38,7 @@ describe("native()", () => {
         await result.rejects.toThrowError('"options": must be a record');
       }
     });
+
     test('Should throw an error if "options.order" is not a positive number', async () => {
       const invalidTypes = [...EXCLUDE_TYPES(["undefined", "number"]), -1, 0];
       for (const notNumber of invalidTypes) {
@@ -56,6 +58,7 @@ describe("native()", () => {
         );
       }
     });
+
     test('Should throw an error if "random" has an invalid type', async () => {
       for (const invalidType of EXCLUDE_TYPES([
         "undefined",
@@ -78,6 +81,7 @@ describe("native()", () => {
         );
       }
     });
+
     test('Should throw an error if "caseSensitive" is not undefined or a boolean', async () => {
       for (const invalidType of EXCLUDE_TYPES(["undefined", "boolean"])) {
         const act = async () =>
@@ -112,6 +116,7 @@ describe("native()", () => {
         await result.rejects.toThrowError('"model": must be a string');
       }
     });
+
     test('Should throw an error if "model.file" is not a string', async () => {
       for (const notString of NOT_STRING_TYPES) {
         const act = async () =>
@@ -150,6 +155,7 @@ describe("native()", () => {
         await result.rejects.toThrowError('"seed": must be a string');
       }
     });
+
     test('Should throw an error if "seed.file" is not a string', async () => {
       for (const notString of NOT_STRING_TYPES) {
         const act = async () =>
@@ -221,6 +227,7 @@ describe("native()", () => {
         { A: "2", B: "3" },
       ]);
     });
+
     test("The simple model with alias operator and symbol key", async () => {
       const model = await getTestModelContent("model-alias");
 
@@ -237,6 +244,7 @@ describe("native()", () => {
         { A: "two", ["B"]: "3" },
       ]);
     });
+
     test("The simple model with negative operator and number key (in the file)", async () => {
       const modelPath = path.resolve(__dirname, "./models/model-negative");
 
@@ -299,6 +307,7 @@ describe("native()", () => {
         { Type: "Stripe", FormatMethod: "slow", FileSystem: "FAT" },
       ]);
     });
+
     test("The large model with all combinations (in the file)", async () => {
       const modelPath = path.resolve(
         __dirname,
@@ -346,6 +355,7 @@ describe("native()", () => {
         { Type: "Stripe", Size: "500", FormatMethod: "Quick" },
       ]);
     });
+
     test("The model with sub models", async () => {
       const models = [
         {
@@ -385,6 +395,7 @@ describe("native()", () => {
         { A: "2", B: "3", C: "5" },
       ]);
     });
+
     test("The model with seeding (in the file)", async () => {
       const modelPath = path.resolve(__dirname, "./models/model-for-seed");
       const seedPath = path.resolve(__dirname, "./models/seed-for-model");
@@ -412,6 +423,7 @@ describe("native()", () => {
         { Platform: "x64", CPUS: "4" },
       ]);
     });
+
     test("The model with seeding", async () => {
       const model = await getTestModelContent("model-for-seed");
       const seed = await getTestModelContent("seed-for-model");
