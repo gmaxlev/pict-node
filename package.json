@@ -22,7 +22,7 @@
   "license": "MIT",
   "scripts": {
     "test": "npm run prettier && npm run lint && npm run jest",
-    "jest": "node --experimental-vm-modules node_modules/jest/bin/jest.js . --silent",
+    "jest": "cross-env PICT_NODE_TEST=true node --experimental-vm-modules node_modules/jest/bin/jest.js . ",
     "jest:watch": "npm run jest -- --watch",
     "build:dts": "tsc --declaration --emitDeclarationOnly -p . --outDir dts",
     "build": "rm -rf lib && rm -rf dts && npm run build:dts && rollup -c rollup.config.cjs --bundleConfigAsCjs && rm -rf dts",
