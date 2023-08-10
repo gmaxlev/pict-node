@@ -1,4 +1,4 @@
-import { IS_WIN, IS_TEST } from "./../env";
+import { IS_WIN, IS_PICT_DEV } from "./../env";
 import type { PictCliOptions, PickPictCliOptions } from "./types";
 import { execSync } from "child_process";
 import { writeTempFile } from "./utils";
@@ -24,7 +24,7 @@ export interface CallPictOptions {
 }
 
 function getBinaryPath() {
-  const root = IS_TEST
+  const root = IS_PICT_DEV
     ? path.resolve(__dirname, "..", "..")
     : path.resolve(__dirname, "..");
 

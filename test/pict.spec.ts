@@ -23,6 +23,7 @@ describe("pict()", () => {
         );
       }
     });
+
     test("Should throw an error is the first argument is not a record or undefined", async () => {
       const model = [
         {
@@ -46,6 +47,7 @@ describe("pict()", () => {
         );
       }
     });
+
     test('Should throw an error if "order" is not undefined or a positive number', async () => {
       const model = [
         {
@@ -74,6 +76,7 @@ describe("pict()", () => {
         await result.rejects.toThrowError('"order": must be a positive number');
       }
     });
+
     test('Should throw an error if "order" is larger than number of parameters', async () => {
       const model = [
         {
@@ -106,6 +109,7 @@ describe("pict()", () => {
         '"order" cannot be larger than number of parameters'
       );
     });
+
     test('Should throw an error if "random" has an invalid type', async () => {
       const model = [
         {
@@ -155,6 +159,7 @@ describe("pict()", () => {
         await result.rejects.toThrowError('"model": must be an array');
       }
     });
+
     test("Should throw an error if model is en empty array", async () => {
       const act = async () =>
         await pict({
@@ -164,6 +169,7 @@ describe("pict()", () => {
       const result = expect(act);
       await result.rejects.toThrowError('"model" must contain at least 1 item');
     });
+
     test("Should throw an error if model contain an invalid parameter", async () => {
       const invalidModels: Array<{ index: number; model: PictTypedModel[] }> = [
         // @ts-expect-error
@@ -281,6 +287,7 @@ describe("pict()", () => {
         await result.rejects.toThrowError('"sub": must be an array');
       }
     });
+
     test("Should throw an error if sub modules contains non-existent parameter", async () => {
       const model = [
         {
@@ -311,6 +318,7 @@ describe("pict()", () => {
         `Parameter "_NOT_EXISTENT_" has been not found`
       );
     });
+
     test("Should throw an error if sub models contains an invalid type", async () => {
       const invalidSubModels: Array<{
         subModels: Array<InputSubModel<ReadonlyArray<PictModel>>>;
@@ -414,6 +422,7 @@ describe("pict()", () => {
         );
       }
     });
+
     test("Should throw an error if seed contains an invalid type", async () => {
       const model = [
         {
@@ -441,6 +450,7 @@ describe("pict()", () => {
         await result.rejects.toThrowError(`seeds[A]: must be an array`);
       }
     });
+
     test('Should throw an error if "seed" contains a non-existent parameter', async () => {
       const model = [
         {
@@ -468,6 +478,7 @@ describe("pict()", () => {
         `Parameter "_NOT_EXISTENT_" has been not found`
       );
     });
+
     test("Should throw an error if seed parameter value is not in the model", async () => {
       const model = [
         {
@@ -526,6 +537,7 @@ describe("pict()", () => {
         { A: false, B: symbol },
       ]);
     });
+
     test("The simple model with alias operator and symbol key", async () => {
       const sybmolKey = Symbol("symbol");
 
@@ -553,6 +565,7 @@ describe("pict()", () => {
         { A: "two", [sybmolKey]: "3" },
       ]);
     });
+
     test("The simple model with negative operator and number key", async () => {
       const model = [
         {
@@ -589,6 +602,7 @@ describe("pict()", () => {
         { 100: -1, B: 2 },
       ]);
     });
+
     test("The simple model with weight operator", async () => {
       const model = [
         {
@@ -643,6 +657,7 @@ describe("pict()", () => {
         { Type: "Stripe", FormatMethod: "slow", FileSystem: "FAT" },
       ]);
     });
+
     test("The large model with all combinations", async () => {
       const model = [
         {
@@ -700,6 +715,7 @@ describe("pict()", () => {
         { Type: "Stripe", Size: 500, FormatMethod: "Quick" },
       ]);
     });
+
     test("The model with sub models", async () => {
       const model = [
         {
@@ -743,6 +759,7 @@ describe("pict()", () => {
         { A: "2", B: "3", C: "5" },
       ]);
     });
+
     test("The model with seeding", async () => {
       const model = [
         {

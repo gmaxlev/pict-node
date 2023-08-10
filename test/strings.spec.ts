@@ -22,6 +22,7 @@ describe("strings()", () => {
         );
       }
     });
+
     test("Should throw an error if the second argument is not a record or undefined", async () => {
       const model = [
         {
@@ -45,6 +46,7 @@ describe("strings()", () => {
         );
       }
     });
+
     test('Should throw an error if "order" is not undefined or a positive number', async () => {
       const model = [
         {
@@ -74,6 +76,7 @@ describe("strings()", () => {
         await result.rejects.toThrowError('"order": must be a positive number');
       }
     });
+
     test('Should throw an error if "order" is larger than number of parameters', async () => {
       const model = [
         {
@@ -106,6 +109,7 @@ describe("strings()", () => {
         '"order" cannot be larger than number of parameters'
       );
     });
+
     test('Should throw an error if "random" has an invalid type', async () => {
       const model = [
         {
@@ -141,6 +145,7 @@ describe("strings()", () => {
         );
       }
     });
+
     test('Should throw an error if "caseSensitive" is not undefined or a boolean', async () => {
       const model = [
         {
@@ -195,6 +200,7 @@ describe("strings()", () => {
         expect(act).rejects.toThrow("model[0].values[1]: must be a string");
       }
     });
+
     test('Should throw an error if "negative" does not contain a string value', async () => {
       for (const notString of NOT_STRING_TYPES) {
         const model = [
@@ -218,6 +224,7 @@ describe("strings()", () => {
         expect(act).rejects.toThrow("model[0].values[0]: must be a string");
       }
     });
+
     test('Should throw an error if "weight" does not contain a string value', async () => {
       for (const notString of NOT_STRING_TYPES) {
         const model = [
@@ -300,6 +307,7 @@ describe("strings()", () => {
         await result.rejects.toThrowError('"model": must be an array');
       }
     });
+
     test("Should throw an error if model is en empty array", async () => {
       const act = async () =>
         await strings({
@@ -309,6 +317,7 @@ describe("strings()", () => {
       const result = expect(act);
       await result.rejects.toThrowError('"model" must contain at least 1 item');
     });
+
     test("Should throw an error if model contain an invalid parameter", async () => {
       const models = [
         ...NOT_RECORD_TYPES.map((notRecord) => ({
@@ -350,6 +359,7 @@ describe("strings()", () => {
         );
       }
     });
+
     test("Should throw an error if parameter value is not a string", async () => {
       const models = [
         ...NOT_STRING_TYPES.map((notString) => ({
@@ -397,6 +407,7 @@ describe("strings()", () => {
         await result.rejects.toThrowError('"sub": must be an array');
       }
     });
+
     test("Should throw an error if sub models contains a non-existent parameter", async () => {
       const model = [
         {
@@ -424,6 +435,7 @@ describe("strings()", () => {
 
       await result.rejects.toThrowError(`Parameter "C" is not defined`);
     });
+
     test("Should throw an error if sub models contains an invalid type", async () => {
       const invalidSubModels: Array<{
         subModels: Array<InputSubModel<ReadonlyArray<PictStringModel>>>;
@@ -527,6 +539,7 @@ describe("strings()", () => {
         );
       }
     });
+
     test("Should throw an error if seed contains non-existing parameter", async () => {
       const model = [
         {
@@ -554,6 +567,7 @@ describe("strings()", () => {
         `The parameter "C" does not exist in the model`
       );
     });
+
     test("Should throw an error if seed parameter values is not an array", async () => {
       for (const notArray of NOT_ARRAY_TYPES) {
         const model = [
@@ -581,6 +595,7 @@ describe("strings()", () => {
         await result.rejects.toThrowError(`seeds[A]: must be an array`);
       }
     });
+
     test("Should throw an error if seed parameter value is not a string", async () => {
       for (const notString of NOT_STRING_TYPES) {
         const model = [
@@ -608,6 +623,7 @@ describe("strings()", () => {
         await result.rejects.toThrowError(`seeds[A][1]: must be a string`);
       }
     });
+
     test("Should throw an error if seed parameter value is not in the model", async () => {
       const model = [
         {
@@ -669,6 +685,7 @@ describe("strings()", () => {
         );
       }
     });
+
     test(`Should throw an error if "constraints" is an array containing non strings`, async () => {
       const model = [
         {
@@ -725,6 +742,7 @@ describe("strings()", () => {
         { A: "2", B: "3" },
       ]);
     });
+
     test("The simple model with alias operator and symbol key", async () => {
       const model = [
         {
@@ -750,6 +768,7 @@ describe("strings()", () => {
         { A: "two", ["B"]: "3" },
       ]);
     });
+
     test("The simple model with negative operator and number key", async () => {
       const model = [
         {
@@ -786,6 +805,7 @@ describe("strings()", () => {
         { A: "-1", B: "2" },
       ]);
     });
+
     test("The simple model with weight operator", async () => {
       const model = [
         {
@@ -840,6 +860,7 @@ describe("strings()", () => {
         { Type: "Stripe", FormatMethod: "slow", FileSystem: "FAT" },
       ]);
     });
+
     test("The large model with all combinations", async () => {
       const model = [
         {
@@ -897,6 +918,7 @@ describe("strings()", () => {
         { Type: "Stripe", Size: "500", FormatMethod: "Quick" },
       ]);
     });
+
     test("The model with sub models", async () => {
       const model = [
         {
@@ -940,6 +962,7 @@ describe("strings()", () => {
         { A: "2", B: "3", C: "5" },
       ]);
     });
+
     test("The model with seeding", async () => {
       const model = [
         {

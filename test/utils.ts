@@ -3,10 +3,6 @@ import path from "path";
 import url from "url";
 const __dirname = path.dirname(url.fileURLToPath(import.meta.url));
 
-/**
- * Types Utils
- */
-
 const types = Object.freeze({
   null: null,
   undefined: undefined,
@@ -44,10 +40,6 @@ export const NOT_PROPERTY_KEY_TYPES = EXCLUDE_TYPES([
   "symbol",
   "number",
 ]);
-
-/**
- * Pict Utils
- */
 
 export async function getTestModelContent(fileName: string) {
   const buffer = await fsp.readFile(

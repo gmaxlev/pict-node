@@ -2,7 +2,9 @@
 
 This library is a wrapper around Microsoft's [PICT](https://github.com/microsoft/pict) (Pairwise Independent Combinatorial Testing) tool, designed to work with Node.js for generating combinations of inputs for software testing. PICT is a powerful tool that helps reduce the number of tests needed while still ensuring comprehensive coverage by generating optimized combinations of inputs.
 
-Before using this library, it's helpful to read Microsoft's official [PICT documentation](https://github.com/Microsoft/pict/blob/main/doc/pict.md) to learn about the tool and how it works.
+The library boasts excellent **TypeScript** support! 🪄
+
+> Before using this library, it's helpful to read Microsoft's official [PICT documentation](https://github.com/Microsoft/pict/blob/main/doc/pict.md) to learn about the tool and how it works.
 
 ## Installation
 
@@ -14,7 +16,7 @@ npm install --save-dev pict-node
 
 Imagine you have a function for creating order that accepts 6 parameters with several possible values for each argument.
 
-| Parameter      | Possible values                          |
+| Parameter      | Possible Values                          |
 | -------------- | ---------------------------------------- |
 | Location       | Ukraine, Poland, Lithuania, Germany, USA |
 | Customer       | Individuals, Companies, Partners         |
@@ -69,19 +71,6 @@ const model = [
 ];
 
 const cases = await pict({ model });
-
-for (const testCase of cases) {
-  const result = createOrder({
-    location: testCase.location,
-    customer: testCase.customer,
-    time: testCase.time,
-    paymentSystem: testCase.paymentSystem,
-    product: testCase.product,
-    discount: testCase.discount,
-  });
-
-  expect(result).toBe("The order is accepted");
-}
 ```
 
 PICT will generate the following test cases:
@@ -123,21 +112,19 @@ PICT will generate the following test cases:
 In most cases, to generate test cases, you can use the `pict` function. The main features of this function is that you can use any data type for the values of the model.
 
 ```js
-import { pict } from "pict-node";
-
 // Define test model
 const model = [
   {
     key: "country",
-    value: ["Ukraine", "Poland", "USA"],
+    values: ["Ukraine", "Poland", "USA"],
   },
   {
     key: "age",
-    value: [10, 16, 18, 25, 70],
+    values: [10, 16, 18, 25, 70],
   },
   {
     key: "product",
-    value: [{ id: 50 }, { id: 350 }],
+    values: [{ id: 50 }, { id: 350 }],
   },
 ];
 
@@ -145,18 +132,16 @@ const model = [
 const cases = await pict({ model });
 
 // Iterate test cases
-for (const testCase of cases) {
-  const { country, age, product } = testCase;
-
+for (const { country, age, product } of cases) {
   // Call a function with the current test case
-  const result = await makeOrder({
+  const result = createOrder({
     country,
     age,
     product,
   });
 
   // Verify that the function returns the expected result
-  expect(result).toBe("The order is accepted");
+  expect(result).toBe("The order has been created");
 }
 ```
 
@@ -173,7 +158,7 @@ const cases = await pict(
 );
 ```
 
-## TypeScript
+## TypeScript 🪄
 
 Here is an example of using this tool with TypeScript:
 
@@ -490,3 +475,7 @@ const cases = native({
   `,
 });
 ```
+
+## License
+
+[MIT](LICENSE)

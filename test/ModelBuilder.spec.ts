@@ -12,6 +12,7 @@ describe("ModelBuilder", () => {
   test("Should create an instance", () => {
     expect(instance).toBeInstanceOf(ModelBuilder);
   });
+
   test("Should return a separator with no provided them to the constructor", () => {
     const separators = instance.getSeparators();
     expect(separators.aliasSeparator).toBe("|");

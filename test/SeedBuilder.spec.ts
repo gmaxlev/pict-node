@@ -43,6 +43,7 @@ describe("SeedBuilder", () => {
       const result = instance.getString();
       expect(result).toBe(`A\tB\tC${EOL}1\t3\t7${EOL}2`);
     });
+
     test("Should return PICT sub model text", () => {
       instance.add("A", "1");
       instance.add("B", "2");
