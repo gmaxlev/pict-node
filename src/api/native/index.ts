@@ -1,5 +1,4 @@
-import fsp from "fs/promises";
-import { isString, isUndefined, isBoolean, isRecord } from "tsguarder";
+import { isUndefined, isBoolean, isRecord } from "tsguarder";
 import { ModelSource, isModelSource } from "./types";
 import type { CallPictOptions } from "./../../common/pict";
 import { isPositiveNumber } from "./../../common/utils";
@@ -7,14 +6,24 @@ import {
   PictCliOptions,
   isRandomOption,
   isModelSeparator,
+  PictNodeStatistics,
 } from "../../common/types";
-import { callPict, pictEntries } from "../../common/pict";
+import { callPict } from "../../common/pict";
+import { getModelFromSource } from "./utils";
+import { parseResult } from "./parse";
+import { performance } from "perf_hooks";
+import { parseStatistics } from "../../common/statistics";
 
 interface NativeOptions {
   model: ModelSource;
   seed?: ModelSource;
-  options?: Partial<Omit<PictCliOptions, "seed">>;
+  options?: Partial<Omit<PictCliOptions, "seed" | "statistics">>;
 }
+
+type Native = {
+  (options: NativeOptions): Promise<Record<string, string>[]>;
+  stats: (options: NativeOptions) => Promise<PictNodeStatistics>;
+};
 
 function validate(options: NativeOptions) {
   isRecord.assert(options, "the first argument");
@@ -63,57 +72,30 @@ function validate(options: NativeOptions) {
   }
 }
 
-function parseResult(result: string): Array<Record<string, string>> {
-  const cases: any[] = [];
+async function prepare(options: NativeOptions) {
+  validate(options);
 
-  for (const item of pictEntries(result)) {
-    let currentCase;
+  const callPictOptions: CallPictOptions = {
+    modelText: await getModelFromSource(options.model),
+    options: {},
+  };
 
-    if (item.valueIndex === 0) {
-      currentCase = {};
-      cases.push(currentCase);
-    } else {
-      currentCase = cases[cases.length - 1];
-    }
-
-    currentCase[item.rowName as string] = item.value;
-
-    cases[cases.length - 1] = currentCase;
+  if (!isUndefined(options.seed)) {
+    callPictOptions.seedText = await getModelFromSource(options.seed);
   }
 
-  return cases;
+  if (!isUndefined(options.options)) {
+    callPictOptions.options = options.options;
+  }
+
+  return callPictOptions;
 }
 
-async function getModelFromSource(source: ModelSource) {
-  if (isString(source)) {
-    return source;
-  }
-
+export const native: Native = async function native(options: NativeOptions) {
   try {
-    const fileContent = await fsp.readFile(source.file);
-    return fileContent.toString();
-  } catch (error) {
-    console.error(`Error while reading model file. ${source.file}`);
-    throw error;
-  }
-}
+    const callPictOptions = await prepare(options);
 
-export async function native(options: NativeOptions) {
-  try {
-    validate(options);
-
-    const callPictOptions: CallPictOptions = {
-      modelText: await getModelFromSource(options.model),
-      options: {},
-    };
-
-    if (!isUndefined(options.seed)) {
-      callPictOptions.seedText = await getModelFromSource(options.seed);
-    }
-
-    if (!isUndefined(options.options)) {
-      callPictOptions.options = options.options;
-    }
+    callPictOptions.options.statistics = false;
 
     const result = await callPict(callPictOptions);
 
@@ -122,4 +104,23 @@ export async function native(options: NativeOptions) {
     console.error('Error while calling "native" function.');
     throw error;
   }
-}
+};
+
+native.stats = async function native(options: NativeOptions) {
+  try {
+    const start = performance.now();
+
+    const callPictOptions = await prepare(options);
+
+    callPictOptions.options.statistics = true;
+
+    const result = await callPict(callPictOptions);
+
+    const end = performance.now() - start;
+
+    return parseStatistics(result, end);
+  } catch (error) {
+    console.error('Error while calling "native.stats" function.');
+    throw error;
+  }
+};

@@ -795,4 +795,28 @@ describe("pict()", () => {
       ]);
     });
   });
+
+  describe("Statistics", () => {
+    test("Should return statistics", async () => {
+      const model = [
+        {
+          key: "Platform",
+          values: ["x86", "x64", "arm"],
+        },
+        {
+          key: "CPUS",
+          values: ["1", "2", "4"],
+        },
+      ] as const;
+
+      const result = await pict.stats({ model });
+
+      expect(result).toEqual({
+        generationTimeNodeJs: expect.any(Number),
+        combinations: 9,
+        generatedTests: 9,
+        generationTime: expect.any(String),
+      });
+    });
+  });
 });

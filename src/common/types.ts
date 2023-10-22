@@ -20,6 +20,7 @@ export interface PictCliOptions {
   negativePrefix: string;
   caseSensitive: boolean;
   seeds: string;
+  statistics: boolean;
 }
 
 export type PickPictCliOptions<T extends keyof PictCliOptions> = Pick<
@@ -132,3 +133,10 @@ export const isModelSeparator: TypeGuard<ModelSeparator> = createTypeGuard(
     return isString(value) && value.length === 1;
   }
 );
+
+export interface PictNodeStatistics {
+  combinations: number;
+  generatedTests: number;
+  generationTime: number;
+  generationTimeNodeJs: number;
+}
