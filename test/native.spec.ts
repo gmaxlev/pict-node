@@ -228,6 +228,29 @@ describe("native()", () => {
       ]);
     });
 
+    test("Should ignore statistics field", async () => {
+      const modelPath = path.resolve(__dirname, "./models/model");
+
+      const result = await native({
+        model: {
+          file: modelPath,
+        },
+        options: {
+          // @ts-expect-error
+          statistics: true,
+        },
+      });
+
+      expect(result).toHaveLength(4);
+
+      expect(result).toIncludeSameMembers([
+        { A: "1", B: "4" },
+        { A: "1", B: "3" },
+        { A: "2", B: "4" },
+        { A: "2", B: "3" },
+      ]);
+    });
+
     test("The simple model with alias operator and symbol key", async () => {
       const model = await getTestModelContent("model-alias");
 
@@ -446,6 +469,25 @@ describe("native()", () => {
         { Platform: "x64", CPUS: "2" },
         { Platform: "x64", CPUS: "4" },
       ]);
+    });
+  });
+
+  describe("Statistics", () => {
+    test("Should return statistics", async () => {
+      const modelPath = path.resolve(__dirname, "./models/model");
+
+      const result = await native.stats({
+        model: {
+          file: modelPath,
+        },
+      });
+
+      expect(result).toEqual({
+        generationTimeNodeJs: expect.any(Number),
+        combinations: 4,
+        generatedTests: 4,
+        generationTime: expect.any(String),
+      });
     });
   });
 });

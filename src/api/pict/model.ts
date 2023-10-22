@@ -8,7 +8,7 @@ import { isNegativeOperator } from "../../common/operators/negative";
 import { isWeightOperator } from "../../common/operators/weight";
 
 /**
- * @todo may brake down this function into smaller ones
+ * Creates PICT model from user's input
  */
 export function createModel<M extends ReadonlyArray<PictTypedModel>>(
   models: M,

@@ -19,6 +19,7 @@ export interface CallPictOptions {
       | "valueSeparator"
       | "negativePrefix"
       | "caseSensitive"
+      | "statistics"
     >
   >;
 }
@@ -82,6 +83,10 @@ export async function callPictBinary(
     } else if (isNumber(params.random)) {
       cliOptions += ` /r:${params.random}`;
     }
+  }
+
+  if (params.statistics === true) {
+    cliOptions += ` /s`;
   }
 
   try {

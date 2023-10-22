@@ -998,4 +998,39 @@ describe("strings()", () => {
       ]);
     });
   });
+
+  describe("Statistisc", () => {
+    test("Should return statistics", async () => {
+      const model = [
+        {
+          key: "Type",
+          values: ["Single", "Span", "Stripe"],
+        },
+        {
+          key: "Size",
+          values: ["10", "100", "500"],
+        },
+        {
+          key: "FormatMethod",
+          values: ["Quick", "Slow", "VerySlow"],
+        },
+      ];
+
+      const result = await strings.stats(
+        {
+          model,
+        },
+        {
+          order: model.length,
+        }
+      );
+
+      expect(result).toEqual({
+        generationTimeNodeJs: expect.any(Number),
+        combinations: 27,
+        generatedTests: 27,
+        generationTime: expect.any(String),
+      });
+    });
+  });
 });
