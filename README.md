@@ -112,6 +112,9 @@ PICT will generate the following test cases:
 In most cases, to generate test cases, you can use the `pict` function. The main features of this function is that you can use any data type for the values of the model.
 
 ```js
+import { pict } from "pict-node";
+import { createOrder } from "./src";
+
 // Define test model
 const model = [
   {
@@ -475,6 +478,38 @@ const cases = native({
   `,
 });
 ```
+
+## Statistics
+
+You can obtain model statistics using the `stats` method.
+
+This method is accessible through the `pict`, `strings`, and `native` APIs.
+
+```js
+import { pict } from "pict-node";
+
+const model = [
+  {
+    key: "platform",
+    values: ["x86", "x64", "arm"],
+  },
+  {
+    key: "ram",
+    values: [1, 4, 64],
+  },
+];
+
+const stats = await pict.stats({
+  model,
+});
+```
+
+The `stats` method returns an object with the following fields:
+
+- `generationTimeNodeJs` - model generation time (including Node.js processing time)
+- `generationTime` - model generation time (excluding Node.js processing time)
+- `combinations` - number of combinations
+- `generatedTests` - number of generated tests
 
 ## License
 
