@@ -1,4 +1,3 @@
-import { isArray, isString } from "tsguarder";
 import type { PictModel } from "./../../common/types";
 import { SeedBuilder } from "../../common/SeedBuilder";
 import type { InputSeed } from "../../common/types";
@@ -10,31 +9,57 @@ export function createSeed<
 >(seeds: S, models: M) {
   const seedBuilder = new SeedBuilder();
 
-  for (const parameter in seeds) {
-    const modelValues = models.find((model) => model.key === parameter);
+  for (const model of seeds) {
+    const seedModel: Record<string, string> = {};
 
-    if (!modelValues) {
-      throw new Error(
-        `The parameter "${parameter}" does not exist in the model`
-      );
-    }
+    for (const key in model) {
+      const itemValue = (model as any)[key] as string;
 
-    const values = seeds[parameter];
+      const modelValues = models.find((model) => model.key === key);
 
-    isArray.assert(values, `seeds[${parameter}]`);
+      if (!modelValues) {
+        throw new Error(`The parameter "${key}" does not exist in the model`);
+      }
 
-    values.forEach((value, index) => {
-      isString.assert(value, `seeds[${parameter}][${index}]`);
+      const value = modelValues.values.find((value) => value === itemValue);
 
-      if (!modelValues.values.some((valueItem) => valueItem === value)) {
+      if (!value) {
         throw new Error(
-          `The value "${value}" does not exist in the model for the parameter "${parameter}"`
+          `The value "${itemValue}" does not exist in the model for the parameter "${key}"`
         );
       }
 
-      seedBuilder.add(parameter, value);
-    });
+      seedModel[key] = itemValue;
+    }
+
+    seedBuilder.add(seedModel);
   }
+
+  // for (const parameter in seeds) {
+  //   const modelValues = models.find((model) => model.key === parameter);
+  //
+  //   if (!modelValues) {
+  //     throw new Error(
+  //       `The parameter "${parameter}" does not exist in the model`
+  //     );
+  //   }
+  //
+  //   const values = seeds[parameter];
+  //
+  //   isArray.assert(values, `seeds[${parameter}]`);
+  //
+  //   values.forEach((value, index) => {
+  //     isString.assert(value, `seeds[${parameter}][${index}]`);
+  //
+  //     if (!modelValues.values.some((valueItem) => valueItem === value)) {
+  //       throw new Error(
+  //         `The value "${value}" does not exist in the model for the parameter "${parameter}"`
+  //       );
+  //     }
+  //
+  //     seedBuilder.add(parameter, value);
+  //   });
+  // }
 
   return seedBuilder.getString();
 }

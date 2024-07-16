@@ -323,10 +323,17 @@ const model = [
   },
 ];
 
-const seed = {
-  ram: [64],
-  browser: ["Opera", "Firefox"],
-};
+const seed = [
+  {
+    ram: 64,
+    browser: "Opera",
+  },
+  {
+    ram: 64,
+    os: "Win8",
+    browser: "Firefox",
+  },
+];
 
 const cases = await pict({
   model,

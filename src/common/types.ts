@@ -9,6 +9,7 @@ import {
   isString,
   isUndefined,
   isNumber,
+  isArray,
 } from "tsguarder";
 import { isPositiveNumber } from "./utils";
 
@@ -93,17 +94,19 @@ export const isInputSubModel: TypeGuard<
 export type InputSeed<
   M extends ReadonlyArray<PictModel>,
   T = Partial<InputPictModelToRecord<M>>
-> = keyof T extends infer KeysInfer
-  ? KeysInfer extends keyof T
-    ? Partial<Record<KeysInfer, ReadonlyArray<T[KeysInfer]>>>
+> = ReadonlyArray<
+  keyof T extends infer KeysInfer
+    ? KeysInfer extends keyof T
+      ? Partial<Record<KeysInfer, T[KeysInfer]>>
+      : never
     : never
-  : never;
+>;
 
 export const isInputSeed: TypeGuard<InputSeed<ReadonlyArray<PictModel>>> =
   createTypeGuard(
-    "must be a type { [key: PropertyKey]: Array<unknown> }",
+    "must be an array Array<{ [key: PropertyKey]: unknown }>",
     (value: unknown): value is InputSeed<ReadonlyArray<PictModel>> =>
-      isRecord(value)
+      isArray(value)
   );
 
 export type InputPictModelToRecord<ModelArg> = UnionToIntersection<

@@ -395,7 +395,7 @@ describe("pict()", () => {
   });
 
   describe("Seeding", () => {
-    test('Should throw an error if "seed" is not a record', async () => {
+    test('Should throw an error if "seed" is not an array', async () => {
       const model = [
         {
           key: "A",
@@ -407,7 +407,7 @@ describe("pict()", () => {
         },
       ] as const;
 
-      for (const invalidType of EXCLUDE_TYPES(["undefined", "record"])) {
+      for (const invalidType of EXCLUDE_TYPES(["array", "undefined"])) {
         const act = async () =>
           await pict({
             model,
@@ -418,36 +418,8 @@ describe("pict()", () => {
         const result = expect(act);
 
         await result.rejects.toThrowError(
-          `"seed": must be a type { [key: PropertyKey]: Array<unknown> }`
+          `"seed": must be an array Array<{ [key: PropertyKey]: unknown }>`
         );
-      }
-    });
-
-    test("Should throw an error if seed contains an invalid type", async () => {
-      const model = [
-        {
-          key: "A",
-          values: ["1", "2"],
-        },
-        {
-          key: "B",
-          values: ["3", "4"],
-        },
-      ] as const;
-
-      for (const invalidType of NOT_ARRAY_TYPES) {
-        const act = async () =>
-          await pict({
-            model,
-            seed: {
-              // @ts-expect-errors
-              A: invalidType,
-            },
-          });
-
-        const result = expect(act);
-
-        await result.rejects.toThrowError(`seeds[A]: must be an array`);
       }
     });
 
@@ -466,10 +438,12 @@ describe("pict()", () => {
       const act = async () =>
         await pict({
           model,
-          seed: {
-            // @ts-expect-error
-            _NOT_EXISTENT_: ["1", "2"],
-          },
+          seed: [
+            {
+              // @ts-expect-error
+              _NOT_EXISTENT_: "1",
+            },
+          ],
         });
 
       const result = expect(act);
@@ -494,10 +468,12 @@ describe("pict()", () => {
       const act = async () =>
         await pict({
           model,
-          seed: {
-            // @ts-expect-error
-            A: ["_NOT_EXISTENT_"],
-          },
+          seed: [
+            {
+              // @ts-expect-error
+              A: "_NOT_EXISTENT_",
+            },
+          ],
         });
 
       const result = expect(act);
@@ -774,10 +750,12 @@ describe("pict()", () => {
 
       const result = await pict({
         model,
-        seed: {
-          Platform: ["arm"],
-          CPUS: ["2"],
-        },
+        seed: [
+          {
+            Platform: "arm",
+            CPUS: "2",
+          },
+        ],
       });
 
       expect(result).toHaveLength(9);
