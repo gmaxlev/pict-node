@@ -512,7 +512,7 @@ describe("strings()", () => {
   });
 
   describe("Seeding", () => {
-    test('Should throw an error if "seed" is not a record', async () => {
+    test('Should throw an error if "seed" is not an array', async () => {
       const model = [
         {
           key: "A",
@@ -524,7 +524,7 @@ describe("strings()", () => {
         },
       ] as const;
 
-      for (const invalidType of EXCLUDE_TYPES(["undefined", "record"])) {
+      for (const invalidType of EXCLUDE_TYPES(["undefined", "array"])) {
         const act = async () =>
           await strings({
             model,
@@ -535,11 +535,10 @@ describe("strings()", () => {
         const result = expect(act);
 
         await result.rejects.toThrowError(
-          `"seed": must be a type { [key: PropertyKey]: Array<unknown> }`
+          `"seed": must be an array Array<{ [key: PropertyKey]: unknown }>`
         );
       }
     });
-
     test("Should throw an error if seed contains non-existing parameter", async () => {
       const model = [
         {
@@ -555,10 +554,12 @@ describe("strings()", () => {
       const act = async () =>
         await strings({
           model,
-          seed: {
-            // @ts-expect-error
-            ["C"]: ["1"],
-          },
+          seed: [
+            {
+              // @ts-expect-error
+              C: "1",
+            },
+          ],
         });
 
       const result = expect(act);
@@ -567,63 +568,6 @@ describe("strings()", () => {
         `The parameter "C" does not exist in the model`
       );
     });
-
-    test("Should throw an error if seed parameter values is not an array", async () => {
-      for (const notArray of NOT_ARRAY_TYPES) {
-        const model = [
-          {
-            key: "A",
-            values: ["1", "2"],
-          },
-          {
-            key: "B",
-            values: ["3", "4"],
-          },
-        ] as const;
-
-        const act = async () =>
-          await strings({
-            model,
-            seed: {
-              // @ts-expect-error
-              ["A"]: notArray,
-            },
-          });
-
-        const result = expect(act);
-
-        await result.rejects.toThrowError(`seeds[A]: must be an array`);
-      }
-    });
-
-    test("Should throw an error if seed parameter value is not a string", async () => {
-      for (const notString of NOT_STRING_TYPES) {
-        const model = [
-          {
-            key: "A",
-            values: ["1", "2"],
-          },
-          {
-            key: "B",
-            values: ["3", "4"],
-          },
-        ] as const;
-
-        const act = async () =>
-          await strings({
-            model,
-            seed: {
-              // @ts-expect-error
-              ["A"]: ["1", notString],
-            },
-          });
-
-        const result = expect(act);
-
-        await result.rejects.toThrowError(`seeds[A][1]: must be a string`);
-      }
-    });
-
     test("Should throw an error if seed parameter value is not in the model", async () => {
       const model = [
         {
@@ -639,10 +583,12 @@ describe("strings()", () => {
       const act = async () =>
         await strings({
           model,
-          seed: {
-            // @ts-expect-error
-            ["A"]: ["1", "3"],
-          },
+          seed: [
+            {
+              // @ts-expect-error
+              A: "3",
+            },
+          ],
         });
 
       const result = expect(act);
@@ -977,10 +923,12 @@ describe("strings()", () => {
 
       const result = await strings({
         model,
-        seed: {
-          Platform: ["arm"],
-          CPUS: ["2"],
-        },
+        seed: [
+          {
+            Platform: "arm",
+            CPUS: "2",
+          },
+        ],
       });
 
       expect(result).toHaveLength(9);

@@ -10,15 +10,19 @@ export function createSeed<S extends InputSeed<ReadonlyArray<PictTypedModel>>>(
 ) {
   const seedBuilder = new SeedBuilder();
 
-  for (const key in seeds) {
-    const parameters = seeds[key];
+  for (const model of seeds) {
+    const seedModel: Record<string, string> = {};
 
-    isArray.assert(parameters, `seeds[${key}]`);
+    for (const key in model) {
+      const result = valuesIdMap.getParameterAndValueIdFromValues(
+        key,
+        // @ts-ignore
+        model[key]
+      );
+      seedModel[result.parameterId] = result.valueId;
+    }
 
-    parameters.forEach((value) => {
-      const result = valuesIdMap.getParameterAndValueIdFromValues(key, value);
-      seedBuilder.add(result.parameterId, result.valueId);
-    });
+    seedBuilder.add(seedModel);
   }
 
   return seedBuilder.getString();

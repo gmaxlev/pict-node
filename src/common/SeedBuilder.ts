@@ -1,56 +1,58 @@
-import { isString, isUndefined } from "tsguarder";
+import { isRecord, isString } from "tsguarder";
 import { EOL } from "os";
 
 /**
- * A builder for PICT sub models.
+ * A builder for PICT seeds
  * @see {@link https://github.com/Microsoft/pict/blob/main/doc/pict.md#sub-models}
  */
 export class SeedBuilder {
-  private max = 0;
-  private parameters: Record<string, string[]> = {};
+  private keys = new Set<string>();
+  private parameters: Array<Record<string, string>> = [];
 
-  add(parameter: string, value: string) {
-    if (!isString(parameter)) {
-      throw new Error("Parameter must be a string");
+  add(values: Record<string, string>) {
+    if (!isRecord(values)) {
+      throw new Error("Values must be a record");
     }
 
-    if (!isString(value)) {
-      throw new Error("Value must be a string");
+    if (Object.keys(values).length === 0) {
+      throw new Error("Values must not be an empty object");
     }
 
-    const values = this.parameters[parameter] || [];
-    values.push(String(value));
-    this.max = Math.max(this.max, values.length);
-    this.parameters[parameter] = values;
+    for (const parameter in values) {
+      const value = values[parameter];
+
+      if (!isString(value)) {
+        throw new Error("Value must be a string");
+      }
+
+      this.keys.add(parameter);
+    }
+
+    this.parameters.push(values);
   }
 
   getString() {
-    const parameters = Object.keys(this.parameters);
+    const keys = [...this.keys.values()];
 
-    let string = parameters.join("\t");
-    string += " ";
+    let string = keys.join("\t");
 
-    for (let counter = 0; counter <= this.max; counter++) {
-      parameters.forEach((parameter, index) => {
-        // @ts-ignore
-        const value = this.parameters[parameter][counter];
+    this.parameters.forEach((parameter) => {
+      string += EOL;
 
-        if (isUndefined(value)) {
-          return;
+      keys.forEach((key, index, array) => {
+        const value = parameter[key];
+
+        if (typeof value === "string") {
+          string += value;
+        } else {
+          string += "";
         }
 
-        if (index === 0) {
-          string = string.substring(0, string.length - 1);
-          string += EOL;
+        if (index !== array.length - 1) {
+          string += "\t";
         }
-
-        string += value;
-
-        string += "\t";
       });
-    }
-
-    string = string.substring(0, string.length - 1);
+    });
 
     return string;
   }
