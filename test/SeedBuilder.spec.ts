@@ -15,19 +15,19 @@ describe("SeedBuilder", () => {
   });
 
   describe("add()", () => {
-    test('Should throw an error if "parameter" is not a string', () => {
-      for (const notString of NOT_STRING_TYPES) {
-        // @ts-expect-error
-        const act = () => instance.add(notString, "value");
+    test("Should throw an error on an empty object", () => {
+      const act = () => instance.add({});
 
-        expect(act).toThrowError("Parameter must be a string");
-      }
+      expect(act).toThrowError("Values must not be an empty object");
     });
 
-    test('Should throw an error if "value" is not a string', () => {
+    test("Should throw an error if value is not a string", () => {
       for (const notString of NOT_STRING_TYPES) {
-        // @ts-expect-error
-        const act = () => instance.add("parameter", notString);
+        const act = () =>
+          instance.add({
+            // @ts-expect-error
+            ["key"]: notString,
+          });
 
         expect(act).toThrowError("Value must be a string");
       }
@@ -36,23 +36,26 @@ describe("SeedBuilder", () => {
 
   describe("getString()", () => {
     test("Should return PICT sub model text", () => {
-      instance.add("A", "1");
-      instance.add("A", "2");
-      instance.add("B", "3");
-      instance.add("C", "7");
-      const result = instance.getString();
-      expect(result).toBe(`A\tB\tC${EOL}1\t3\t7${EOL}2`);
-    });
+      instance.add({
+        A: "1",
+        B: "3",
+        C: "7",
+      });
 
-    test("Should return PICT sub model text", () => {
-      instance.add("A", "1");
-      instance.add("B", "2");
-      instance.add("B", "3");
-      instance.add("C", "4");
-      instance.add("C", "5");
-      instance.add("C", "6");
+      instance.add({
+        A: "4",
+        C: "6",
+      });
+
+      instance.add({
+        A: "100",
+        X: "50",
+      });
+
       const result = instance.getString();
-      expect(result).toBe(`A\tB\tC${EOL}1\t2\t4\t3\t5\t6`);
+      expect(result).toBe(
+        `A\tB\tC\tX${EOL}1\t3\t7\t${EOL}4\t\t6\t${EOL}100\t\t\t50`
+      );
     });
   });
 });
