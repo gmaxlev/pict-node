@@ -3,6 +3,7 @@ import type { Config } from "@docusaurus/types";
 import type * as Preset from "@docusaurus/preset-classic";
 
 const config: Config = {
+  trailingSlash: true,
   title: "pict-node",
   tagline: "Combinatorial Test Case Generation",
   favicon: "img/favicon.ico",
