@@ -2,29 +2,23 @@
 sidebar_position: 2
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
 
 # Getting Started
 
 Install pict-node using your favorite package manager:
 
 <Tabs>
-    <TabItem value="npm" label="npm" default>
-        ```bash
-        npm install pict-node
-        ```
-    </TabItem>
-    <TabItem value="yarn" label="yarn">
-        ```bash
-        yarn add pict-node
-        ```
-    </TabItem>
-    <TabItem value="pnpm" label="pnpm">
-        ```bash
-        pnpm add pict-node
-        ```
-    </TabItem>
+  <TabItem value="npm" label="npm" default>
+    ```bash npm install pict-node ```
+  </TabItem>
+  <TabItem value="yarn" label="yarn">
+    ```bash yarn add pict-node ```
+  </TabItem>
+  <TabItem value="pnpm" label="pnpm">
+    ```bash pnpm add pict-node ```
+  </TabItem>
 </Tabs>
 
 ## Create Test Cases
@@ -39,32 +33,32 @@ import { createOrder } from "./createOrder.js";
 const model = [
   {
     key: "customer",
-    values: ["Individuals", "Companies", "Partners"]
+    values: ["Individuals", "Companies", "Partners"],
   },
   {
     key: "time",
-    values: ["05:00", "11:99", "15:00", "21:30", "23:59"]
+    values: ["05:00", "11:99", "15:00", "21:30", "23:59"],
   },
   {
     key: "payment",
-    values: ["VISA", "MasterCard", "PayPal", "Qiwi"]
+    values: ["VISA", "MasterCard", "PayPal", "Qiwi"],
   },
   {
     key: "product",
     values: [
       {
-        id: 1732
+        id: 1732,
       },
       {
-        id: 319
+        id: 319,
       },
       {
-        id: 872
+        id: 872,
       },
       {
-        id: 650
-      }
-    ]
+        id: 650,
+      },
+    ],
   },
   {
     key: "discount",
@@ -82,7 +76,7 @@ for (const { customer, time, payment, product, discount } of cases) {
     time,
     payment,
     product,
-    discount
+    discount,
   });
 
   // Verify that the function returns the expected result
@@ -96,33 +90,46 @@ Test cases are an array with generated values.
 [
   // ... ... ...
   {
-    "customer": "Individuals",
-    "time": "21:30",
-    "payment": "PayPal",
-    "product": {
-      "id": 319
+    customer: "Individuals",
+    time: "21:30",
+    payment: "PayPal",
+    product: {
+      id: 319,
     },
-    "discount": false
+    discount: false,
   },
   {
-    "customer": "Individuals",
-    "time": "11:99",
-    "payment": "MasterCard",
-    "product": {
-      "id": 872
+    customer: "Individuals",
+    time: "11:99",
+    payment: "MasterCard",
+    product: {
+      id: 872,
     },
-    "discount": true
+    discount: true,
   },
   // ... ... ...
   {
-    "customer": "Partners",
-    "time": "23:59",
-    "payment": "Qiwi",
-    "product": {
-      "id": 872
+    customer: "Partners",
+    time: "23:59",
+    payment: "Qiwi",
+    product: {
+      id: 872,
     },
-    "discount": true
+    discount: true,
+  },
+  // ... ... ...
+];
+```
+
+By default, the library generates a pair-wise test suite (all pairs covered), but the order can be set by option `order` to a value larger than two.
+
+```js
+const cases = await pict(
+  {
+    model,
+  },
+  {
+    order: 3,
   }
-  // ... ... ...
-]
+);
 ```
