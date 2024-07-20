@@ -1,0 +1,48 @@
+---
+sidebar_position: 5
+---
+
+# Sub-Models
+
+Sub-models allow the bundling of certain parameters into groups that get their own combinatory orders. This can be useful if combinations of certain parameters need to be tested more thoroughly, or less thoroughly, or in separation from the other parameters in the model.
+
+:::info
+Read [PICT documentation](https://github.com/Microsoft/pict/blob/main/doc/pict.md#sub-models) to get more information about sub-models.
+:::
+
+Sub-models can be used with both the `pict` and `strings` API functions, and they are defined using the `sub` property.
+
+```js
+import { pict } from "pict-node";
+
+const model = [
+  {
+    key: "platform",
+    values: ["x86", "x64", "arm"],
+  },
+  {
+    key: "ram",
+    values: [1, 4, 64],
+  },
+  {
+    key: "os",
+    values: ["Win7", "Win8", "Win10"],
+  },
+  {
+    key: "browser",
+    values: ["Edge", "Opera", "Chrome", "Firefox"],
+  },
+];
+
+const sub = [
+  {
+    keys: ["os", "browser"],
+    order: 2, // optional
+  },
+];
+
+const cases = await pict({
+  model,
+  sub,
+});
+```

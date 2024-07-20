@@ -1,0 +1,47 @@
+---
+sidebar_position: 11
+---
+
+# Native PICT Models
+
+You can use native PICT models with `native` API function.
+
+`native` accepts the following options (optional):
+
+- `order` - order of combinations (default: 2)
+- `random` - [randomization](https://github.com/Microsoft/pict/blob/main/doc/pict.md#output-format)
+- `aliasSeparator` - the separator used for aliases (default: `|`)
+- `valueSeparator` - the separator used for values (default: `,`)
+- `negativePrefix` - the prefix used for negative values (default: `~`)
+- `caseSensitive` - [case sensitive](https://github.com/Microsoft/pict/blob/main/doc/pict.md#case-sensitiveness) (default: `false`)
+
+A model can be a file:
+
+```js
+import { native } from "pict-node";
+
+const cases = await native({
+  model: {
+    file: "path/to/file",
+    seed: "path/to/seed/file", // optional,
+    options: {
+      caseSensitive: true,
+    },
+  },
+});
+```
+
+A model and a seed can be a string:
+
+```js
+import { native } from "pict-node";
+
+const cases = await native({
+  model: `
+  PLATFORM:  x86, x64, arm
+  RAM:       1GB, 4GB, 64GB
+  OS:        Win7, Win8, Win10
+  Browser:   Edge, Opera, Chrome, Firefox
+  `,
+});
+```
