@@ -1,0 +1,54 @@
+---
+sidebar_position: 6
+---
+
+# Seeding
+
+Seeding allows for specifying important e.g. regression-inducing combinations that should end up in any generated test suite.
+
+:::info
+Read [PICT documentation](https://github.com/Microsoft/pict/blob/main/doc/pict.md#seeding) to get more information about seeding.
+:::
+
+
+Seeding can be used with both the `pict` and `strings` API functions, and they are defined using the `seed` property.
+
+```js
+import { pict } from "pict-node";
+
+const model = [
+  {
+    key: "platform",
+    values: ["x86", "x64", "arm"],
+  },
+  {
+    key: "ram",
+    values: [1, 4, 64],
+  },
+  {
+    key: "os",
+    values: ["Win7", "Win8", "Win10"],
+  },
+  {
+    key: "browser",
+    values: ["Edge", "Opera", "Chrome", "Firefox"],
+  },
+];
+
+const seed = [
+  {
+    ram: 64,
+    browser: "Opera",
+  },
+  {
+    ram: 64,
+    os: "Win8",
+    browser: "Firefox",
+  },
+];
+
+const cases = await pict({
+  model,
+  seed,
+});
+```

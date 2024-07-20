@@ -1,0 +1,34 @@
+---
+sidebar_position: 7
+---
+
+# Aliasing
+
+Aliasing is a way of specifying multiple names for a single value. Multiple names do not change the combinatorial complexity of the model. No matter how many names a value has, they are treated as one entity. The only difference will be in the output; any test case that would normally have that one value will have one of its names instead. Names are rotated among the test cases.
+
+:::info
+Read [PICT documentation](https://github.com/Microsoft/pict/blob/main/doc/pict.md#aliasing) to get more information about aliasing.
+:::
+
+There is a special function `alias` that can be used to create aliases for values. It can be used with both the `pict` and `strings` API functions.
+
+```js
+import { pict, alias } from "pict-node";
+
+const model = [
+  {
+    key: "os",
+    values: ["Win7", "Win8", alias(["Win10", "Windows10"])],
+  },
+  {
+    key: "platform",
+    values: ["x86", "x64", "arm"],
+  },
+  {
+    key: "ram",
+    values: [1, 4, 64],
+  },
+];
+
+const cases = await pict({ model });
+```

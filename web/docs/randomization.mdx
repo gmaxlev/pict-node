@@ -1,0 +1,31 @@
+---
+sidebar_position: 10
+---
+
+# Randomization
+
+If a model and options given to the tool do not change, every run will result in the same output. However, the output can be randomized.
+
+:::info
+Read [PICT documentation](https://github.com/Microsoft/pict/blob/main/doc/pict.md#output-format) to get more information about randomization.
+:::
+
+If the model does not change, running it repeatedly will result in the same output. To introduce randomness, you can use the `random` option.
+
+It applies to `pict`, `strings` and `native` API.
+
+```js
+import { pict } from "pict-node";
+
+const model = [
+  // ...
+];
+
+const cases = await pict(
+  { model },
+  {
+    random: true,
+    // random: 19285 - or using with seed
+  }
+);
+```

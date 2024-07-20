@@ -1,0 +1,128 @@
+---
+sidebar_position: 2
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Getting Started
+
+Install pict-node using your favorite package manager:
+
+<Tabs>
+    <TabItem value="npm" label="npm" default>
+        ```bash
+        npm install pict-node
+        ```
+    </TabItem>
+    <TabItem value="yarn" label="yarn">
+        ```bash
+        yarn add pict-node
+        ```
+    </TabItem>
+    <TabItem value="pnpm" label="pnpm">
+        ```bash
+        pnpm add pict-node
+        ```
+    </TabItem>
+</Tabs>
+
+## Create Test Cases
+
+In most cases, to create test cases, you can use the `pict` function. The main feature of this function is that you can use any data type for the values.
+
+```js
+import { pict } from "pict-node";
+import { createOrder } from "./createOrder.js";
+
+// 1. Define test model
+const model = [
+  {
+    key: "customer",
+    values: ["Individuals", "Companies", "Partners"]
+  },
+  {
+    key: "time",
+    values: ["05:00", "11:99", "15:00", "21:30", "23:59"]
+  },
+  {
+    key: "payment",
+    values: ["VISA", "MasterCard", "PayPal", "Qiwi"]
+  },
+  {
+    key: "product",
+    values: [
+      {
+        id: 1732
+      },
+      {
+        id: 319
+      },
+      {
+        id: 872
+      },
+      {
+        id: 650
+      }
+    ]
+  },
+  {
+    key: "discount",
+    values: [true, false],
+  },
+];
+
+// 2. Create test cases
+const cases = await pict({ model });
+
+// 3. Iterate test cases
+for (const { customer, time, payment, product, discount } of cases) {
+  const result = createOrder({
+    customer,
+    time,
+    payment,
+    product,
+    discount
+  });
+
+  // Verify that the function returns the expected result
+  expect(result).toBe("The order has been created");
+}
+```
+
+Test cases are an array with generated values.
+
+```js
+[
+  // ... ... ...
+  {
+    "customer": "Individuals",
+    "time": "21:30",
+    "payment": "PayPal",
+    "product": {
+      "id": 319
+    },
+    "discount": false
+  },
+  {
+    "customer": "Individuals",
+    "time": "11:99",
+    "payment": "MasterCard",
+    "product": {
+      "id": 872
+    },
+    "discount": true
+  },
+  // ... ... ...
+  {
+    "customer": "Partners",
+    "time": "23:59",
+    "payment": "Qiwi",
+    "product": {
+      "id": 872
+    },
+    "discount": true
+  }
+  // ... ... ...
+]
+```

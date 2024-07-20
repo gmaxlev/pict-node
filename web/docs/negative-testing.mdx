@@ -1,0 +1,30 @@
+---
+sidebar_position: 8
+---
+
+# Negative Testing
+
+In addition to testing valid combinations, referred to as “positive testing,” it is often desirable to test using values outside the allowable range to make sure the program handles errors properly.
+
+:::info
+Read [PICT documentation](https://github.com/Microsoft/pict/blob/main/doc/pict.md#negative-testing) to get more information about negative testing.
+:::
+
+There is a special function `negative` that can be used to create a value for negative testing. It can be used with both the `pict` and `strings` API functions.
+
+```js
+import { pict, negative } from "pict-node";
+
+const model = [
+  {
+    key: "A",
+    values: [negative(-1), 0, 1, 2],
+  },
+  {
+    key: "B",
+    values: [negative(-1), 0, 1, 2],
+  },
+];
+
+const cases = await pict({ model });
+```
