@@ -1,0 +1,12 @@
+.intro {
+  align-items: center;
+  justify-content: center;
+}
+
+.intro h1 {
+  color: var(--ifm-color-primary);
+}
+
+.intro p {
+  max-width: 400px;
+}

@@ -1,0 +1,34 @@
+---
+sidebar_position: 9
+---
+
+# Weighting
+
+Weights tell the generator to prefer certain parameter values over others. Weights are positive integers. When not explicitly specified, values have a weight of 1:
+
+:::info
+Read [PICT documentation](https://github.com/Microsoft/pict/blob/main/doc/pict.md#weighting) to get more information about weighting.
+:::
+
+There is a special function `weight` that can be used to create a value with weight. It can be used with both the `pict` and `strings` API functions.
+
+```js
+import { pict, weight } from "pict-node";
+
+const model = [
+  {
+    key: "type",
+    values: [weight("Primary", 5), "Logical", "Single", "Span"],
+  },
+  {
+    key: "formatMethod",
+    values: ["quick", "slow"],
+  },
+  {
+    key: "fileSystem",
+    values: ["FAT", "FAT32", weight("NTFS", 10)],
+  },
+];
+
+const cases = await pict({ model });
+```

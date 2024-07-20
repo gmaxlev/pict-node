@@ -18,7 +18,7 @@ Imagine you have a function for creating order that accepts 6 parameters with se
 
 | Parameter      | Possible Values                          |
 | -------------- | ---------------------------------------- |
-| Location       | Ukraine, Poland, Lithuania, Germany, USA |
+| Location       | Poland, Lithuania, Germany, USA          |
 | Customer       | Individuals, Companies, Partners         |
 | Time           | 05:00, 11:99, 15:00, 21:30, 23:59        |
 | Payment System | VISA, MasterCard, PayPal, WebMoney, Qiwi |
@@ -33,7 +33,7 @@ import { pict } from "pict-node";
 const model = [
   {
     key: "location",
-    values: ["Ukraine", "Poland", "Lithuania", "Germany", "USA"],
+    values: ["Poland", "Lithuania", "Germany", "USA"],
   },
   {
     key: "customer",
@@ -96,7 +96,7 @@ PICT will generate the following test cases:
   },
   // ... ... ...
   {
-    location: "Ukraine",
+    location: "Poland",
     customer: "Companies",
     time: "23:59",
     paymentSystem: "MasterCard",
@@ -107,9 +107,9 @@ PICT will generate the following test cases:
 ];
 ```
 
-## Generating Test Cases
+## Create Test Cases
 
-In most cases, to generate test cases, you can use the `pict` function. The main features of this function is that you can use any data type for the values of the model.
+In most cases, to create test cases, you can use the `pict` function. The main feature of this function is that you can use any data type for the values.
 
 ```js
 import { pict } from "pict-node";
@@ -119,7 +119,7 @@ import { createOrder } from "./src";
 const model = [
   {
     key: "country",
-    values: ["Ukraine", "Poland", "USA"],
+    values: ["USA", "Canada", "Germany"],
   },
   {
     key: "age",
@@ -163,6 +163,8 @@ const cases = await pict(
 
 ## TypeScript 🪄
 
+The library provides excellent support for TypeScript.
+
 Here is an example of using this tool with TypeScript:
 
 ```ts
@@ -194,7 +196,7 @@ Array<{
 }>;
 ```
 
-**⚠️ Note that we use `as const` to get a literal types!**
+> ⚠️ Note that we use `as const` to get a literal types!\*\*
 
 Without `as const` the type of `cases` will be:
 
@@ -206,6 +208,8 @@ Array<{
 ```
 
 ## Constraints
+
+In practice, you might want to exclude some of the generated test cases because certain parameters can't exist together. You can use constraints and their powerful syntax for this.
 
 > Read [PICT documentation](https://github.com/Microsoft/pict/blob/main/doc/pict.md#constraints) to get more information about constraints.
 
@@ -256,6 +260,9 @@ If you need to use values of different types, you can use the `pict` function in
 
 ## Sub-Models
 
+Sub-models allow the bundling of certain parameters into groups that get their own combinatory orders.
+This can be useful if combinations of certain parameters need to be tested more thoroughly, or less thoroughly, or in separation from the other parameters in the model.
+
 > Read [PICT documentation](https://github.com/Microsoft/pict/blob/main/doc/pict.md#sub-models) to get more information about sub-models.
 
 Sub-models can be used with both the `pict` and `strings` API functions, and they are defined using the `sub` property.
@@ -296,6 +303,8 @@ const cases = await pict({
 ```
 
 ## Seeding
+
+Seeding allows for specifying important e.g. regression-inducing combinations that should end up in any generated test suite.
 
 > Read [PICT documentation](https://github.com/Microsoft/pict/blob/main/doc/pict.md#seeding) to get more information about seeding.
 
@@ -343,6 +352,11 @@ const cases = await pict({
 
 ## Aliasing
 
+Aliasing is a way of specifying multiple names for a single value. Multiple names do not change the combinatorial complexity of the model.
+No matter how many names a value has, they are treated as one entity.
+The only difference will be in the output; any test case that would normally have that one value will have one of its names instead.
+Names are rotated among the test cases.
+
 > Read [PICT documentation](https://github.com/Microsoft/pict/blob/main/doc/pict.md#aliasing) to get more information about aliasing.
 
 There is a special function `alias` that can be used to create aliases for values. It can be used with both the `pict` and `strings` API functions.
@@ -370,6 +384,8 @@ const cases = await pict({ model });
 
 ## Negative Testing
 
+In addition to testing valid combinations, referred to as “positive testing,” it is often desirable to test using values outside the allowable range to make sure the program handles errors properly.
+
 > Read [PICT documentation](https://github.com/Microsoft/pict/blob/main/doc/pict.md#negative-testing) to get more information about negative testing.
 
 There is a special function `negative` that can be used to create a value for negative testing. It can be used with both the `pict` and `strings` API functions.
@@ -392,6 +408,10 @@ const cases = await pict({ model });
 ```
 
 ## Weighting
+
+Weights tell the generator to prefer certain parameter values over others.
+Weights are positive integers.
+When not explicitly specified, values have a weight of 1:
 
 > Read [PICT documentation](https://github.com/Microsoft/pict/blob/main/doc/pict.md#weighting) to get more information about weighting.
 
@@ -420,6 +440,9 @@ const cases = await pict({ model });
 
 ## Randomization
 
+If a model and options given to the tool do not change, every run will result in the same output.
+However, the output can be randomized.
+
 > Read [PICT documentation](https://github.com/Microsoft/pict/blob/main/doc/pict.md#output-format) to get more information about randomization.
 
 If the model does not change, running it repeatedly will result in the same output. To introduce randomness, you can use the `random` option.
@@ -427,7 +450,7 @@ If the model does not change, running it repeatedly will result in the same outp
 It applies to `pict`, `strings` and `native` API.
 
 ```js
-import { pict, negative } from "pict-node";
+import { pict } from "pict-node";
 
 const model = [
   // ...
@@ -476,7 +499,7 @@ A model and a seed can be a string:
 ```js
 import { native } from "pict-node";
 
-const cases = native({
+const cases = await native({
   model: `
   PLATFORM:  x86, x64, arm
   RAM:       1GB, 4GB, 64GB

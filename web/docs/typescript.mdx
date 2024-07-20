@@ -1,0 +1,42 @@
+---
+sidebar_position: 3
+---
+
+# TypeScript 🪄
+
+The library provides excellent support for TypeScript.
+
+Here is an example of using this tool with TypeScript:
+
+```ts
+import { pict, alias, weight } from "pict-node";
+
+const model = [
+  {
+    key: "amount",
+    //                           ↓↓↓↓↓↓↓↓
+    values: [1, alias([2, "two"] as const), 3],
+  },
+  {
+    key: "fruit",
+    //                       ↓↓↓↓↓↓↓↓
+    values: [weight("Banana" as const, 10), "Orange", "Apple"],
+  },
+  // ↓↓↓↓↓
+] as const;
+
+const cases = await pict({ model });
+```
+
+The type of `cases` will be:
+
+```ts
+Array<{
+  amount: 1 | 2 | "two" | 3;
+  fruit: "Banana" | "Orange" | "Apple";
+}>;
+```
+
+:::warning
+Note that we use `as const` to get a literal types!
+:::

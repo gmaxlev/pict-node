@@ -1,0 +1,58 @@
+---
+sidebar_position: 4
+---
+
+# Constraints
+
+In practice, you might want to exclude some of the generated test cases because certain parameters can't exist together. You can use constraints and their powerful syntax for this.
+
+:::info
+Read [PICT documentation](https://github.com/Microsoft/pict/blob/main/doc/pict.md#constraints) to get more information about constraints.
+:::
+
+Constraints are only applicable when using the strings function, which only accepts string values and provides additional options:
+
+- `aliasSeparator` - the separator used for aliases (default: `|`)
+- `valueSeparator` - the separator used for values (default: `,`)
+- `negativePrefix` - the prefix used for negative values (default: `~`)
+- `caseSensitive` - [case sensitive](https://github.com/Microsoft/pict/blob/main/doc/pict.md#case-sensitiveness) (default: `false`)
+
+:::warning
+Be aware that the characters used for `aliasSeparator`, `valueSeparator`, and `negativePrefix` cannot be used in your values. If you use them, you must replace them using the second argument (options).
+:::
+
+```js
+import { strings } from "pict-node";
+
+const model = [
+  {
+    key: "type",
+    values: ["Primary", "Logical", "Single"],
+  },
+  {
+    key: "size",
+    values: ["10", "100", "500", "1000", "5000", "10000", "40000"],
+  },
+  {
+    key: "fileSystem",
+    values: ["FAT", "FAT32", "NTFS"],
+  },
+];
+
+const constraints = [
+  'IF [fileSystem] = "FAT"   THEN [Size] <= 4096;',
+  'IF [fileSystem] = "FAT32" THEN [Size] <= 32000;',
+];
+
+const cases = await strings(
+  {
+    model,
+    constraints,
+  },
+  {
+    caseSensitive: true,
+  }
+);
+```
+
+If you need to use values of different types, you can use the `pict` function instead of the `strings` function. This way, you can specify any type you want for the values of your model.

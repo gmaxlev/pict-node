@@ -1,0 +1,108 @@
+---
+sidebar_position: 1
+---
+
+# Overview
+
+This library is a wrapper around Microsoft's [PICT](https://github.com/microsoft/pict) (Pairwise Independent Combinatorial Testing) tool, designed to work with Node.js for generating combinations of inputs for software testing. PICT is a powerful tool that helps reduce the number of tests needed while still ensuring comprehensive coverage by generating optimized combinations of inputs.
+
+The library boasts excellent **TypeScript** support! 🪄
+
+:::info
+Before using this library, it's helpful to read Microsoft's official [PICT documentation](https://github.com/Microsoft/pict/blob/main/doc/pict.md) to learn about the tool and how it works.
+:::
+
+## Using
+
+Imagine you have a function for creating order that accepts 6 parameters with several possible values for each argument.
+
+| Parameter      | Possible Values                          |
+| -------------- | ---------------------------------------- |
+| Location       | Poland, Lithuania, Germany, USA          |
+| Customer       | Individuals, Companies, Partners         |
+| Time           | 05:00, 11:99, 15:00, 21:30, 23:59        |
+| Payment System | VISA, MasterCard, PayPal, WebMoney, Qiwi |
+| Product        | 1732, 319, 872, 650                      |
+| Discount       | true, false                              |
+
+This model has many possible combinations, which means we could have thousands of test cases to write and test. However, it's not practical to test all of them manually and in a reasonable amount of time. Instead, we can generate and test all possible pairs of values to achieve a good level of coverage.
+
+```js
+import { pict } from "pict-node";
+
+const model = [
+  {
+    key: "location",
+    values: ["Poland", "Lithuania", "Germany", "USA"],
+  },
+  {
+    key: "customer",
+    values: ["Individuals", "Companies", "Partners"],
+  },
+  {
+    key: "time",
+    values: ["05:00", "11:99", "15:00", "21:30", "23:59"],
+  },
+  {
+    key: "paymentSystem",
+    values: ["VISA", "MasterCard", "PayPal", "WebMoney", "Qiwi"],
+  },
+  {
+    key: "product",
+    values: [
+      {
+        id: 1732,
+      },
+      {
+        id: 319,
+      },
+      {
+        id: 872,
+      },
+      {
+        id: 650,
+      },
+    ],
+  },
+  {
+    key: "discount",
+    values: [true, false],
+  },
+];
+
+const cases = await pict({ model });
+```
+
+PICT will generate the following test cases:
+
+```js
+[
+  // ... ... ...
+  {
+    location: "Lithuania",
+    customer: "Individuals",
+    time: "23:59",
+    paymentSystem: "Qiwi",
+    product: { id: 650 },
+    discount: true,
+  },
+  {
+    location: "USA",
+    customer: "Partners",
+    time: "05:00",
+    paymentSystem: "VISA",
+    product: { id: 319 },
+    discount: false,
+  },
+  // ... ... ...
+  {
+    location: "Poland",
+    customer: "Companies",
+    time: "23:59",
+    paymentSystem: "MasterCard",
+    product: { id: 1732 },
+    discount: true,
+  },
+  // ... ... ...
+];
+```
