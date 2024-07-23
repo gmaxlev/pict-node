@@ -50,10 +50,10 @@ const config: Config = {
     // Replace with your project's social card
     // image: "img/docusaurus-social-card.jpg",
     navbar: {
-      title: "pict-node",
       logo: {
         alt: "pict-node logo",
         src: "img/logo.svg",
+        className: "header-logo",
       },
       items: [
         {

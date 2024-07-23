@@ -12,6 +12,11 @@ export default function Intro() {
     >
       <main className={"text--center"}>
         <div className={"container"}>
+          <img
+            src={"./img/logo.svg"}
+            alt={"pict-node logo"}
+            className={styles.logo}
+          />
           <h1>PICT for Node.js</h1>
           <h2>Combinatorial Test Case Generation</h2>
           <p>
