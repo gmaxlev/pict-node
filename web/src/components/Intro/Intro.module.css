@@ -1,6 +1,8 @@
 .intro {
   align-items: center;
   justify-content: center;
+  padding-top: 50px;
+  padding-bottom: 50px;
 }
 
 .intro h1 {
@@ -9,4 +11,8 @@
 
 .intro p {
   max-width: 400px;
+}
+
+.logo {
+  max-width: 80%;
 }
