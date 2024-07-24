@@ -1,8 +1,8 @@
-# [pict-node](https://gmaxlev.github.io/pict-node/)
+# [pict-node](https://pict-node.js.org)
 
 ![CLI watch mode example](./docs/logo.svg)
 
-The documentation is published on [gmaxlev.github.io/pict-node/](https://gmaxlev.github.io/pict-node/)
+### [Documentation](https://pict-node.js.org)
 
 This library is a wrapper around Microsoft's [PICT](https://github.com/microsoft/pict) (Pairwise Independent Combinatorial Testing) tool, designed to work with Node.js for generating combinations of inputs for software testing. PICT is a powerful tool that helps reduce the number of tests needed while still ensuring comprehensive coverage by generating optimized combinations of inputs.
 
